@@ -1,0 +1,75 @@
+@model HorariosVM
+@{ ViewData["Title"] = T["Horários · "].Value + Model.Medico.Nome; }
+<div class="grade-2 grade-form-lista">
+    <form method="post" asp-action="SalvarHorario" class="cartao formulario" id="form-horario">
+        <h2 data-titulo-form>@T["Novo horário"]</h2>
+        <p class="muted">@T["Os horários livres da agenda são gerados a partir desta grade."]</p>
+        <input type="hidden" name="Id" />
+        <input type="hidden" name="MedicoId" value="@Model.Medico.Id" />
+        <div class="campo">
+            <span>@T["Dias da semana"]</span>
+            <div class="dias-semana">
+                @for (byte d = 0; d < 7; d++)
+                {
+                    <label class="check"><input type="checkbox" name="DiasSemana" value="@d" checked="@(d is >= 1 and <= 5)" /> @Exibicao.DiaSemana(d)[..3]</label>
+                }
+            </div>
+        </div>
+        <div class="linha">
+            <label class="campo"><span>@T["Das"]</span><input type="time" name="HoraInicio" value="08:00" required /></label>
+            <label class="campo"><span>@T["Até"]</span><input type="time" name="HoraFim" value="12:00" required /></label>
+            <label class="campo"><span>@T["Intervalo (min)"]</span><input type="number" name="DuracaoSlotMin" min="5" max="240" step="5" value="@Model.Medico.DuracaoConsultaPadraoMin" required /></label>
+        </div>
+        <label class="campo"><span>@T["Especialidade"]</span>
+            <select name="EspecialidadeId">
+                <option value="">@T["Qualquer"]</option>
+                @foreach (var e in Model.Especialidades.Where(e => Model.Medico.Especialidades.Any(me => me.EspecialidadeId == e.Id)))
+                {
+                    <option value="@e.Id">@e.Nome</option>
+                }
+            </select></label>
+        <div class="linha">
+            <label class="campo"><span>@T["Vigência a partir de"]</span><input type="date" name="VigenciaInicio" value="@Exibicao.Iso(DateOnly.FromDateTime(DateTime.Today))" required /></label>
+            <label class="campo"><span>@T["Até (opcional)"]</span><input type="date" name="VigenciaFim" /></label>
+        </div>
+        <label class="check"><input type="checkbox" name="Ativo" value="true" checked /><input type="hidden" name="Ativo" value="false" /> @T["Ativo"]</label>
+        <div class="acoes">
+            <button class="btn btn-primario" type="submit">@T["Salvar"]</button>
+            <button class="btn btn-leve" type="reset" data-limpar-form>@T["Limpar"]</button>
+        </div>
+    </form>
+    <section class="cartao">
+        <div class="cabecalho-acoes">
+            <h2>@T["Grade atual"]</h2>
+            <a class="btn btn-leve" asp-action="Medicos">@T["Voltar"]</a>
+        </div>
+        @if (Model.Horarios.Count == 0)
+        {
+            <p class="vazio-texto">@T["Nenhum horário cadastrado. Sem grade, a agenda não mostra horários livres (ainda é possível agendar digitando a hora)."]</p>
+        }
+        else
+        {
+            <table class="tabela">
+                <thead><tr><th>@T["Dia"]</th><th>@T["Horário"]</th><th>@T["Intervalo"]</th><th>@T["Vigência"]</th><th></th></tr></thead>
+                <tbody>
+                    @foreach (var h in Model.Horarios)
+                    {
+                        <tr class="@(h.Ativo ? "" : "inativo")">
+                            <td>@Exibicao.DiaSemana(h.DiaSemana)</td>
+                            <td>@h.HoraInicio.ToString("HH:mm") – @h.HoraFim.ToString("HH:mm")</td>
+                            <td>@T["{0} min", h.DuracaoSlotMin]</td>
+                            <td>@Exibicao.Data(h.VigenciaInicio)@(h.VigenciaFim is DateOnly f ? " " + T["a"] + " " + Exibicao.Data(f) : "")</td>
+                            <td class="col-acoes">
+                                <button type="button" class="btn btn-p btn-leve" data-editar-em="#form-horario"
+                                        data-valores='@System.Text.Json.JsonSerializer.Serialize(new {
+                                            h.Id, DiasSemana = new[] { h.DiaSemana.ToString() }, HoraInicio = h.HoraInicio.ToString("HH:mm"),
+                                            HoraFim = h.HoraFim.ToString("HH:mm"), h.DuracaoSlotMin, h.EspecialidadeId,
+                                            VigenciaInicio = Exibicao.Iso(h.VigenciaInicio), VigenciaFim = Exibicao.Iso(h.VigenciaFim), h.Ativo })'>@T["Editar"]</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </section>
+</div>

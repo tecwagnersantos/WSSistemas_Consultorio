@@ -1,0 +1,8 @@
+@model (List<ClienteResumoDto> Clientes, int? ClinicaId)
+<select name="clinicaId" data-enviar-ao-mudar>
+    <option value="">@T["Todos os clientes"]</option>
+    @foreach (var c in Model.Clientes)
+    {
+        <option value="@c.Id" selected="@(c.Id == Model.ClinicaId)">@c.Nome</option>
+    }
+</select>

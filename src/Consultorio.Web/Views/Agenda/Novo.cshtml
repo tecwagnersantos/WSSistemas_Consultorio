@@ -1,0 +1,107 @@
+@model NovoAgendamentoVM
+@{
+    ViewData["Title"] = T["Novo agendamento"].Value;
+    var medicosJson = System.Text.Json.JsonSerializer.Serialize(Model.Medicos.Select(m => new
+    {
+        id = m.Id, nome = m.Nome, duracao = m.DuracaoConsultaPadraoMin,
+        especialidades = m.Especialidades.Select(e => new { id = e.EspecialidadeId, nome = e.Especialidade, principal = e.Principal })
+    }));
+}
+<form method="post" class="cartao formulario" id="form-agendamento" data-medicos="@medicosJson"
+      data-especialidade="@Model.EspecialidadeId" data-plano="@Model.PacientePlanoId">
+    <partial name="_ResumoErros" />
+
+    <fieldset>
+        <legend>@T["Paciente"]</legend>
+        <div class="autocompletar" data-autocompletar-paciente>
+            <input type="hidden" asp-for="PacienteId" />
+            <input type="hidden" asp-for="PacienteNome" />
+            <label class="campo">
+                <span>@T["Buscar por nome, CPF ou celular"]</span>
+                <input type="search" id="busca-paciente" autocomplete="off" placeholder="@T["Digite ao menos 2 letras"]" value="@Model.PacienteNome" />
+            </label>
+            <ul class="sugestoes" hidden></ul>
+            <p class="ajuda">@T["Não encontrou?"] <a asp-controller="Pacientes" asp-action="Novo">@T["Cadastrar novo paciente"]</a></p>
+        </div>
+        <label class="campo">
+            <span>@T["Convênio / carteirinha"]</span>
+            <select asp-for="PacientePlanoId" id="PacientePlanoId">
+                <option value="">@T["Particular"]</option>
+            </select>
+        </label>
+    </fieldset>
+
+    <fieldset>
+        <legend>@T["Atendimento"]</legend>
+        <div class="linha">
+            <label class="campo">
+                <span>@T["Médico"]</span>
+                <select asp-for="MedicoId" required>
+                    <option value="0">@T["Selecione..."]</option>
+                    @foreach (var m in Model.Medicos)
+                    {
+                        <option value="@m.Id">@T["{0} (CRM {1}/{2})", m.Nome, m.Crm, m.UfCrm]</option>
+                    }
+                </select>
+            </label>
+            <label class="campo">
+                <span>@T["Especialidade"]</span>
+                <select asp-for="EspecialidadeId" required><option value="0">@T["Selecione o médico"]</option></select>
+            </label>
+            <label class="campo">
+                <span>@T["Tipo"]</span>
+                <select asp-for="Tipo">
+                    @foreach (var t in Enum.GetValues<TipoAtendimento>())
+                    {
+                        <option value="@t" selected="@(t == Model.Tipo)">@t.Nome()</option>
+                    }
+                </select>
+            </label>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>@T["Data e horário"]</legend>
+        <div class="linha">
+            <label class="campo">
+                <span>@T["Dia"]</span>
+                <input name="Dia" id="Dia" type="date" value="@Exibicao.Iso(Model.Dia)" required />
+            </label>
+            <label class="campo">
+                <span>@T["Hora"]</span>
+                <input name="Hora" id="Hora" type="time" step="300" value="@Model.Hora?.ToString("HH:mm")" required />
+            </label>
+            <label class="campo">
+                <span>@T["Duração (min)"]</span>
+                <input name="DuracaoMin" id="DuracaoMin" type="number" min="5" max="480" step="5" value="@Model.DuracaoMin" placeholder="@T["padrão do médico"]" />
+            </label>
+        </div>
+        <div class="slots-area">
+            <span class="ajuda">@T["Horários livres na grade do médico (clique para escolher; para encaixe, digite a hora acima):"]</span>
+            <div id="slots" class="slots"><span class="muted">@T["Selecione médico e dia."]</span></div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>@T["Outros"]</legend>
+        <div class="linha">
+            <label class="campo">
+                <span>@T["Valor (R$)"]</span>
+                <input name="Valor" type="number" min="0" step="0.01" value="@Exibicao.Num(Model.Valor)" />
+            </label>
+            <label class="campo largo">
+                <span>@T["Observações"]</span>
+                <input asp-for="Observacoes" maxlength="500" />
+            </label>
+        </div>
+    </fieldset>
+
+    <div class="acoes">
+        <button type="submit" class="btn btn-primario">@T["Agendar"]</button>
+        <a class="btn btn-leve" asp-action="Index">@T["Cancelar"]</a>
+    </div>
+</form>
+
+@section Scripts {
+    <script src="~/js/agendamento.js" asp-append-version="true"></script>
+}

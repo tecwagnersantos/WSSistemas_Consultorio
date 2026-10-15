@@ -1,0 +1,94 @@
+@model ClienteFormVM
+@{
+    ViewData["Title"] = Model.Id is null ? T["Novo cliente"].Value : Model.Nome;
+    var novo = Model.Id is null;
+}
+<form method="post" class="cartao formulario" data-somente-digitos="Cnpj">
+    <partial name="_ResumoErros" />
+    <input type="hidden" name="Id" value="@Model.Id" />
+    <fieldset>
+        <legend>@T["Dados da clínica"]</legend>
+        <div class="linha">
+            <label class="campo largo"><span>@T["Nome da clínica *"]</span><input name="Nome" value="@Model.Nome" maxlength="150" required /></label>
+            <label class="campo"><span>@T["CNPJ"]</span><input name="Cnpj" value="@Model.Cnpj" data-mascara="cnpj" inputmode="numeric" /></label>
+        </div>
+        <div class="linha">
+            <label class="campo"><span>@T["Telefone"]</span><input name="Telefone" value="@Model.Telefone" data-mascara="telefone" maxlength="20" /></label>
+            <label class="campo largo"><span>@T["E-mail"]</span><input name="Email" type="email" value="@Model.Email" maxlength="254" /></label>
+        </div>
+        <div class="linha">
+            <label class="campo largo"><span>@T["Endereço"]</span><input name="Endereco" value="@Model.Endereco" maxlength="200" /></label>
+            <label class="campo"><span>@T["Cidade"]</span><input name="Cidade" value="@Model.Cidade" maxlength="80" /></label>
+            <label class="campo curto"><span>@T["UF"]</span><input name="Uf" value="@Model.Uf" maxlength="2" /></label>
+        </div>
+        <small class="muted">@T["Nome, endereço e telefone aparecem no menu da clínica e no cabeçalho das receitas."]</small>
+    </fieldset>
+    <fieldset>
+        <legend>@T["Plano e configurações"]</legend>
+        <div class="linha">
+            <label class="campo"><span>@T["Máximo de médicos ativos"]</span><input type="number" name="MaxMedicos" min="0" max="9999" value="@Model.MaxMedicos" placeholder="@T["Sem limite"]" /></label>
+            <label class="campo"><span>@T["Máximo de usuários ativos"]</span><input type="number" name="MaxUsuarios" min="0" max="9999" value="@Model.MaxUsuarios" placeholder="@T["Sem limite"]" /></label>
+        </div>
+        <small class="muted">@T["Deixe em branco para não limitar. Os limites contam só cadastros ativos; reduzir abaixo do uso atual não inativa ninguém, apenas impede novas inclusões."]</small>
+        <div class="linha">
+            <label class="campo"><span>@T["Acesso até (período de teste)"]</span><input type="date" name="AcessoAte" value="@Model.AcessoAte?.ToString("yyyy-MM-dd")" /></label>
+            <label class="check"><input type="checkbox" name="AcessoDefinitivo" value="true" checked="@Model.AcessoDefinitivo" /><input type="hidden" name="AcessoDefinitivo" value="false" /> @T["Versão definitiva liberada (acesso sem data para terminar)"]</label>
+        </div>
+        <small class="muted">@T["Enquanto a versão definitiva não for liberada, a clínica só entra até a data informada (inclusive); depois disso o login é recusado e as sessões abertas são encerradas. Nos últimos 15 dias a clínica vê um aviso no topo das páginas. Para prorrogar, altere a data."]</small>
+        <label class="campo"><span>@T["Observações internas"]</span><textarea name="Observacoes" maxlength="500" rows="2">@Model.Observacoes</textarea></label>
+    </fieldset>
+    <fieldset>
+        <legend>@T["Cobrança"]</legend>
+        <div class="linha">
+            <label class="campo"><span>@T["Valor da mensalidade (R$)"]</span><input type="number" name="ValorMensalidade" min="0" step="0.01" value="@Model.ValorMensalidade?.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture)" placeholder="@T["Sem mensalidade"]" /></label>
+            <label class="campo curto"><span>@T["Dia do vencimento"]</span><input type="number" name="DiaVencimento" min="1" max="28" value="@Model.DiaVencimento" required /></label>
+            <label class="campo curto"><span>@T["Tolerância (dias)"]</span><input type="number" name="DiasTolerancia" min="0" max="60" value="@Model.DiasTolerancia" required /></label>
+        </div>
+        <label class="check"><input type="checkbox" name="BloqueioPorAtraso" value="true" checked="@Model.BloqueioPorAtraso" /><input type="hidden" name="BloqueioPorAtraso" value="false" /> @T["Bloquear automaticamente quando houver cobrança vencida há mais dias que a tolerância"]</label>
+        <small class="muted">@T["Com valor de mensalidade, o sistema gera a cobrança de cada mês com vencimento no dia escolhido (veja Pagamentos). Nos 5 dias antes do vencimento e depois dele, o administrador da clínica vê um aviso no topo das páginas. Passada a tolerância sem pagamento, a clínica é bloqueada; ao registrar o pagamento, ela é reativada na hora."]</small>
+    </fieldset>
+    @if (!novo)
+    {
+        <fieldset>
+            <legend>@T["Situação do cliente"]</legend>
+            <div class="linha">
+                <label class="campo"><span>@T["Situação"]</span>
+                    <select name="Situacao">
+                        @foreach (var s in Consultorio.Domain.Entities.SituacoesCliente.Todas)
+                        {
+                            <option value="@s" selected="@(s == Model.Situacao)">@T[Consultorio.Domain.Entities.SituacoesCliente.Nome(s)]</option>
+                        }
+                    </select></label>
+                <label class="campo largo"><span>@T["Motivo (obrigatório para bloqueado ou inativo)"]</span><input name="MotivoSituacao" value="@Model.MotivoSituacao" maxlength="300" placeholder="@T["Ex.: mensalidade em atraso, contrato encerrado"]" /></label>
+            </div>
+            <small class="muted"><strong>@T["Ativo:"]</strong> @T["usa o sistema normalmente."] <strong>@T["Bloqueado:"]</strong> @T["suspensão temporária (ex.: pagamento em atraso); ninguém da clínica entra até ser reativado."] <strong>@T["Inativo:"]</strong> @T["deixou de ser cliente; também não entra e sai da lista de clientes atuais."] @T["Em todos os casos os dados continuam guardados."]</small>
+        </fieldset>
+    }
+    else
+    {
+        <input type="hidden" name="Situacao" value="@Consultorio.Domain.Entities.SituacoesCliente.Ativo" />
+    }
+    @if (novo)
+    {
+        <fieldset>
+            <legend>@T["Administrador da clínica *"]</legend>
+            <div class="linha">
+                <label class="campo largo"><span>@T["Nome"]</span><input name="AdminNome" value="@Model.AdminNome" maxlength="150" required /></label>
+                <label class="campo largo"><span>@T["E-mail (login)"]</span><input name="AdminEmail" type="email" value="@Model.AdminEmail" maxlength="254" autocomplete="off" required /></label>
+                <label class="campo"><span>@T["Senha inicial"]</span><input name="AdminSenha" type="password" minlength="8" autocomplete="new-password" required /></label>
+                <label class="campo"><span>@T["Perfil de acesso"]</span>
+                    <select name="AdminPerfilId" required>
+                        @foreach (var p in Model.PerfisPadrao)
+                        {
+                            <option value="@p.Id" selected="@(p.Id == Model.AdminPerfilId)">@Exibicao.NomePerfil(p.Nome)</option>
+                        }
+                    </select></label>
+            </div>
+            <small class="muted">@T["Mínimo de 8 caracteres, com letras e números. Com o perfil Administrador, ele cadastra médicos, recepção e demais usuários da clínica; ele conta no limite de usuários."]</small>
+        </fieldset>
+    }
+    <div class="acoes">
+        <button class="btn btn-primario" type="submit">@T["Salvar"]</button>
+        <a class="btn btn-leve" asp-action="@(novo ? "Index" : "Detalhes")" asp-route-id="@Model.Id">@T["Voltar"]</a>
+    </div>
+</form>

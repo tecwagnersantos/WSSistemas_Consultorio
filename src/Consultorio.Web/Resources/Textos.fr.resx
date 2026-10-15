@@ -1,0 +1,858 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- Textos do sistema. A chave (name) é o texto em português; value é a tradução. -->
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="(todos os médicos)" xml:space="preserve"><value>(tous les médecins)</value></data>
+  <data name="(uso contínuo)" xml:space="preserve"><value>(usage continu)</value></data>
+  <data name="({0} anos)" xml:space="preserve"><value>({0} ans)</value></data>
+  <data name="({0}). A original continua no prontuário, sem alterações." xml:space="preserve"><value>({0}). L'originale reste dans le dossier médical, sans modification.</value></data>
+  <data name="+ Adicionar carteirinha" xml:space="preserve"><value>+ Ajouter une carte</value></data>
+  <data name="+ Adicionar medicamento" xml:space="preserve"><value>+ Ajouter un médicament</value></data>
+  <data name="+ Adicionar plano" xml:space="preserve"><value>+ Ajouter une formule</value></data>
+  <data name="+ Anexo" xml:space="preserve"><value>+ Pièce jointe</value></data>
+  <data name="+ Nova cobrança" xml:space="preserve"><value>+ Nouvelle facture</value></data>
+  <data name="+ Nova evolução" xml:space="preserve"><value>+ Nouvelle note d'évolution</value></data>
+  <data name="+ Novo administrador" xml:space="preserve"><value>+ Nouvel administrateur</value></data>
+  <data name="+ Novo agendamento" xml:space="preserve"><value>+ Nouveau rendez-vous</value></data>
+  <data name="+ Novo cliente" xml:space="preserve"><value>+ Nouveau client</value></data>
+  <data name="+ Novo convênio" xml:space="preserve"><value>+ Nouvelle mutuelle</value></data>
+  <data name="+ Novo médico" xml:space="preserve"><value>+ Nouveau médecin</value></data>
+  <data name="+ Novo paciente" xml:space="preserve"><value>+ Nouveau patient</value></data>
+  <data name="+ Novo perfil" xml:space="preserve"><value>+ Nouveau profil</value></data>
+  <data name="+ Novo usuário" xml:space="preserve"><value>+ Nouvel utilisateur</value></data>
+  <data name="+ Prescrição" xml:space="preserve"><value>+ Prescription</value></data>
+  <data name="1 caixa" xml:space="preserve"><value>1 boîte</value></data>
+  <data name="1 comprimido de 8/8h por 7 dias" xml:space="preserve"><value>1 comprimé toutes les 8 h pendant 7 jours</value></data>
+  <data name="500 mg" xml:space="preserve"><value>500 mg</value></data>
+  <data name="A clínica ainda não cadastrou médicos." xml:space="preserve"><value>La clinique n'a encore enregistré aucun médecin.</value></data>
+  <data name="A confirmação não confere com a nova senha." xml:space="preserve"><value>La confirmation ne correspond pas au nouveau mot de passe.</value></data>
+  <data name="A data do pagamento não pode ser futura." xml:space="preserve"><value>La date de paiement ne peut pas être dans le futur.</value></data>
+  <data name="A data final do período de acesso já passou." xml:space="preserve"><value>La date de fin de la période d'accès est déjà passée.</value></data>
+  <data name="A evolução assinada fica imutável (com hash SHA-256 do conteúdo). Correções são feitas por retificação." xml:space="preserve"><value>La note d'évolution signée devient immuable (avec un hachage SHA-256 du contenu). Les corrections se font par rectification.</value></data>
+  <data name="A senha atual não confere." xml:space="preserve"><value>Le mot de passe actuel est incorrect.</value></data>
+  <data name="A senha deve ter ao menos 8 caracteres, com letras e números." xml:space="preserve"><value>Le mot de passe doit comporter au moins 8 caractères, avec des lettres et des chiffres.</value></data>
+  <data name="A tolerância deve ser de 0 a 60 dias." xml:space="preserve"><value>La tolérance doit être comprise entre 0 et 60 jours.</value></data>
+  <data name="Abrir menu" xml:space="preserve"><value>Ouvrir le menu</value></data>
+  <data name="Abrir prontuário" xml:space="preserve"><value>Ouvrir le dossier médical</value></data>
+  <data name="Abrir {0}" xml:space="preserve"><value>Ouvrir {0}</value></data>
+  <data name="Acesso" xml:space="preserve"><value>Accès</value></data>
+  <data name="Acesso até (período de teste)" xml:space="preserve"><value>Accès jusqu'au (période d'essai)</value></data>
+  <data name="Acesso bloqueado temporariamente por excesso de tentativas. Tente novamente em alguns minutos." xml:space="preserve"><value>Accès temporairement bloqué suite à un trop grand nombre de tentatives. Réessayez dans quelques minutes.</value></data>
+  <data name="Acesso exclusivo da equipe do sistema. Usuários das clínicas entram pela" xml:space="preserve"><value>Accès réservé à l'équipe du système. Les utilisateurs des cliniques se connectent via la</value></data>
+  <data name="Acesso negado" xml:space="preserve"><value>Accès refusé</value></data>
+  <data name="Acesso restrito. As operações no prontuário são registradas (LGPD)." xml:space="preserve"><value>Accès restreint. Les opérations sur le dossier médical sont enregistrées (LGPD).</value></data>
+  <data name="Acesso vencido em {0}" xml:space="preserve"><value>Accès expiré le {0}</value></data>
+  <data name="Acessos nos últimos 7 dias" xml:space="preserve"><value>Accès des 7 derniers jours</value></data>
+  <data name="Administrador" xml:space="preserve"><value>Administrateur</value></data>
+  <data name="Administrador da clínica *" xml:space="preserve"><value>Administrateur de la clinique *</value></data>
+  <data name="Administrador do sistema" xml:space="preserve"><value>Administrateur du système</value></data>
+  <data name="Administrador não encontrado." xml:space="preserve"><value>Administrateur introuvable.</value></data>
+  <data name="Administrador salvo." xml:space="preserve"><value>Administrateur enregistré.</value></data>
+  <data name="Administradores" xml:space="preserve"><value>Administrateurs</value></data>
+  <data name="Administradores do sistema" xml:space="preserve"><value>Administrateurs du système</value></data>
+  <data name="Administração" xml:space="preserve"><value>Administration</value></data>
+  <data name="Administração do sistema" xml:space="preserve"><value>Administration du système</value></data>
+  <data name="Agend. no mês" xml:space="preserve"><value>RDV du mois</value></data>
+  <data name="Agenda" xml:space="preserve"><value>Agenda</value></data>
+  <data name="Agenda de todos os médicos" xml:space="preserve"><value>Agenda de tous les médecins</value></data>
+  <data name="Agenda de todos os médicos, pacientes e cadastros; sem acesso ao prontuário" xml:space="preserve"><value>Agenda de tous les médecins, patients et fiches ; sans accès au dossier médical</value></data>
+  <data name="Agenda do dia/semana e horários livres" xml:space="preserve"><value>Agenda du jour/de la semaine et créneaux libres</value></data>
+  <data name="Agenda própria, prontuário e relatórios dos próprios atendimentos" xml:space="preserve"><value>Agenda personnel, dossier médical et rapports de ses propres consultations</value></data>
+  <data name="Agenda, prontuário e relatórios" xml:space="preserve"><value>Agenda, dossier médical et rapports</value></data>
+  <data name="Agendado" xml:space="preserve"><value>Planifié</value></data>
+  <data name="Agendados hoje" xml:space="preserve"><value>Rendez-vous aujourd'hui</value></data>
+  <data name="Agendamento criado para {0}." xml:space="preserve"><value>Rendez-vous créé pour {0}.</value></data>
+  <data name="Agendamento não encontrado." xml:space="preserve"><value>Rendez-vous introuvable.</value></data>
+  <data name="Agendamento não pertence ao paciente." xml:space="preserve"><value>Le rendez-vous n'appartient pas au patient.</value></data>
+  <data name="Agendamentos" xml:space="preserve"><value>Rendez-vous</value></data>
+  <data name="Agendamentos de" xml:space="preserve"><value>Rendez-vous de</value></data>
+  <data name="Agendamentos de todos os clientes (30 dias)" xml:space="preserve"><value>Rendez-vous de tous les clients (30 jours)</value></data>
+  <data name="Agendamentos no mês" xml:space="preserve"><value>Rendez-vous du mois</value></data>
+  <data name="Agendamentos por cliente" xml:space="preserve"><value>Rendez-vous par client</value></data>
+  <data name="Agendar" xml:space="preserve"><value>Planifier</value></data>
+  <data name="Agendar consulta" xml:space="preserve"><value>Prendre rendez-vous</value></data>
+  <data name="Agendar e atender a agenda" xml:space="preserve"><value>Planifier et gérer l'agenda</value></data>
+  <data name="Agendar, remarcar, confirmar, registrar chegada e falta, cancelar" xml:space="preserve"><value>Planifier, reporter, confirmer, enregistrer l'arrivée et l'absence, annuler</value></data>
+  <data name="Alergias" xml:space="preserve"><value>Allergies</value></data>
+  <data name="Alergias:" xml:space="preserve"><value>Allergies :</value></data>
+  <data name="Algo deu errado" xml:space="preserve"><value>Une erreur s'est produite</value></data>
+  <data name="Alterar senha" xml:space="preserve"><value>Changer le mot de passe</value></data>
+  <data name="Altura" xml:space="preserve"><value>Taille</value></data>
+  <data name="Altura (cm)" xml:space="preserve"><value>Taille (cm)</value></data>
+  <data name="Altura inválida." xml:space="preserve"><value>Taille invalide.</value></data>
+  <data name="Anamnese e exame" xml:space="preserve"><value>Anamnèse et examen</value></data>
+  <data name="Anexar" xml:space="preserve"><value>Joindre</value></data>
+  <data name="Anexo não encontrado." xml:space="preserve"><value>Pièce jointe introuvable.</value></data>
+  <data name="Anexo removido da lista (continua guardado para auditoria)." xml:space="preserve"><value>Pièce jointe retirée de la liste (elle reste conservée pour l'audit).</value></data>
+  <data name="Anexos ({0})" xml:space="preserve"><value>Pièces jointes ({0})</value></data>
+  <data name="Anexos do prontuário" xml:space="preserve"><value>Pièces jointes du dossier médical</value></data>
+  <data name="Antecedentes familiares" xml:space="preserve"><value>Antécédents familiaux</value></data>
+  <data name="Antecedentes pessoais" xml:space="preserve"><value>Antécédents personnels</value></data>
+  <data name="Anterior" xml:space="preserve"><value>Précédent</value></data>
+  <data name="Antimicrobiano" xml:space="preserve"><value>Antimicrobien</value></data>
+  <data name="Aplicar" xml:space="preserve"><value>Appliquer</value></data>
+  <data name="Arquivo anexado ao prontuário." xml:space="preserve"><value>Fichier joint au dossier médical.</value></data>
+  <data name="Arquivos * (imagens, PDF, documentos; até 10 por vez)" xml:space="preserve"><value>Fichiers * (images, PDF, documents ; jusqu'à 10 à la fois)</value></data>
+  <data name="As mudanças valem para os usuários com este perfil já na próxima página que abrirem, sem precisar sair e entrar de novo." xml:space="preserve"><value>Les modifications s'appliquent aux utilisateurs ayant ce profil dès la prochaine page ouverte, sans avoir à se déconnecter.</value></data>
+  <data name="Assinada" xml:space="preserve"><value>Signée</value></data>
+  <data name="Assinada em {0}" xml:space="preserve"><value>Signée le {0}</value></data>
+  <data name="Assinar" xml:space="preserve"><value>Signer</value></data>
+  <data name="Assinar a evolução? Depois de assinada ela não pode mais ser alterada." xml:space="preserve"><value>Signer la note d'évolution ? Une fois signée, elle ne pourra plus être modifiée.</value></data>
+  <data name="Atende" xml:space="preserve"><value>Consulte</value></data>
+  <data name="Atender" xml:space="preserve"><value>Recevoir</value></data>
+  <data name="Atendido" xml:space="preserve"><value>Reçu</value></data>
+  <data name="Atendidos" xml:space="preserve"><value>Reçus</value></data>
+  <data name="Atendidos hoje" xml:space="preserve"><value>Reçus aujourd'hui</value></data>
+  <data name="Atendidos no mês" xml:space="preserve"><value>Reçus ce mois-ci</value></data>
+  <data name="Atendidos no mês por convênio" xml:space="preserve"><value>Reçus ce mois-ci par mutuelle</value></data>
+  <data name="Atendimento" xml:space="preserve"><value>Consultation</value></data>
+  <data name="Atendimentos" xml:space="preserve"><value>Consultations</value></data>
+  <data name="Atendimentos de {0} a {1}" xml:space="preserve"><value>Consultations du {0} au {1}</value></data>
+  <data name="Atendimentos e indicadores, com CSV" xml:space="preserve"><value>Consultations et indicateurs, avec CSV</value></data>
+  <data name="Atendimentos nos últimos 30 dias" xml:space="preserve"><value>Consultations des 30 derniers jours</value></data>
+  <data name="Ativa" xml:space="preserve"><value>Active</value></data>
+  <data name="Ativo" xml:space="preserve"><value>Actif</value></data>
+  <data name="Ativo (desmarque para tirar este acesso de todos os usuários que têm o perfil)" xml:space="preserve"><value>Actif (décochez pour retirer cet accès à tous les utilisateurs ayant ce profil)</value></data>
+  <data name="Ativo:" xml:space="preserve"><value>Actif :</value></data>
+  <data name="Ativo: os usuários da clínica usam o sistema normalmente." xml:space="preserve"><value>Actif : les utilisateurs de la clinique utilisent le système normalement.</value></data>
+  <data name="Ativos" xml:space="preserve"><value>Actifs</value></data>
+  <data name="Ativos e bloqueados" xml:space="preserve"><value>Actifs et bloqués</value></data>
+  <data name="Atrasada" xml:space="preserve"><value>En retard</value></data>
+  <data name="Atrasadas" xml:space="preserve"><value>En retard</value></data>
+  <data name="Atualizado em {0}" xml:space="preserve"><value>Mis à jour le {0}</value></data>
+  <data name="Até" xml:space="preserve"><value>Au</value></data>
+  <data name="Até (opcional)" xml:space="preserve"><value>Au (facultatif)</value></data>
+  <data name="Ações" xml:space="preserve"><value>Actions</value></data>
+  <data name="Bairro" xml:space="preserve"><value>Quartier</value></data>
+  <data name="Baixar" xml:space="preserve"><value>Télécharger</value></data>
+  <data name="Bloqueado" xml:space="preserve"><value>Bloqué</value></data>
+  <data name="Bloqueado por atraso" xml:space="preserve"><value>Bloqué pour retard</value></data>
+  <data name="Bloqueado:" xml:space="preserve"><value>Bloqué :</value></data>
+  <data name="Bloqueados" xml:space="preserve"><value>Bloqués</value></data>
+  <data name="Bloquear (temporário)" xml:space="preserve"><value>Bloquer (temporaire)</value></data>
+  <data name="Bloquear automaticamente quando houver cobrança vencida há mais dias que a tolerância" xml:space="preserve"><value>Bloquer automatiquement en cas de facture impayée depuis plus de jours que la tolérance</value></data>
+  <data name="Bloquear período" xml:space="preserve"><value>Bloquer une période</value></data>
+  <data name="Bloqueio automático por atraso desligado." xml:space="preserve"><value>Blocage automatique pour retard désactivé.</value></data>
+  <data name="Bloqueio automático {0} dia(s) após o vencimento." xml:space="preserve"><value>Blocage automatique {0} jour(s) après l'échéance.</value></data>
+  <data name="Bloqueio registrado." xml:space="preserve"><value>Blocage enregistré.</value></data>
+  <data name="Bloqueios" xml:space="preserve"><value>Blocages</value></data>
+  <data name="Bloqueios de agenda" xml:space="preserve"><value>Blocages d'agenda</value></data>
+  <data name="Boleto" xml:space="preserve"><value>Boleto</value></data>
+  <data name="Buscar" xml:space="preserve"><value>Rechercher</value></data>
+  <data name="Buscar por nome, CPF ou celular" xml:space="preserve"><value>Rechercher par nom, CPF ou portable</value></data>
+  <data name="CBO" xml:space="preserve"><value>CBO</value></data>
+  <data name="CEP" xml:space="preserve"><value>CEP</value></data>
+  <data name="CNPJ" xml:space="preserve"><value>CNPJ</value></data>
+  <data name="CNPJ deve ter 14 dígitos." xml:space="preserve"><value>Le CNPJ doit comporter 14 chiffres.</value></data>
+  <data name="CNS deve ter 15 dígitos." xml:space="preserve"><value>Le CNS doit comporter 15 chiffres.</value></data>
+  <data name="CPF" xml:space="preserve"><value>CPF</value></data>
+  <data name="CPF deve ter 11 dígitos." xml:space="preserve"><value>Le CPF doit comporter 11 chiffres.</value></data>
+  <data name="CPF do responsável" xml:space="preserve"><value>CPF du responsable</value></data>
+  <data name="CPF:" xml:space="preserve"><value>CPF :</value></data>
+  <data name="CRM" xml:space="preserve"><value>CRM</value></data>
+  <data name="CRM *" xml:space="preserve"><value>CRM *</value></data>
+  <data name="CRM {0}/{1}" xml:space="preserve"><value>CRM {0}/{1}</value></data>
+  <data name="Cada perfil libera um conjunto de transações (telas e ações). O usuário pode ter vários perfis e recebe a soma das transações deles. Perfil padrão vale para todos os clientes; perfil exclusivo só aparece para os usuários daquele cliente." xml:space="preserve"><value>Chaque profil donne accès à un ensemble de transactions (écrans et actions). Un utilisateur peut avoir plusieurs profils et reçoit la somme de leurs transactions. Un profil standard s'applique à tous les clients ; un profil exclusif n'apparaît que pour les utilisateurs de ce client.</value></data>
+  <data name="Cadastrar especialidades" xml:space="preserve"><value>Gérer les spécialités</value></data>
+  <data name="Cadastrar novo paciente" xml:space="preserve"><value>Enregistrer un nouveau patient</value></data>
+  <data name="Cadastrar pacientes" xml:space="preserve"><value>Gérer les patients</value></data>
+  <data name="Cadastro ativo" xml:space="preserve"><value>Fiche active</value></data>
+  <data name="Cadastro atualizado." xml:space="preserve"><value>Fiche mise à jour.</value></data>
+  <data name="Cadastro de convênios e planos" xml:space="preserve"><value>Gestion des mutuelles et formules</value></data>
+  <data name="Cadastro de especialidades" xml:space="preserve"><value>Gestion des spécialités</value></data>
+  <data name="Cadastro de médicos, vínculo com usuário e grade de horários" xml:space="preserve"><value>Gestion des médecins, liaison avec l'utilisateur et grille horaire</value></data>
+  <data name="Cadastros" xml:space="preserve"><value>Fichiers</value></data>
+  <data name="Cadastros, usuários, dashboard e relatórios; sem acesso ao prontuário" xml:space="preserve"><value>Fichiers, utilisateurs, tableau de bord et rapports ; sans accès au dossier médical</value></data>
+  <data name="Campo obrigatório." xml:space="preserve"><value>Champ obligatoire.</value></data>
+  <data name="Cancelada" xml:space="preserve"><value>Annulée</value></data>
+  <data name="Canceladas" xml:space="preserve"><value>Annulées</value></data>
+  <data name="Cancelado" xml:space="preserve"><value>Annulé</value></data>
+  <data name="Cancelados" xml:space="preserve"><value>Annulés</value></data>
+  <data name="Cancelar" xml:space="preserve"><value>Annuler</value></data>
+  <data name="Cancelar agendamento" xml:space="preserve"><value>Annuler le rendez-vous</value></data>
+  <data name="Cancelar cobrança" xml:space="preserve"><value>Annuler la facture</value></data>
+  <data name="Carteirinha não pertence ao paciente." xml:space="preserve"><value>La carte n'appartient pas au patient.</value></data>
+  <data name="Cartão" xml:space="preserve"><value>Carte</value></data>
+  <data name="Cartão SUS (CNS)" xml:space="preserve"><value>Carte SUS (CNS)</value></data>
+  <data name="Celular" xml:space="preserve"><value>Portable</value></data>
+  <data name="Chegou" xml:space="preserve"><value>Arrivé</value></data>
+  <data name="Cidade" xml:space="preserve"><value>Ville</value></data>
+  <data name="Cliente" xml:space="preserve"><value>Client</value></data>
+  <data name="Cliente bloqueado: os usuários da clínica não entram mais e as sessões abertas foram encerradas." xml:space="preserve"><value>Client bloqué : les utilisateurs de la clinique ne peuvent plus se connecter et les sessions ouvertes ont été fermées.</value></data>
+  <data name="Cliente criado. O administrador da clínica já pode entrar com o e-mail e a senha informados." xml:space="preserve"><value>Client créé. L'administrateur de la clinique peut déjà se connecter avec l'e-mail et le mot de passe indiqués.</value></data>
+  <data name="Cliente desde {0}" xml:space="preserve"><value>Client depuis {0}</value></data>
+  <data name="Cliente inativado: não entra mais no sistema e saiu da lista de clientes atuais. Os dados continuam guardados." xml:space="preserve"><value>Client désactivé : il ne peut plus se connecter et a été retiré de la liste des clients actuels. Les données restent conservées.</value></data>
+  <data name="Cliente não encontrado." xml:space="preserve"><value>Client introuvable.</value></data>
+  <data name="Cliente reativado: os usuários da clínica já podem entrar." xml:space="preserve"><value>Client réactivé : les utilisateurs de la clinique peuvent de nouveau se connecter.</value></data>
+  <data name="Cliente salvo." xml:space="preserve"><value>Client enregistré.</value></data>
+  <data name="Clientes" xml:space="preserve"><value>Clients</value></data>
+  <data name="Clientes ativos" xml:space="preserve"><value>Clients actifs</value></data>
+  <data name="Clientes bloqueados" xml:space="preserve"><value>Clients bloqués</value></data>
+  <data name="Clientes com mais agendamentos no mês" xml:space="preserve"><value>Clients avec le plus de rendez-vous ce mois-ci</value></data>
+  <data name="Clientes e uso do plano" xml:space="preserve"><value>Clients et utilisation de l'abonnement</value></data>
+  <data name="Clientes em teste" xml:space="preserve"><value>Clients en essai</value></data>
+  <data name="Clientes inativos" xml:space="preserve"><value>Clients inactifs</value></data>
+  <data name="Clientes no limite do plano" xml:space="preserve"><value>Clients à la limite de l'abonnement</value></data>
+  <data name="Clientes, limites, dashboards e relatórios" xml:space="preserve"><value>Clients, limites, tableaux de bord et rapports</value></data>
+  <data name="Cobrança" xml:space="preserve"><value>Facture</value></data>
+  <data name="Cobrança cancelada não recebe pagamento." xml:space="preserve"><value>Une facture annulée ne peut pas recevoir de paiement.</value></data>
+  <data name="Cobrança cancelada." xml:space="preserve"><value>Facture annulée.</value></data>
+  <data name="Cobrança criada." xml:space="preserve"><value>Facture créée.</value></data>
+  <data name="Cobrança não encontrada." xml:space="preserve"><value>Facture introuvable.</value></data>
+  <data name="Cobrança paga não pode ser cancelada. Estorne o pagamento antes." xml:space="preserve"><value>Une facture payée ne peut pas être annulée. Annulez d'abord le paiement.</value></data>
+  <data name="Com valor de mensalidade, o sistema gera a cobrança de cada mês com vencimento no dia escolhido (veja Pagamentos). Nos 5 dias antes do vencimento e depois dele, o administrador da clínica vê um aviso no topo das páginas. Passada a tolerância sem pagamento, a clínica é bloqueada; ao registrar o pagamento, ela é reativada na hora." xml:space="preserve"><value>Avec un montant d'abonnement, le système génère la facture de chaque mois avec une échéance au jour choisi (voir Paiements). Dans les 5 jours précédant l'échéance et après celle-ci, l'administrateur de la clinique voit un avertissement en haut des pages. Une fois la tolérance dépassée sans paiement, la clinique est bloquée ; dès l'enregistrement du paiement, elle est réactivée immédiatement.</value></data>
+  <data name="Comorbidades" xml:space="preserve"><value>Comorbidités</value></data>
+  <data name="Complemento" xml:space="preserve"><value>Complément</value></data>
+  <data name="Concentração" xml:space="preserve"><value>Dosage</value></data>
+  <data name="Conduta" xml:space="preserve"><value>Conduite à tenir</value></data>
+  <data name="Configuração" xml:space="preserve"><value>Configuration</value></data>
+  <data name="Confirmado" xml:space="preserve"><value>Confirmé</value></data>
+  <data name="Confirmar" xml:space="preserve"><value>Confirmer</value></data>
+  <data name="Confirme a nova senha" xml:space="preserve"><value>Confirmez le nouveau mot de passe</value></data>
+  <data name="Consulta" xml:space="preserve"><value>Consultation</value></data>
+  <data name="Consultar pacientes" xml:space="preserve"><value>Consulter les patients</value></data>
+  <data name="Consultório Médico" xml:space="preserve"><value>Cabinet médical</value></data>
+  <data name="Contato" xml:space="preserve"><value>Contact</value></data>
+  <data name="Controle especial" xml:space="preserve"><value>Contrôle spécial</value></data>
+  <data name="Convênio" xml:space="preserve"><value>Mutuelle</value></data>
+  <data name="Convênio / carteirinha" xml:space="preserve"><value>Mutuelle / carte</value></data>
+  <data name="Convênio / plano" xml:space="preserve"><value>Mutuelle / formule</value></data>
+  <data name="Convênio não encontrado." xml:space="preserve"><value>Mutuelle introuvable.</value></data>
+  <data name="Convênio salvo." xml:space="preserve"><value>Mutuelle enregistrée.</value></data>
+  <data name="Convênios" xml:space="preserve"><value>Mutuelles</value></data>
+  <data name="Convênios / carteirinhas" xml:space="preserve"><value>Mutuelles / cartes</value></data>
+  <data name="Convênios e planos" xml:space="preserve"><value>Mutuelles et formules</value></data>
+  <data name="Cria a mensalidade do mês para cada cliente ativo ou bloqueado que tem valor de mensalidade no cadastro, com vencimento no dia configurado. Não repete o mês já gerado. O sistema também gera sozinho, no início de cada mês, as mensalidades ainda não vencidas. Cobranças avulsas (implantação, treinamento etc.) são criadas na página do cliente." xml:space="preserve"><value>Crée l'abonnement du mois pour chaque client actif ou bloqué dont la fiche comporte un montant d'abonnement, avec l'échéance au jour configuré. Ne répète pas un mois déjà généré. Le système génère aussi automatiquement, au début de chaque mois, les abonnements non encore échus. Les factures ponctuelles (mise en place, formation, etc.) sont créées sur la page du client.</value></data>
+  <data name="Criado em" xml:space="preserve"><value>Créé le</value></data>
+  <data name="Criar cobrança" xml:space="preserve"><value>Créer la facture</value></data>
+  <data name="Criar usuário" xml:space="preserve"><value>Créer l'utilisateur</value></data>
+  <data name="Código" xml:space="preserve"><value>Code</value></data>
+  <data name="Código CBO" xml:space="preserve"><value>Code CBO</value></data>
+  <data name="Dados da clínica" xml:space="preserve"><value>Informations de la clinique</value></data>
+  <data name="Dados do médico" xml:space="preserve"><value>Informations du médecin</value></data>
+  <data name="Das" xml:space="preserve"><value>De</value></data>
+  <data name="Dashboard" xml:space="preserve"><value>Tableau de bord</value></data>
+  <data name="Dashboard e relatórios de todos os médicos" xml:space="preserve"><value>Tableau de bord et rapports de tous les médecins</value></data>
+  <data name="Data de nascimento *" xml:space="preserve"><value>Date de naissance *</value></data>
+  <data name="Data de nascimento no futuro." xml:space="preserve"><value>Date de naissance dans le futur.</value></data>
+  <data name="Data do pagamento *" xml:space="preserve"><value>Date du paiement *</value></data>
+  <data name="Data e horário" xml:space="preserve"><value>Date et heure</value></data>
+  <data name="Data/hora" xml:space="preserve"><value>Date/heure</value></data>
+  <data name="De" xml:space="preserve"><value>Du</value></data>
+  <data name="Definitivo" xml:space="preserve"><value>Définitive</value></data>
+  <data name="Deixe em branco para manter a senha atual." xml:space="preserve"><value>Laissez vide pour conserver le mot de passe actuel.</value></data>
+  <data name="Deixe em branco para não limitar. Os limites contam só cadastros ativos; reduzir abaixo do uso atual não inativa ninguém, apenas impede novas inclusões." xml:space="preserve"><value>Laissez vide pour ne pas limiter. Les limites ne comptent que les fiches actives ; réduire en dessous de l'utilisation actuelle ne désactive personne, cela empêche seulement de nouveaux ajouts.</value></data>
+  <data name="Descrição" xml:space="preserve"><value>Description</value></data>
+  <data name="Descrição *" xml:space="preserve"><value>Description *</value></data>
+  <data name="Descrição com no máximo 200 caracteres." xml:space="preserve"><value>Description de 200 caractères maximum.</value></data>
+  <data name="Dia" xml:space="preserve"><value>Jour</value></data>
+  <data name="Dia de vencimento de 1 a 28." xml:space="preserve"><value>Jour d'échéance de 1 à 28.</value></data>
+  <data name="Dia do vencimento" xml:space="preserve"><value>Jour d'échéance</value></data>
+  <data name="Dias da semana" xml:space="preserve"><value>Jours de la semaine</value></data>
+  <data name="Digite ao menos 2 letras" xml:space="preserve"><value>Saisissez au moins 2 lettres</value></data>
+  <data name="Dinheiro" xml:space="preserve"><value>Espèces</value></data>
+  <data name="Disponíveis para {0}" xml:space="preserve"><value>Disponibles pour {0}</value></data>
+  <data name="Documento" xml:space="preserve"><value>Document</value></data>
+  <data name="Duração (min)" xml:space="preserve"><value>Durée (min)</value></data>
+  <data name="Duração entre 5 e 240 minutos." xml:space="preserve"><value>Durée entre 5 et 240 minutes.</value></data>
+  <data name="Duração entre 5 e 480 minutos." xml:space="preserve"><value>Durée entre 5 et 480 minutes.</value></data>
+  <data name="Duração padrão da consulta (min)" xml:space="preserve"><value>Durée standard de la consultation (min)</value></data>
+  <data name="E-mail" xml:space="preserve"><value>E-mail</value></data>
+  <data name="E-mail (login)" xml:space="preserve"><value>E-mail (identifiant)</value></data>
+  <data name="E-mail (login) *" xml:space="preserve"><value>E-mail (identifiant) *</value></data>
+  <data name="E-mail inválido." xml:space="preserve"><value>E-mail invalide.</value></data>
+  <data name="E-mail ou senha inválidos." xml:space="preserve"><value>E-mail ou mot de passe invalide.</value></data>
+  <data name="Editar" xml:space="preserve"><value>Modifier</value></data>
+  <data name="Editar cliente e limites" xml:space="preserve"><value>Modifier le client et les limites</value></data>
+  <data name="Editar evolução" xml:space="preserve"><value>Modifier la note d'évolution</value></data>
+  <data name="Em aberto" xml:space="preserve"><value>Impayée</value></data>
+  <data name="Em aberto (a vencer)" xml:space="preserve"><value>Impayée (à échoir)</value></data>
+  <data name="Em aberto:" xml:space="preserve"><value>Impayé :</value></data>
+  <data name="Em atendimento" xml:space="preserve"><value>En consultation</value></data>
+  <data name="Em atraso" xml:space="preserve"><value>En retard</value></data>
+  <data name="Em teste" xml:space="preserve"><value>En essai</value></data>
+  <data name="Em teste até {0}" xml:space="preserve"><value>En essai jusqu'au {0}</value></data>
+  <data name="Em todos os casos os dados continuam guardados." xml:space="preserve"><value>Dans tous les cas, les données restent conservées.</value></data>
+  <data name="Emitir e imprimir" xml:space="preserve"><value>Émettre et imprimer</value></data>
+  <data name="Endereço" xml:space="preserve"><value>Adresse</value></data>
+  <data name="Enquanto a versão definitiva não for liberada, a clínica só entra até a data informada (inclusive); depois disso o login é recusado e as sessões abertas são encerradas. Nos últimos 15 dias a clínica vê um aviso no topo das páginas. Para prorrogar, altere a data." xml:space="preserve"><value>Tant que la version définitive n'est pas activée, la clinique ne peut se connecter que jusqu'à la date indiquée (incluse) ; ensuite la connexion est refusée et les sessions ouvertes sont fermées. Pendant les 15 derniers jours, la clinique voit un avertissement en haut des pages. Pour prolonger, modifiez la date.</value></data>
+  <data name="Entrar" xml:space="preserve"><value>Se connecter</value></data>
+  <data name="Entre com um usuário da clínica para anexar arquivos." xml:space="preserve"><value>Connectez-vous avec un utilisateur de la clinique pour joindre des fichiers.</value></data>
+  <data name="Envie no máximo {0} arquivos por vez." xml:space="preserve"><value>Envoyez au maximum {0} fichiers à la fois.</value></data>
+  <data name="Erro" xml:space="preserve"><value>Erreur</value></data>
+  <data name="Escolha um horário livre ou informe a hora." xml:space="preserve"><value>Choisissez un créneau libre ou indiquez l'heure.</value></data>
+  <data name="Especialidade" xml:space="preserve"><value>Spécialité</value></data>
+  <data name="Especialidade não encontrada." xml:space="preserve"><value>Spécialité introuvable.</value></data>
+  <data name="Especialidade salva." xml:space="preserve"><value>Spécialité enregistrée.</value></data>
+  <data name="Especialidades" xml:space="preserve"><value>Spécialités</value></data>
+  <data name="Espera" xml:space="preserve"><value>Attente</value></data>
+  <data name="Espera (min)" xml:space="preserve"><value>Attente (min)</value></data>
+  <data name="Espera média" xml:space="preserve"><value>Attente moyenne</value></data>
+  <data name="Espera média no mês" xml:space="preserve"><value>Attente moyenne du mois</value></data>
+  <data name="Esta clínica está inativa no sistema. Entre em contato com o suporte." xml:space="preserve"><value>Cette clinique est inactive dans le système. Contactez le support.</value></data>
+  <data name="Esta cobrança já está paga. Estorne o pagamento para registrar outro." xml:space="preserve"><value>Cette facture est déjà payée. Annulez le paiement pour en enregistrer un autre.</value></data>
+  <data name="Esta cobrança não tem pagamento registrado." xml:space="preserve"><value>Cette facture n'a aucun paiement enregistré.</value></data>
+  <data name="Esta evolução retifica a de" xml:space="preserve"><value>Cette note d'évolution rectifie celle du</value></data>
+  <data name="Este perfil já está em usuários de outros clientes; não dá para torná-lo exclusivo de um cliente." xml:space="preserve"><value>Ce profil est déjà attribué à des utilisateurs d'autres clients ; impossible de le rendre exclusif à un client.</value></data>
+  <data name="Estornar" xml:space="preserve"><value>Annuler</value></data>
+  <data name="Estornar pagamento" xml:space="preserve"><value>Annuler le paiement</value></data>
+  <data name="Evolução assinada não pode ser alterada ou excluída. Registre uma retificação." xml:space="preserve"><value>Une note d'évolution signée ne peut être ni modifiée ni supprimée. Enregistrez une rectification.</value></data>
+  <data name="Evolução assinada não pode ser alterada. Registre uma retificação." xml:space="preserve"><value>Une note d'évolution signée ne peut pas être modifiée. Enregistrez une rectification.</value></data>
+  <data name='Evolução assinada não pode ser alterada. Use "Retificar".' xml:space="preserve"><value>Une note d'évolution signée ne peut pas être modifiée. Utilisez « Rectifier ».</value></data>
+  <data name="Evolução assinada." xml:space="preserve"><value>Note d'évolution signée.</value></data>
+  <data name="Evolução de {0}" xml:space="preserve"><value>Note d'évolution du {0}</value></data>
+  <data name="Evolução não encontrada." xml:space="preserve"><value>Note d'évolution introuvable.</value></data>
+  <data name="Evolução não pertence ao paciente." xml:space="preserve"><value>La note d'évolution n'appartient pas au patient.</value></data>
+  <data name="Evolução registrada e assinada." xml:space="preserve"><value>Note d'évolution enregistrée et signée.</value></data>
+  <data name="Evoluções ({0})" xml:space="preserve"><value>Notes d'évolution ({0})</value></data>
+  <data name="Ex.: Hemograma de 10/10, RX de tórax" xml:space="preserve"><value>Ex. : NFS du 10/10, radio du thorax</value></data>
+  <data name="Ex.: Implantação, Mensalidade 11/2026" xml:space="preserve"><value>Ex. : Mise en place, Abonnement 11/2026</value></data>
+  <data name="Ex.: comprovante recebido por e-mail, número do boleto" xml:space="preserve"><value>Ex. : justificatif reçu par e-mail, numéro du boleto</value></data>
+  <data name="Ex.: enfermagem da triagem" xml:space="preserve"><value>Ex. : infirmière du triage</value></data>
+  <data name="Ex.: mensalidade em atraso, contrato encerrado" xml:space="preserve"><value>Ex. : abonnement impayé, contrat résilié</value></data>
+  <data name="Exame" xml:space="preserve"><value>Examen</value></data>
+  <data name="Exame físico" xml:space="preserve"><value>Examen clinique</value></data>
+  <data name="Exportar CSV" xml:space="preserve"><value>Exporter en CSV</value></data>
+  <data name="FC" xml:space="preserve"><value>FC</value></data>
+  <data name="FC (bpm)" xml:space="preserve"><value>FC (bpm)</value></data>
+  <data name="Fale com o suporte para liberar a versão definitiva." xml:space="preserve"><value>Contactez le support pour activer la version définitive.</value></data>
+  <data name="Faltas" xml:space="preserve"><value>Absences</value></data>
+  <data name="Faltas no mês" xml:space="preserve"><value>Absences du mois</value></data>
+  <data name="Faltou" xml:space="preserve"><value>Absent</value></data>
+  <data name="Faturamento do mês" xml:space="preserve"><value>Chiffre d'affaires du mois</value></data>
+  <data name="Feminino" xml:space="preserve"><value>Féminin</value></data>
+  <data name="Feriados, férias, congressos: nenhum agendamento pode ser feito no período." xml:space="preserve"><value>Jours fériés, congés, congrès : aucun rendez-vous ne peut être pris sur la période.</value></data>
+  <data name="Filtrar" xml:space="preserve"><value>Filtrer</value></data>
+  <data name="Fim" xml:space="preserve"><value>Fin</value></data>
+  <data name="Finalizar" xml:space="preserve"><value>Terminer</value></data>
+  <data name="Forma" xml:space="preserve"><value>Mode</value></data>
+  <data name="Forma de pagamento *" xml:space="preserve"><value>Mode de paiement *</value></data>
+  <data name="Formato inválido." xml:space="preserve"><value>Format invalide.</value></data>
+  <data name="Formato não aceito: {0}. Aceitos: {1}." xml:space="preserve"><value>Format non accepté : {0}. Acceptés : {1}.</value></data>
+  <data name="Formatos:" xml:space="preserve"><value>Formats :</value></data>
+  <data name="Frequência inválida." xml:space="preserve"><value>Fréquence invalide.</value></data>
+  <data name="Gerar as mensalidades do mês escolhido para todos os clientes com valor de mensalidade?" xml:space="preserve"><value>Générer les abonnements du mois choisi pour tous les clients ayant un montant d'abonnement ?</value></data>
+  <data name="Gerar mensalidades" xml:space="preserve"><value>Générer les abonnements</value></data>
+  <data name="Gerar mensalidades do mês" xml:space="preserve"><value>Générer les abonnements du mois</value></data>
+  <data name="Grade atual" xml:space="preserve"><value>Grille actuelle</value></data>
+  <data name="Grade de horários" xml:space="preserve"><value>Grille horaire</value></data>
+  <data name="Hipótese diagnóstica" xml:space="preserve"><value>Hypothèse diagnostique</value></data>
+  <data name="História da doença atual" xml:space="preserve"><value>Histoire de la maladie actuelle</value></data>
+  <data name="Hoje" xml:space="preserve"><value>Aujourd'hui</value></data>
+  <data name="Hoje é o último dia do período de acesso desta clínica." xml:space="preserve"><value>Aujourd'hui est le dernier jour de la période d'accès de cette clinique.</value></data>
+  <data name="Hoje, {0}" xml:space="preserve"><value>Aujourd'hui, {0}</value></data>
+  <data name="Hora" xml:space="preserve"><value>Heure</value></data>
+  <data name="Hora final deve ser maior que a inicial." xml:space="preserve"><value>L'heure de fin doit être postérieure à l'heure de début.</value></data>
+  <data name="Horário" xml:space="preserve"><value>Horaire</value></data>
+  <data name="Horário atualizado." xml:space="preserve"><value>Horaire mis à jour.</value></data>
+  <data name="Horário bloqueado na agenda." xml:space="preserve"><value>Créneau bloqué dans l'agenda.</value></data>
+  <data name="Horário inválido." xml:space="preserve"><value>Horaire invalide.</value></data>
+  <data name="Horário não encontrado." xml:space="preserve"><value>Horaire introuvable.</value></data>
+  <data name="Horários" xml:space="preserve"><value>Horaires</value></data>
+  <data name="Horários incluídos." xml:space="preserve"><value>Horaires ajoutés.</value></data>
+  <data name="Horários livres na grade do médico (clique para escolher; para encaixe, digite a hora acima):" xml:space="preserve"><value>Créneaux libres dans la grille du médecin (cliquez pour choisir ; pour un rendez-vous supplémentaire, saisissez l'heure ci-dessus) :</value></data>
+  <data name="Horários · " xml:space="preserve"><value>Horaires · </value></data>
+  <data name="Hábitos" xml:space="preserve"><value>Habitudes de vie</value></data>
+  <data name="IMC" xml:space="preserve"><value>IMC</value></data>
+  <data name="Identificação" xml:space="preserve"><value>Identification</value></data>
+  <data name="Idioma" xml:space="preserve"><value>Langue</value></data>
+  <data name="Imagem" xml:space="preserve"><value>Image</value></data>
+  <data name="Imprimir" xml:space="preserve"><value>Imprimer</value></data>
+  <data name="Inativa" xml:space="preserve"><value>Inactive</value></data>
+  <data name="Inativar" xml:space="preserve"><value>Désactiver</value></data>
+  <data name="Inativar (deixou de ser cliente)" xml:space="preserve"><value>Désactiver (n'est plus client)</value></data>
+  <data name="Inativo" xml:space="preserve"><value>Inactif</value></data>
+  <data name="Inativo:" xml:space="preserve"><value>Inactif :</value></data>
+  <data name="Inativos" xml:space="preserve"><value>Inactifs</value></data>
+  <data name="Inclua ao menos um medicamento." xml:space="preserve"><value>Ajoutez au moins un médicament.</value></data>
+  <data name="Incluir e alterar pacientes e carteirinhas" xml:space="preserve"><value>Ajouter et modifier les patients et les cartes</value></data>
+  <data name="Incluir e alterar usuários e escolher os perfis de cada um" xml:space="preserve"><value>Ajouter et modifier les utilisateurs et choisir leurs profils</value></data>
+  <data name="Incluir e excluir férias, feriados e consultório fechado" xml:space="preserve"><value>Ajouter et supprimer congés, jours fériés et fermetures du cabinet</value></data>
+  <data name="Indicadores do dia e do mês, sala de espera e gráficos" xml:space="preserve"><value>Indicateurs du jour et du mois, salle d'attente et graphiques</value></data>
+  <data name="Indicadores mensais" xml:space="preserve"><value>Indicateurs mensuels</value></data>
+  <data name="Informe a UF do CRM." xml:space="preserve"><value>Indiquez l'UF du CRM.</value></data>
+  <data name="Informe a descrição da cobrança." xml:space="preserve"><value>Indiquez la description de la facture.</value></data>
+  <data name="Informe a forma de pagamento." xml:space="preserve"><value>Indiquez le mode de paiement.</value></data>
+  <data name="Informe a hora final." xml:space="preserve"><value>Indiquez l'heure de fin.</value></data>
+  <data name="Informe a hora inicial." xml:space="preserve"><value>Indiquez l'heure de début.</value></data>
+  <data name="Informe a nova senha." xml:space="preserve"><value>Indiquez le nouveau mot de passe.</value></data>
+  <data name="Informe a posologia de todos os medicamentos." xml:space="preserve"><value>Indiquez la posologie de tous les médicaments.</value></data>
+  <data name="Informe a senha atual." xml:space="preserve"><value>Indiquez le mot de passe actuel.</value></data>
+  <data name="Informe a senha inicial." xml:space="preserve"><value>Indiquez le mot de passe initial.</value></data>
+  <data name="Informe a senha." xml:space="preserve"><value>Indiquez le mot de passe.</value></data>
+  <data name="Informe ao menos um perfil." xml:space="preserve"><value>Indiquez au moins un profil.</value></data>
+  <data name="Informe até quando vai o período de acesso, ou marque a versão definitiva." xml:space="preserve"><value>Indiquez la date de fin de la période d'accès, ou cochez la version définitive.</value></data>
+  <data name="Informe nome, e-mail e senha do administrador da clínica." xml:space="preserve"><value>Indiquez le nom, l'e-mail et le mot de passe de l'administrateur de la clinique.</value></data>
+  <data name="Informe o CRM." xml:space="preserve"><value>Indiquez le CRM.</value></data>
+  <data name="Informe o administrador da nova clínica." xml:space="preserve"><value>Indiquez l'administrateur de la nouvelle clinique.</value></data>
+  <data name="Informe o dia." xml:space="preserve"><value>Indiquez le jour.</value></data>
+  <data name="Informe o e-mail." xml:space="preserve"><value>Indiquez l'e-mail.</value></data>
+  <data name="Informe o fim." xml:space="preserve"><value>Indiquez la fin.</value></data>
+  <data name="Informe o início da vigência." xml:space="preserve"><value>Indiquez le début de validité.</value></data>
+  <data name="Informe o início." xml:space="preserve"><value>Indiquez le début.</value></data>
+  <data name="Informe o motivo do cancelamento." xml:space="preserve"><value>Indiquez le motif de l'annulation.</value></data>
+  <data name="Informe o motivo do estorno." xml:space="preserve"><value>Indiquez le motif de l'annulation du paiement.</value></data>
+  <data name="Informe o motivo para bloquear o cliente." xml:space="preserve"><value>Indiquez le motif du blocage du client.</value></data>
+  <data name="Informe o motivo para inativar o cliente." xml:space="preserve"><value>Indiquez le motif de la désactivation du client.</value></data>
+  <data name="Informe o mês das mensalidades." xml:space="preserve"><value>Indiquez le mois des abonnements.</value></data>
+  <data name="Informe o nome da especialidade." xml:space="preserve"><value>Indiquez le nom de la spécialité.</value></data>
+  <data name="Informe o nome do perfil." xml:space="preserve"><value>Indiquez le nom du profil.</value></data>
+  <data name="Informe o nome." xml:space="preserve"><value>Indiquez le nom.</value></data>
+  <data name="Informe o novo vencimento." xml:space="preserve"><value>Indiquez la nouvelle échéance.</value></data>
+  <data name="Informe o valor pago." xml:space="preserve"><value>Indiquez le montant payé.</value></data>
+  <data name="Informe um número." xml:space="preserve"><value>Indiquez un nombre.</value></data>
+  <data name="Informe um valor entre {1} e {2}." xml:space="preserve"><value>Indiquez une valeur entre {1} et {2}.</value></data>
+  <data name="Informe {0}." xml:space="preserve"><value>Indiquez {0}.</value></data>
+  <data name="Intersexo / não informado" xml:space="preserve"><value>Intersexe / non renseigné</value></data>
+  <data name="Intervalo" xml:space="preserve"><value>Intervalle</value></data>
+  <data name="Intervalo (min)" xml:space="preserve"><value>Intervalle (min)</value></data>
+  <data name="Intervalo entre 5 e 240 minutos." xml:space="preserve"><value>Intervalle entre 5 et 240 minutes.</value></data>
+  <data name="Início" xml:space="preserve"><value>Début</value></data>
+  <data name="Já existe cliente com este CNPJ." xml:space="preserve"><value>Un client avec ce CNPJ existe déjà.</value></data>
+  <data name="Já existe mensalidade de {0:MM/yyyy} para {1}." xml:space="preserve"><value>Un abonnement de {0:MM/yyyy} existe déjà pour {1}.</value></data>
+  <data name="Já existe médico com este CRM/UF." xml:space="preserve"><value>Un médecin avec ce CRM/UF existe déjà.</value></data>
+  <data name="Já existe paciente com este CPF." xml:space="preserve"><value>Un patient avec ce CPF existe déjà.</value></data>
+  <data name="Já existe um administrador com este e-mail." xml:space="preserve"><value>Un administrateur avec cet e-mail existe déjà.</value></data>
+  <data name="Já existe um perfil com este nome para este cliente (ou um perfil padrão com o mesmo nome)." xml:space="preserve"><value>Un profil portant ce nom existe déjà pour ce client (ou un profil standard du même nom).</value></data>
+  <data name="Já existe um usuário com este e-mail (nesta ou em outra clínica)." xml:space="preserve"><value>Un utilisateur avec cet e-mail existe déjà (dans cette clinique ou une autre).</value></data>
+  <data name="Já existe um usuário com este e-mail." xml:space="preserve"><value>Un utilisateur avec cet e-mail existe déjà.</value></data>
+  <data name="Laudo" xml:space="preserve"><value>Compte rendu</value></data>
+  <data name="Liberar versão definitiva" xml:space="preserve"><value>Activer la version définitive</value></data>
+  <data name="Ligar à evolução" xml:space="preserve"><value>Lier à la note d'évolution</value></data>
+  <data name="Limite inválido." xml:space="preserve"><value>Limite invalide.</value></data>
+  <data name="Limite não pode ser negativo." xml:space="preserve"><value>La limite ne peut pas être négative.</value></data>
+  <data name="Limpar" xml:space="preserve"><value>Effacer</value></data>
+  <data name="Logradouro" xml:space="preserve"><value>Rue</value></data>
+  <data name="Mais ações" xml:space="preserve"><value>Plus d'actions</value></data>
+  <data name="Mantenha ao menos um administrador do sistema ativo." xml:space="preserve"><value>Conservez au moins un administrateur du système actif.</value></data>
+  <data name="Mantenha em você um perfil que gerencia usuários; senão você perde o acesso a esta tela." xml:space="preserve"><value>Conservez pour vous-même un profil qui gère les utilisateurs ; sinon vous perdrez l'accès à cet écran.</value></data>
+  <data name="Marcar falta" xml:space="preserve"><value>Marquer absent</value></data>
+  <data name="Marque ao menos um dia da semana." xml:space="preserve"><value>Cochez au moins un jour de la semaine.</value></data>
+  <data name="Marque ao menos uma transação." xml:space="preserve"><value>Cochez au moins une transaction.</value></data>
+  <data name="Masculino" xml:space="preserve"><value>Masculin</value></data>
+  <data name="Medicamento *" xml:space="preserve"><value>Médicament *</value></data>
+  <data name="Medicamentos" xml:space="preserve"><value>Médicaments</value></data>
+  <data name="Medicamentos em uso" xml:space="preserve"><value>Médicaments en cours</value></data>
+  <data name="Mensalidade de {0} com vencimento todo dia {1}." xml:space="preserve"><value>Abonnement de {0} avec échéance le {1} de chaque mois.</value></data>
+  <data name="Motivo" xml:space="preserve"><value>Motif</value></data>
+  <data name="Motivo (ex.: mensalidade em atraso)" xml:space="preserve"><value>Motif (ex. : abonnement impayé)</value></data>
+  <data name="Motivo (obrigatório para bloqueado ou inativo)" xml:space="preserve"><value>Motif (obligatoire si bloqué ou inactif)</value></data>
+  <data name="Motivo do cancelamento" xml:space="preserve"><value>Motif de l'annulation</value></data>
+  <data name="Motivo do estorno" xml:space="preserve"><value>Motif de l'annulation du paiement</value></data>
+  <data name="Máximo de médicos ativos" xml:space="preserve"><value>Nombre maximal de médecins actifs</value></data>
+  <data name="Máximo de usuários ativos" xml:space="preserve"><value>Nombre maximal d'utilisateurs actifs</value></data>
+  <data name="Máximo de {1} caracteres." xml:space="preserve"><value>{1} caractères maximum.</value></data>
+  <data name="Médico" xml:space="preserve"><value>Médecin</value></data>
+  <data name="Médico não encontrado ou inativo." xml:space="preserve"><value>Médecin introuvable ou inactif.</value></data>
+  <data name="Médico não encontrado." xml:space="preserve"><value>Médecin introuvable.</value></data>
+  <data name="Médico salvo." xml:space="preserve"><value>Médecin enregistré.</value></data>
+  <data name="Médicos" xml:space="preserve"><value>Médecins</value></data>
+  <data name="Médicos ({0})" xml:space="preserve"><value>Médecins ({0})</value></data>
+  <data name="Médicos ativos" xml:space="preserve"><value>Médecins actifs</value></data>
+  <data name="Médicos de todos os clientes" xml:space="preserve"><value>Médecins de tous les clients</value></data>
+  <data name="Médicos e horários" xml:space="preserve"><value>Médecins et horaires</value></data>
+  <data name="Médicos são cadastrados e ativados pela própria clínica, respeitando o limite do plano." xml:space="preserve"><value>Les médecins sont enregistrés et activés par la clinique elle-même, dans la limite de l'abonnement.</value></data>
+  <data name="Mês" xml:space="preserve"><value>Mois</value></data>
+  <data name="Mínimo de 8 caracteres, com letras e números." xml:space="preserve"><value>8 caractères minimum, avec des lettres et des chiffres.</value></data>
+  <data name="Mínimo de 8 caracteres, com letras e números. Com o perfil Administrador, ele cadastra médicos, recepção e demais usuários da clínica; ele conta no limite de usuários." xml:space="preserve"><value>8 caractères minimum, avec des lettres et des chiffres. Avec le profil Administrateur, il enregistre les médecins, l'accueil et les autres utilisateurs de la clinique ; il compte dans la limite d'utilisateurs.</value></data>
+  <data name="Mínimo de {1} caracteres." xml:space="preserve"><value>{1} caractères minimum.</value></data>
+  <data name="Na sala de espera" xml:space="preserve"><value>En salle d'attente</value></data>
+  <data name="Nascimento" xml:space="preserve"><value>Naissance</value></data>
+  <data name="Nascimento:" xml:space="preserve"><value>Naissance :</value></data>
+  <data name="Nenhum agendamento nesta semana." xml:space="preserve"><value>Aucun rendez-vous cette semaine.</value></data>
+  <data name="Nenhum agendamento neste dia." xml:space="preserve"><value>Aucun rendez-vous ce jour.</value></data>
+  <data name="Nenhum agendamento neste mês." xml:space="preserve"><value>Aucun rendez-vous ce mois-ci.</value></data>
+  <data name="Nenhum agendamento no período." xml:space="preserve"><value>Aucun rendez-vous sur la période.</value></data>
+  <data name="Nenhum arquivo anexado a este prontuário." xml:space="preserve"><value>Aucun fichier joint à ce dossier médical.</value></data>
+  <data name="Nenhum atendimento concluído neste mês." xml:space="preserve"><value>Aucune consultation terminée ce mois-ci.</value></data>
+  <data name="Nenhum bloqueio no período." xml:space="preserve"><value>Aucun blocage sur la période.</value></data>
+  <data name="Nenhum cliente ativo com 90% ou mais do limite de usuários ou médicos." xml:space="preserve"><value>Aucun client actif à 90 % ou plus de la limite d'utilisateurs ou de médecins.</value></data>
+  <data name="Nenhum cliente em teste com acesso terminando nos próximos 15 dias." xml:space="preserve"><value>Aucun client en essai dont l'accès se termine dans les 15 prochains jours.</value></data>
+  <data name="Nenhum cliente encontrado." xml:space="preserve"><value>Aucun client trouvé.</value></data>
+  <data name="Nenhum convênio cadastrado." xml:space="preserve"><value>Aucune mutuelle enregistrée.</value></data>
+  <data name="Nenhum convênio cadastrado. O paciente será atendido como particular." xml:space="preserve"><value>Aucune mutuelle enregistrée. Le patient sera reçu en privé.</value></data>
+  <data name="Nenhum dado no período." xml:space="preserve"><value>Aucune donnée sur la période.</value></data>
+  <data name="Nenhum horário cadastrado. Sem grade, a agenda não mostra horários livres (ainda é possível agendar digitando a hora)." xml:space="preserve"><value>Aucun horaire enregistré. Sans grille, l'agenda n'affiche pas de créneaux libres (il reste possible de prendre rendez-vous en saisissant l'heure).</value></data>
+  <data name="Nenhum médico cadastrado. Cadastre as especialidades primeiro." xml:space="preserve"><value>Aucun médecin enregistré. Enregistrez d'abord les spécialités.</value></data>
+  <data name="Nenhum médico encontrado." xml:space="preserve"><value>Aucun médecin trouvé.</value></data>
+  <data name="Nenhum paciente cadastrado." xml:space="preserve"><value>Aucun patient enregistré.</value></data>
+  <data name="Nenhum paciente encontrado." xml:space="preserve"><value>Aucun patient trouvé.</value></data>
+  <data name="Nenhum registro no período." xml:space="preserve"><value>Aucun enregistrement sur la période.</value></data>
+  <data name="Nenhum usuário encontrado." xml:space="preserve"><value>Aucun utilisateur trouvé.</value></data>
+  <data name="Nenhuma" xml:space="preserve"><value>Aucune</value></data>
+  <data name="Nenhuma cobrança encontrada." xml:space="preserve"><value>Aucune facture trouvée.</value></data>
+  <data name="Nenhuma especialidade cadastrada." xml:space="preserve"><value>Aucune spécialité enregistrée.</value></data>
+  <data name="Nenhuma evolução registrada para este paciente." xml:space="preserve"><value>Aucune note d'évolution enregistrée pour ce patient.</value></data>
+  <data name="Nenhuma mensalidade nova para {1:MM/yyyy}: todos os clientes com mensalidade já têm a cobrança do mês." xml:space="preserve"><value>Aucun nouvel abonnement pour {1:MM/yyyy} : tous les clients avec abonnement ont déjà la facture du mois.</value></data>
+  <data name="Nenhuma prescrição emitida." xml:space="preserve"><value>Aucune prescription émise.</value></data>
+  <data name="Nenhuma tela liberada" xml:space="preserve"><value>Aucun écran autorisé</value></data>
+  <data name="Nome" xml:space="preserve"><value>Nom</value></data>
+  <data name="Nome *" xml:space="preserve"><value>Nom *</value></data>
+  <data name="Nome completo *" xml:space="preserve"><value>Nom complet *</value></data>
+  <data name="Nome da clínica *" xml:space="preserve"><value>Nom de la clinique *</value></data>
+  <data name="Nome do responsável" xml:space="preserve"><value>Nom du responsable</value></data>
+  <data name="Nome social" xml:space="preserve"><value>Nom d'usage</value></data>
+  <data name="Nome, CPF ou celular" xml:space="preserve"><value>Nom, CPF ou portable</value></data>
+  <data name="Nome, endereço e telefone aparecem no menu da clínica e no cabeçalho das receitas." xml:space="preserve"><value>Le nom, l'adresse et le téléphone apparaissent dans le menu de la clinique et dans l'en-tête des ordonnances.</value></data>
+  <data name="Nova data e hora" xml:space="preserve"><value>Nouvelle date et heure</value></data>
+  <data name="Nova especialidade" xml:space="preserve"><value>Nouvelle spécialité</value></data>
+  <data name="Nova evolução" xml:space="preserve"><value>Nouvelle note d'évolution</value></data>
+  <data name="Nova prescrição" xml:space="preserve"><value>Nouvelle prescription</value></data>
+  <data name="Nova senha" xml:space="preserve"><value>Nouveau mot de passe</value></data>
+  <data name="Nova situação" xml:space="preserve"><value>Nouveau statut</value></data>
+  <data name="Novo administrador" xml:space="preserve"><value>Nouvel administrateur</value></data>
+  <data name="Novo agendamento" xml:space="preserve"><value>Nouveau rendez-vous</value></data>
+  <data name="Novo bloqueio" xml:space="preserve"><value>Nouveau blocage</value></data>
+  <data name="Novo cliente" xml:space="preserve"><value>Nouveau client</value></data>
+  <data name="Novo convênio" xml:space="preserve"><value>Nouvelle mutuelle</value></data>
+  <data name="Novo horário" xml:space="preserve"><value>Nouvel horaire</value></data>
+  <data name="Novo médico" xml:space="preserve"><value>Nouveau médecin</value></data>
+  <data name="Novo paciente" xml:space="preserve"><value>Nouveau patient</value></data>
+  <data name="Novo perfil de acesso" xml:space="preserve"><value>Nouveau profil d'accès</value></data>
+  <data name="Novo usuário" xml:space="preserve"><value>Nouvel utilisateur</value></data>
+  <data name="Novo usuário da clínica" xml:space="preserve"><value>Nouvel utilisateur de la clinique</value></data>
+  <data name="Novo vencimento" xml:space="preserve"><value>Nouvelle échéance</value></data>
+  <data name="Nunca" xml:space="preserve"><value>Jamais</value></data>
+  <data name="Nº carteirinha" xml:space="preserve"><value>N° de carte</value></data>
+  <data name="Não" xml:space="preserve"><value>Non</value></data>
+  <data name="Não encontrou?" xml:space="preserve"><value>Introuvable ?</value></data>
+  <data name="Não foi possível concluir a operação. Tente novamente." xml:space="preserve"><value>Impossible de terminer l'opération. Réessayez.</value></data>
+  <data name="Não foi possível falar com o servidor. Verifique a conexão e tente novamente." xml:space="preserve"><value>Impossible de joindre le serveur. Vérifiez la connexion et réessayez.</value></data>
+  <data name="Não há clínica definida para o usuário." xml:space="preserve"><value>Aucune clinique définie pour l'utilisateur.</value></data>
+  <data name="Não há clínica definida." xml:space="preserve"><value>Aucune clinique définie.</value></data>
+  <data name="Não informado" xml:space="preserve"><value>Non renseigné</value></data>
+  <data name="Não é possível passar de {0} para {1}." xml:space="preserve"><value>Impossible de passer de {0} à {1}.</value></data>
+  <data name="Número" xml:space="preserve"><value>Numéro</value></data>
+  <data name="O acesso desta clínica está bloqueado por pagamento em atraso. Entre em contato com o suporte." xml:space="preserve"><value>L'accès de cette clinique est bloqué pour retard de paiement. Contactez le support.</value></data>
+  <data name="O acesso desta clínica está bloqueado. Entre em contato com o suporte." xml:space="preserve"><value>L'accès de cette clinique est bloqué. Contactez le support.</value></data>
+  <data name="O arquivo deste anexo não foi encontrado na pasta de anexos do servidor. Avise o suporte." xml:space="preserve"><value>Le fichier de cette pièce jointe est introuvable dans le dossier des pièces jointes du serveur. Prévenez le support.</value></data>
+  <data name="O arquivo {0} está vazio." xml:space="preserve"><value>Le fichier {0} est vide.</value></data>
+  <data name="O arquivo {0} passa de {1} MB." xml:space="preserve"><value>Le fichier {0} dépasse {1} Mo.</value></data>
+  <data name="O cliente tem pagamento em atraso ({0}, vencida em {1:d}). Registre o pagamento, prorrogue o vencimento ou desligue o bloqueio automático por atraso." xml:space="preserve"><value>Le client a un paiement en retard ({0}, échue le {1:d}). Enregistrez le paiement, prolongez l'échéance ou désactivez le blocage automatique pour retard.</value></data>
+  <data name="O conteúdo de {0} não corresponde à extensão {1}." xml:space="preserve"><value>Le contenu de {0} ne correspond pas à l'extension {1}.</value></data>
+  <data name="O dia de vencimento deve ser de 1 a 28." xml:space="preserve"><value>Le jour d'échéance doit être compris entre 1 et 28.</value></data>
+  <data name="O limite de usuários precisa comportar o administrador da clínica." xml:space="preserve"><value>La limite d'utilisateurs doit inclure l'administrateur de la clinique.</value></data>
+  <data name="O motivo pode ter no máximo 300 caracteres." xml:space="preserve"><value>Le motif peut comporter au maximum 300 caractères.</value></data>
+  <data name="O médico já tem agendamento nesse horário." xml:space="preserve"><value>Le médecin a déjà un rendez-vous sur ce créneau.</value></data>
+  <data name="O novo vencimento não pode estar no passado." xml:space="preserve"><value>La nouvelle échéance ne peut pas être dans le passé.</value></data>
+  <data name="O período de acesso desta clínica termina em {0} dia(s) ({1})." xml:space="preserve"><value>La période d'accès de cette clinique se termine dans {0} jour(s) ({1}).</value></data>
+  <data name="O período de acesso desta clínica terminou em {0:d}. Entre em contato com o suporte." xml:space="preserve"><value>La période d'accès de cette clinique s'est terminée le {0:d}. Contactez le support.</value></data>
+  <data name="O plano desta clínica permite {0} médico(s) ativo(s) e o limite foi atingido. Inative um médico ou peça ao suporte para aumentar o limite." xml:space="preserve"><value>L'abonnement de cette clinique autorise {0} médecin(s) actif(s) et la limite est atteinte. Désactivez un médecin ou demandez au support d'augmenter la limite.</value></data>
+  <data name="O plano desta clínica permite {0} usuário(s) ativo(s) e o limite foi atingido. Inative um usuário ou peça ao suporte para aumentar o limite." xml:space="preserve"><value>L'abonnement de cette clinique autorise {0} utilisateur(s) actif(s) et la limite est atteinte. Désactivez un utilisateur ou demandez au support d'augmenter la limite.</value></data>
+  <data name="O que cada perfil libera é definido pelo suporte do sistema. Se precisar de um perfil diferente, peça a ele." xml:space="preserve"><value>Les accès accordés par chaque profil sont définis par le support du système. Si vous avez besoin d'un profil différent, adressez-vous à lui.</value></data>
+  <data name="O registro foi alterado por outro usuário. Recarregue a página e tente novamente." xml:space="preserve"><value>L'enregistrement a été modifié par un autre utilisateur. Rechargez la page et réessayez.</value></data>
+  <data name="O valor da cobrança deve ser maior que zero." xml:space="preserve"><value>Le montant de la facture doit être supérieur à zéro.</value></data>
+  <data name="O valor da mensalidade não pode ser negativo." xml:space="preserve"><value>Le montant de l'abonnement ne peut pas être négatif.</value></data>
+  <data name="Observação" xml:space="preserve"><value>Remarque</value></data>
+  <data name="Observações" xml:space="preserve"><value>Remarques</value></data>
+  <data name="Observações internas" xml:space="preserve"><value>Remarques internes</value></data>
+  <data name="Ocorreu um erro inesperado. Tente novamente ou contate o suporte." xml:space="preserve"><value>Une erreur inattendue s'est produite. Réessayez ou contactez le support.</value></data>
+  <data name="Operação não permitida: o registro está vinculado a outros dados." xml:space="preserve"><value>Opération non autorisée : l'enregistrement est lié à d'autres données.</value></data>
+  <data name="Os horários livres da agenda são gerados a partir desta grade." xml:space="preserve"><value>Les créneaux libres de l'agenda sont générés à partir de cette grille.</value></data>
+  <data name="Os perfis e o que cada um pode fazer são definidos pelo suporte do sistema. Fale com o administrador da sua clínica." xml:space="preserve"><value>Les profils et leurs droits sont définis par le support du système. Adressez-vous à l'administrateur de votre clinique.</value></data>
+  <data name="Outro" xml:space="preserve"><value>Autre</value></data>
+  <data name="Outros" xml:space="preserve"><value>Autres</value></data>
+  <data name="PA" xml:space="preserve"><value>PA</value></data>
+  <data name="PA diastólica (mmHg)" xml:space="preserve"><value>PA diastolique (mmHg)</value></data>
+  <data name="PA sistólica (mmHg)" xml:space="preserve"><value>PA systolique (mmHg)</value></data>
+  <data name="Paciente" xml:space="preserve"><value>Patient</value></data>
+  <data name="Paciente autorizou o tratamento dos dados pessoais (LGPD)" xml:space="preserve"><value>Le patient a autorisé le traitement de ses données personnelles (LGPD)</value></data>
+  <data name="Paciente cadastrado." xml:space="preserve"><value>Patient enregistré.</value></data>
+  <data name="Paciente nº {0}" xml:space="preserve"><value>Patient n° {0}</value></data>
+  <data name="Paciente não encontrado ou inativo." xml:space="preserve"><value>Patient introuvable ou inactif.</value></data>
+  <data name="Paciente não encontrado." xml:space="preserve"><value>Patient introuvable.</value></data>
+  <data name="Paciente:" xml:space="preserve"><value>Patient :</value></data>
+  <data name="Pacientes" xml:space="preserve"><value>Patients</value></data>
+  <data name="Pacientes cadastrados" xml:space="preserve"><value>Patients enregistrés</value></data>
+  <data name="Paga" xml:space="preserve"><value>Payée</value></data>
+  <data name="Pagamento" xml:space="preserve"><value>Paiement</value></data>
+  <data name="Pagamento estornado: a cobrança voltou a ficar em aberto." xml:space="preserve"><value>Paiement annulé : la facture est de nouveau impayée.</value></data>
+  <data name="Pagamento registrado." xml:space="preserve"><value>Paiement enregistré.</value></data>
+  <data name="Pagamentos" xml:space="preserve"><value>Paiements</value></data>
+  <data name="Pagamentos dos clientes" xml:space="preserve"><value>Paiements des clients</value></data>
+  <data name="Pagamentos em atraso" xml:space="preserve"><value>Paiements en retard</value></data>
+  <data name="Pagas" xml:space="preserve"><value>Payées</value></data>
+  <data name="Painel" xml:space="preserve"><value>Tableau de bord</value></data>
+  <data name="Para médicos: depois de criar o usuário, vincule-o ao cadastro em Cadastros › Médicos." xml:space="preserve"><value>Pour les médecins : après avoir créé l'utilisateur, liez-le à sa fiche dans Fichiers › Médecins.</value></data>
+  <data name="Particular" xml:space="preserve"><value>Privé</value></data>
+  <data name="Particulares" xml:space="preserve"><value>Privés</value></data>
+  <data name="Pendentes (em aberto e atrasadas)" xml:space="preserve"><value>En attente (impayées et en retard)</value></data>
+  <data name="Perfil" xml:space="preserve"><value>Profil</value></data>
+  <data name="Perfil de acesso" xml:space="preserve"><value>Profil d'accès</value></data>
+  <data name="Perfil de acesso inválido para esta clínica." xml:space="preserve"><value>Profil d'accès invalide pour cette clinique.</value></data>
+  <data name="Perfil não encontrado." xml:space="preserve"><value>Profil introuvable.</value></data>
+  <data name="Perfil salvo. Os usuários com este perfil passam a ter o novo acesso na próxima página que abrirem." xml:space="preserve"><value>Profil enregistré. Les utilisateurs ayant ce profil obtiennent le nouvel accès dès la prochaine page ouverte.</value></data>
+  <data name="Perfis" xml:space="preserve"><value>Profils</value></data>
+  <data name="Perfis de acesso" xml:space="preserve"><value>Profils d'accès</value></data>
+  <data name="Perfis de acesso *" xml:space="preserve"><value>Profils d'accès *</value></data>
+  <data name="Perfis do usuário atualizados. Valem a partir da próxima página que ele abrir." xml:space="preserve"><value>Profils de l'utilisateur mis à jour. Ils s'appliquent dès la prochaine page qu'il ouvrira.</value></data>
+  <data name="Período" xml:space="preserve"><value>Période</value></data>
+  <data name="Período de acesso encerrado: a clínica não consegue entrar" xml:space="preserve"><value>Période d'accès terminée : la clinique ne peut plus se connecter</value></data>
+  <data name="Período de acesso vencendo (15 dias) ou vencido" xml:space="preserve"><value>Période d'accès arrivant à échéance (15 jours) ou expirée</value></data>
+  <data name="Período inválido." xml:space="preserve"><value>Période invalide.</value></data>
+  <data name="Peso" xml:space="preserve"><value>Poids</value></data>
+  <data name="Peso (kg)" xml:space="preserve"><value>Poids (kg)</value></data>
+  <data name="Peso inválido." xml:space="preserve"><value>Poids invalide.</value></data>
+  <data name="Pesquisar e ver o cadastro e as carteirinhas" xml:space="preserve"><value>Rechercher et consulter la fiche et les cartes</value></data>
+  <data name="Peça ao administrador da sua clínica para revisar seus perfis." xml:space="preserve"><value>Demandez à l'administrateur de votre clinique de revoir vos profils.</value></data>
+  <data name="Pix" xml:space="preserve"><value>Pix</value></data>
+  <data name="Plano" xml:space="preserve"><value>Formule</value></data>
+  <data name="Plano de convênio não encontrado." xml:space="preserve"><value>Formule de mutuelle introuvable.</value></data>
+  <data name="Plano e configurações" xml:space="preserve"><value>Abonnement et paramètres</value></data>
+  <data name="Planos" xml:space="preserve"><value>Formules</value></data>
+  <data name="Planos removidos de um convênio já em uso são apenas inativados." xml:space="preserve"><value>Les formules retirées d'une mutuelle déjà utilisée sont seulement désactivées.</value></data>
+  <data name="Posologia *" xml:space="preserve"><value>Posologie *</value></data>
+  <data name="Prazo de retorno (dias)" xml:space="preserve"><value>Délai de contrôle (jours)</value></data>
+  <data name="Prazo entre 0 e 365 dias." xml:space="preserve"><value>Délai entre 0 et 365 jours.</value></data>
+  <data name="Prescrição emitida." xml:space="preserve"><value>Prescription émise.</value></data>
+  <data name="Prescrição não encontrada." xml:space="preserve"><value>Prescription introuvable.</value></data>
+  <data name="Prescrições ({0})" xml:space="preserve"><value>Prescriptions ({0})</value></data>
+  <data name="Pressão inválida." xml:space="preserve"><value>Tension invalide.</value></data>
+  <data name="Previsto no mês" xml:space="preserve"><value>Prévu ce mois-ci</value></data>
+  <data name="Principal" xml:space="preserve"><value>Principal</value></data>
+  <data name="Procedimento" xml:space="preserve"><value>Acte</value></data>
+  <data name="Prontuário" xml:space="preserve"><value>Dossier médical</value></data>
+  <data name="Prontuário é dado sensível (LGPD): libere só para perfis de profissionais de saúde. Todo acesso fica na auditoria." xml:space="preserve"><value>Le dossier médical est une donnée sensible (LGPD) : ne l'autorisez qu'aux profils de professionnels de santé. Tout accès est consigné dans l'audit.</value></data>
+  <data name="Prorrogar" xml:space="preserve"><value>Prolonger</value></data>
+  <data name="Próxima" xml:space="preserve"><value>Suivante</value></data>
+  <data name="Próximo" xml:space="preserve"><value>Suivant</value></data>
+  <data name="Página {0} de {1}" xml:space="preserve"><value>Page {0} sur {1}</value></data>
+  <data name="Qualquer" xml:space="preserve"><value>Indifférent</value></data>
+  <data name="Qualquer acesso" xml:space="preserve"><value>Tout accès</value></data>
+  <data name="Quantidade" xml:space="preserve"><value>Quantité</value></data>
+  <data name="Queixa principal" xml:space="preserve"><value>Motif de consultation</value></data>
+  <data name="Quem tem acesso à área de administração. Não são usuários de nenhuma clínica." xml:space="preserve"><value>Personnes ayant accès à l'espace d'administration. Ce ne sont pas des utilisateurs d'une clinique.</value></data>
+  <data name="RECEITA DE ANTIMICROBIANO" xml:space="preserve"><value>ORDONNANCE D'ANTIMICROBIEN</value></data>
+  <data name="RECEITUÁRIO" xml:space="preserve"><value>ORDONNANCE</value></data>
+  <data name="RECEITUÁRIO DE CONTROLE ESPECIAL" xml:space="preserve"><value>ORDONNANCE À CONTRÔLE SPÉCIAL</value></data>
+  <data name="RQE" xml:space="preserve"><value>RQE</value></data>
+  <data name="Rascunho" xml:space="preserve"><value>Brouillon</value></data>
+  <data name="Rascunho salvo, mas não foi possível assinar:" xml:space="preserve"><value>Brouillon enregistré, mais impossible de signer :</value></data>
+  <data name="Rascunho salvo." xml:space="preserve"><value>Brouillon enregistré.</value></data>
+  <data name="Rascunho salvo. Assine a evolução para concluir o atendimento." xml:space="preserve"><value>Brouillon enregistré. Signez la note d'évolution pour terminer la consultation.</value></data>
+  <data name="Reativar" xml:space="preserve"><value>Réactiver</value></data>
+  <data name="Reativar cliente" xml:space="preserve"><value>Réactiver le client</value></data>
+  <data name="Recebido no mês" xml:space="preserve"><value>Encaissé ce mois-ci</value></data>
+  <data name="Receita" xml:space="preserve"><value>Ordonnance</value></data>
+  <data name="Recepção" xml:space="preserve"><value>Accueil</value></data>
+  <data name="Redefinir senha" xml:space="preserve"><value>Réinitialiser le mot de passe</value></data>
+  <data name="Registrar no prontuário" xml:space="preserve"><value>Enregistrer dans le dossier médical</value></data>
+  <data name="Registrar pagamento" xml:space="preserve"><value>Enregistrer le paiement</value></data>
+  <data name="Registro ANS" xml:space="preserve"><value>Enregistrement ANS</value></data>
+  <data name="Registro duplicado." xml:space="preserve"><value>Enregistrement en double.</value></data>
+  <data name="Registro: {0}" xml:space="preserve"><value>Enregistrement : {0}</value></data>
+  <data name="Registros" xml:space="preserve"><value>Enregistrements</value></data>
+  <data name="Relatório de atendimentos" xml:space="preserve"><value>Rapport des consultations</value></data>
+  <data name="Relatórios" xml:space="preserve"><value>Rapports</value></data>
+  <data name="Remarcado" xml:space="preserve"><value>Reporté</value></data>
+  <data name="Remarcados" xml:space="preserve"><value>Reportés</value></data>
+  <data name="Remarcar" xml:space="preserve"><value>Reporter</value></data>
+  <data name="Remover" xml:space="preserve"><value>Supprimer</value></data>
+  <data name="Responsável (menores ou tutelados)" xml:space="preserve"><value>Responsable (mineurs ou personnes sous tutelle)</value></data>
+  <data name="Resumo clínico" xml:space="preserve"><value>Résumé clinique</value></data>
+  <data name="Resumo clínico salvo." xml:space="preserve"><value>Résumé clinique enregistré.</value></data>
+  <data name="Resumo clínico, evoluções e prescrições (evolução e prescrição exigem usuário vinculado a um médico)" xml:space="preserve"><value>Résumé clinique, notes d'évolution et prescriptions (la note d'évolution et la prescription exigent un utilisateur lié à un médecin)</value></data>
+  <data name="Resumo clínico, evoluções, prescrições e receitas" xml:space="preserve"><value>Résumé clinique, notes d'évolution, prescriptions et ordonnances</value></data>
+  <data name="Retificar" xml:space="preserve"><value>Rectifier</value></data>
+  <data name="Retificar evolução" xml:space="preserve"><value>Rectifier la note d'évolution</value></data>
+  <data name="Retificação" xml:space="preserve"><value>Rectification</value></data>
+  <data name="Retorno" xml:space="preserve"><value>Contrôle</value></data>
+  <data name="Sair" xml:space="preserve"><value>Se déconnecter</value></data>
+  <data name="Salvar" xml:space="preserve"><value>Enregistrer</value></data>
+  <data name="Salvar e agendar" xml:space="preserve"><value>Enregistrer et planifier</value></data>
+  <data name="Salvar e assinar" xml:space="preserve"><value>Enregistrer et signer</value></data>
+  <data name="Salvar perfis" xml:space="preserve"><value>Enregistrer les profils</value></data>
+  <data name="Salvar rascunho" xml:space="preserve"><value>Enregistrer le brouillon</value></data>
+  <data name="Salvar resumo" xml:space="preserve"><value>Enregistrer le résumé</value></data>
+  <data name="Saturação inválida." xml:space="preserve"><value>Saturation invalide.</value></data>
+  <data name="Se já pagou, desconsidere ou envie o comprovante ao suporte." xml:space="preserve"><value>Si vous avez déjà payé, ignorez ce message ou envoyez le justificatif au support.</value></data>
+  <data name="Se o cliente estava bloqueado pelo sistema por causa deste atraso e não tiver outra cobrança vencida além da tolerância, ele é reativado na hora." xml:space="preserve"><value>Si le client était bloqué par le système à cause de ce retard et n'a aucune autre facture échue au-delà de la tolérance, il est réactivé immédiatement.</value></data>
+  <data name="Selecione a especialidade." xml:space="preserve"><value>Sélectionnez la spécialité.</value></data>
+  <data name="Selecione ao menos um arquivo." xml:space="preserve"><value>Sélectionnez au moins un fichier.</value></data>
+  <data name="Selecione ao menos uma especialidade." xml:space="preserve"><value>Sélectionnez au moins une spécialité.</value></data>
+  <data name="Selecione médico e dia." xml:space="preserve"><value>Sélectionnez le médecin et le jour.</value></data>
+  <data name="Selecione o médico" xml:space="preserve"><value>Sélectionnez le médecin</value></data>
+  <data name="Selecione o médico." xml:space="preserve"><value>Sélectionnez le médecin.</value></data>
+  <data name="Selecione o paciente." xml:space="preserve"><value>Sélectionnez le patient.</value></data>
+  <data name="Selecione..." xml:space="preserve"><value>Sélectionnez...</value></data>
+  <data name="Sem acesso ao sistema" xml:space="preserve"><value>Sans accès au système</value></data>
+  <data name="Sem acesso ao sistema até serem reativados. Passe o mouse no selo para ver o motivo." xml:space="preserve"><value>Sans accès au système jusqu'à réactivation. Survolez le badge pour voir le motif.</value></data>
+  <data name="Sem esta transação o usuário só vê a agenda do médico vinculado a ele" xml:space="preserve"><value>Sans cette transaction, l'utilisateur ne voit que l'agenda du médecin qui lui est lié</value></data>
+  <data name="Sem esta transação o usuário só vê os números do médico vinculado a ele" xml:space="preserve"><value>Sans cette transaction, l'utilisateur ne voit que les chiffres du médecin qui lui est lié</value></data>
+  <data name="Sem limite" xml:space="preserve"><value>Sans limite</value></data>
+  <data name="Sem mensalidade" xml:space="preserve"><value>Sans abonnement</value></data>
+  <data name="Sem mensalidade definida (só cobranças avulsas)." xml:space="preserve"><value>Aucun abonnement défini (factures ponctuelles uniquement).</value></data>
+  <data name="Sem o pagamento, o acesso da clínica será bloqueado em {0}." xml:space="preserve"><value>Sans paiement, l'accès de la clinique sera bloqué le {0}.</value></data>
+  <data name="Sem telas liberadas" xml:space="preserve"><value>Aucun écran autorisé</value></data>
+  <data name="Semana" xml:space="preserve"><value>Semaine</value></data>
+  <data name="Senha" xml:space="preserve"><value>Mot de passe</value></data>
+  <data name="Senha alterada com sucesso." xml:space="preserve"><value>Mot de passe modifié avec succès.</value></data>
+  <data name="Senha atual" xml:space="preserve"><value>Mot de passe actuel</value></data>
+  <data name="Senha inicial" xml:space="preserve"><value>Mot de passe initial</value></data>
+  <data name="Senha inicial *" xml:space="preserve"><value>Mot de passe initial *</value></data>
+  <data name="Senha redefinida e usuário desbloqueado. Passe a nova senha ao usuário." xml:space="preserve"><value>Mot de passe réinitialisé et utilisateur débloqué. Transmettez le nouveau mot de passe à l'utilisateur.</value></data>
+  <data name="Seu perfil não tem permissão para esta operação." xml:space="preserve"><value>Votre profil n'a pas l'autorisation pour cette opération.</value></data>
+  <data name="Seu usuário não está vinculado a um cadastro de médico. Você pode consultar o prontuário, mas não registrar evoluções ou prescrições. Peça ao administrador para vincular em Cadastros › Médicos." xml:space="preserve"><value>Votre utilisateur n'est pas lié à une fiche de médecin. Vous pouvez consulter le dossier médical, mais pas enregistrer de notes d'évolution ni de prescriptions. Demandez à l'administrateur de faire la liaison dans Fichiers › Médecins.</value></data>
+  <data name="Seus perfis de acesso ainda não liberam nenhuma tela do sistema." xml:space="preserve"><value>Vos profils d'accès n'autorisent encore aucun écran du système.</value></data>
+  <data name="Seus perfis de acesso não liberam esta tela ou ação." xml:space="preserve"><value>Vos profils d'accès n'autorisent pas cet écran ou cette action.</value></data>
+  <data name="Sexo *" xml:space="preserve"><value>Sexe *</value></data>
+  <data name="Sexo:" xml:space="preserve"><value>Sexe :</value></data>
+  <data name="Sim" xml:space="preserve"><value>Oui</value></data>
+  <data name="Simples" xml:space="preserve"><value>Simple</value></data>
+  <data name="Sinais vitais" xml:space="preserve"><value>Signes vitaux</value></data>
+  <data name="Situação" xml:space="preserve"><value>Statut</value></data>
+  <data name="Situação do cliente" xml:space="preserve"><value>Statut du client</value></data>
+  <data name="Situação do cliente inválida." xml:space="preserve"><value>Statut du client invalide.</value></data>
+  <data name="Somente o médico autor pode alterar ou assinar a evolução." xml:space="preserve"><value>Seul le médecin auteur peut modifier ou signer la note d'évolution.</value></data>
+  <data name="Somente quem enviou o anexo pode removê-lo." xml:space="preserve"><value>Seule la personne ayant envoyé la pièce jointe peut la supprimer.</value></data>
+  <data name="SpO₂ (%)" xml:space="preserve"><value>SpO₂ (%)</value></data>
+  <data name="Status" xml:space="preserve"><value>Statut</value></data>
+  <data name="Status atualizado." xml:space="preserve"><value>Statut mis à jour.</value></data>
+  <data name="Sua sessão expirou. Entre novamente." xml:space="preserve"><value>Votre session a expiré. Reconnectez-vous.</value></data>
+  <data name="Sucesso" xml:space="preserve"><value>Succès</value></data>
+  <data name="Só ativos" xml:space="preserve"><value>Actifs uniquement</value></data>
+  <data name="Só cobrança em aberto pode ser prorrogada." xml:space="preserve"><value>Seule une facture impayée peut être prolongée.</value></data>
+  <data name="Só {0}" xml:space="preserve"><value>{0} uniquement</value></data>
+  <data name="Só é possível retificar uma evolução assinada do mesmo paciente." xml:space="preserve"><value>Seule une note d'évolution signée du même patient peut être rectifiée.</value></data>
+  <data name="Taxa de faltas" xml:space="preserve"><value>Taux d'absence</value></data>
+  <data name="Tel." xml:space="preserve"><value>Tél.</value></data>
+  <data name="Teleconsulta" xml:space="preserve"><value>Téléconsultation</value></data>
+  <data name="Telefone" xml:space="preserve"><value>Téléphone</value></data>
+  <data name="Temperatura (°C)" xml:space="preserve"><value>Température (°C)</value></data>
+  <data name="Temperatura inválida." xml:space="preserve"><value>Température invalide.</value></data>
+  <data name="Termo / consentimento" xml:space="preserve"><value>Formulaire / consentement</value></data>
+  <data name="Teste até" xml:space="preserve"><value>Essai jusqu'au</value></data>
+  <data name="Teste vencido" xml:space="preserve"><value>Essai expiré</value></data>
+  <data name="Texto" xml:space="preserve"><value>Texte</value></data>
+  <data name="Tipo" xml:space="preserve"><value>Type</value></data>
+  <data name="Tipo de anexo inválido." xml:space="preserve"><value>Type de pièce jointe invalide.</value></data>
+  <data name="Tipo de receita" xml:space="preserve"><value>Type d'ordonnance</value></data>
+  <data name="Tipo sanguíneo" xml:space="preserve"><value>Groupe sanguin</value></data>
+  <data name="Titular" xml:space="preserve"><value>Titulaire</value></data>
+  <data name="Todas" xml:space="preserve"><value>Toutes</value></data>
+  <data name="Todos" xml:space="preserve"><value>Tous</value></data>
+  <data name="Todos os clientes" xml:space="preserve"><value>Tous les clients</value></data>
+  <data name="Todos os clientes (padrão)" xml:space="preserve"><value>Tous les clients (standard)</value></data>
+  <data name="Todos os clientes · {0}" xml:space="preserve"><value>Tous les clients · {0}</value></data>
+  <data name="Todos os médicos" xml:space="preserve"><value>Tous les médecins</value></data>
+  <data name="Todos os médicos (consultório fechado)" xml:space="preserve"><value>Tous les médecins (cabinet fermé)</value></data>
+  <data name="Todos os perfis" xml:space="preserve"><value>Tous les profils</value></data>
+  <data name="Tolerância (dias)" xml:space="preserve"><value>Tolérance (jours)</value></data>
+  <data name="Tolerância de 0 a 60 dias." xml:space="preserve"><value>Tolérance de 0 à 60 jours.</value></data>
+  <data name="Total" xml:space="preserve"><value>Total</value></data>
+  <data name="Total ({0} cliente(s))" xml:space="preserve"><value>Total ({0} client(s))</value></data>
+  <data name="Total do período" xml:space="preserve"><value>Total de la période</value></data>
+  <data name="Total recebido:" xml:space="preserve"><value>Total encaissé :</value></data>
+  <data name="Total {0}" xml:space="preserve"><value>Total {0}</value></data>
+  <data name="Transação desconhecida: " xml:space="preserve"><value>Transaction inconnue : </value></data>
+  <data name="Transações" xml:space="preserve"><value>Transactions</value></data>
+  <data name="Transações ainda não cadastradas no banco. Reinicie o site para sincronizar." xml:space="preserve"><value>Transactions pas encore enregistrées dans la base. Redémarrez le site pour synchroniser.</value></data>
+  <data name="Transações liberadas" xml:space="preserve"><value>Transactions autorisées</value></data>
+  <data name="Transferência" xml:space="preserve"><value>Virement</value></data>
+  <data name="UF" xml:space="preserve"><value>UF</value></data>
+  <data name="UF *" xml:space="preserve"><value>UF *</value></data>
+  <data name="UF com 2 letras." xml:space="preserve"><value>UF de 2 lettres.</value></data>
+  <data name="Use a operação de remarcação." xml:space="preserve"><value>Utilisez l'opération de report.</value></data>
+  <data name="Uso contínuo" xml:space="preserve"><value>Usage continu</value></data>
+  <data name="Uso {0}." xml:space="preserve"><value>Utilisation {0}.</value></data>
+  <data name="Usuário" xml:space="preserve"><value>Utilisateur</value></data>
+  <data name="Usuário bloqueado temporariamente por excesso de tentativas. Tente novamente em alguns minutos." xml:space="preserve"><value>Utilisateur temporairement bloqué suite à un trop grand nombre de tentatives. Réessayez dans quelques minutes.</value></data>
+  <data name="Usuário criado." xml:space="preserve"><value>Utilisateur créé.</value></data>
+  <data name="Usuário de acesso" xml:space="preserve"><value>Utilisateur d'accès</value></data>
+  <data name="Usuário de acesso (perfil Médico)" xml:space="preserve"><value>Utilisateur d'accès (profil Médecin)</value></data>
+  <data name="Usuário inativado." xml:space="preserve"><value>Utilisateur désactivé.</value></data>
+  <data name="Usuário não encontrado neste cliente." xml:space="preserve"><value>Utilisateur introuvable pour ce client.</value></data>
+  <data name="Usuário não encontrado." xml:space="preserve"><value>Utilisateur introuvable.</value></data>
+  <data name="Usuário não está vinculado a um cadastro de médico." xml:space="preserve"><value>L'utilisateur n'est pas lié à une fiche de médecin.</value></data>
+  <data name="Usuário reativado." xml:space="preserve"><value>Utilisateur réactivé.</value></data>
+  <data name="Usuário salvo." xml:space="preserve"><value>Utilisateur enregistré.</value></data>
+  <data name="Usuários" xml:space="preserve"><value>Utilisateurs</value></data>
+  <data name="Usuários ({0})" xml:space="preserve"><value>Utilisateurs ({0})</value></data>
+  <data name="Usuários ativos" xml:space="preserve"><value>Utilisateurs actifs</value></data>
+  <data name="Usuários da clínica" xml:space="preserve"><value>Utilisateurs de la clinique</value></data>
+  <data name="Usuários de todos os clientes" xml:space="preserve"><value>Utilisateurs de tous les clients</value></data>
+  <data name="Vale para" xml:space="preserve"><value>S'applique à</value></data>
+  <data name="Validade" xml:space="preserve"><value>Validité</value></data>
+  <data name="Validade (dias)" xml:space="preserve"><value>Validité (jours)</value></data>
+  <data name="Validade entre 1 e 365 dias." xml:space="preserve"><value>Validité entre 1 et 365 jours.</value></data>
+  <data name="Validade: {0} dias" xml:space="preserve"><value>Validité : {0} jours</value></data>
+  <data name="Valor" xml:space="preserve"><value>Montant</value></data>
+  <data name="Valor '{0}' inválido." xml:space="preserve"><value>Valeur '{0}' invalide.</value></data>
+  <data name="Valor (R$)" xml:space="preserve"><value>Montant (R$)</value></data>
+  <data name="Valor (R$) *" xml:space="preserve"><value>Montant (R$) *</value></data>
+  <data name="Valor atendido" xml:space="preserve"><value>Montant des consultations</value></data>
+  <data name="Valor da mensalidade (R$)" xml:space="preserve"><value>Montant de l'abonnement (R$)</value></data>
+  <data name="Valor inválido." xml:space="preserve"><value>Montant invalide.</value></data>
+  <data name="Valor pago *" xml:space="preserve"><value>Montant payé *</value></data>
+  <data name="Vencido em" xml:space="preserve"><value>Échue le</value></data>
+  <data name="Vencimento" xml:space="preserve"><value>Échéance</value></data>
+  <data name="Vencimento *" xml:space="preserve"><value>Échéance *</value></data>
+  <data name="Vencimento alterado para {0:d}." xml:space="preserve"><value>Échéance modifiée au {0:d}.</value></data>
+  <data name="Vencimento de" xml:space="preserve"><value>Échéance du</value></data>
+  <data name="Ver agenda" xml:space="preserve"><value>Voir l'agenda</value></data>
+  <data name="Ver prontuário" xml:space="preserve"><value>Voir le dossier médical</value></data>
+  <data name="Ver, enviar e remover imagens e arquivos do prontuário" xml:space="preserve"><value>Voir, envoyer et supprimer les images et fichiers du dossier médical</value></data>
+  <data name="Verifique os campos do resumo clínico (textos muito longos)." xml:space="preserve"><value>Vérifiez les champs du résumé clinique (textes trop longs).</value></data>
+  <data name="Versão definitiva" xml:space="preserve"><value>Version définitive</value></data>
+  <data name="Versão definitiva liberada (acesso sem data para terminar)" xml:space="preserve"><value>Version définitive activée (accès sans date de fin)</value></data>
+  <data name="Versão definitiva liberada: o acesso desta clínica não tem mais data para terminar." xml:space="preserve"><value>Version définitive activée : l'accès de cette clinique n'a plus de date de fin.</value></data>
+  <data name="Via" xml:space="preserve"><value>Voie</value></data>
+  <data name="Vigência" xml:space="preserve"><value>Validité</value></data>
+  <data name="Vigência a partir de" xml:space="preserve"><value>Valable à partir du</value></data>
+  <data name="Vinculado" xml:space="preserve"><value>Lié</value></data>
+  <data name="Vincule para que o médico veja a própria agenda e registre o prontuário. Crie o usuário em Administração › Usuários." xml:space="preserve"><value>Liez-le pour que le médecin voie son propre agenda et renseigne le dossier médical. Créez l'utilisateur dans Administration › Utilisateurs.</value></data>
+  <data name="Você não pode desativar o próprio acesso." xml:space="preserve"><value>Vous ne pouvez pas désactiver votre propre accès.</value></data>
+  <data name="Você não pode desativar o próprio usuário." xml:space="preserve"><value>Vous ne pouvez pas désactiver votre propre utilisateur.</value></data>
+  <data name="Voltar" xml:space="preserve"><value>Retour</value></data>
+  <data name="Voltar ao início" xml:space="preserve"><value>Retour à l'accueil</value></data>
+  <data name="Voltar ao prontuário" xml:space="preserve"><value>Retour au dossier médical</value></data>
+  <data name="a" xml:space="preserve"><value>au</value></data>
+  <data name="comprimido" xml:space="preserve"><value>comprimé</value></data>
+  <data name="dado de saúde" xml:space="preserve"><value>donnée de santé</value></data>
+  <data name="de {0}" xml:space="preserve"><value>de {0}</value></data>
+  <data name="deixou de ser cliente; também não entra e sai da lista de clientes atuais." xml:space="preserve"><value>n'est plus client ; ne peut plus se connecter non plus et sort de la liste des clients actuels.</value></data>
+  <data name="ex.: 225125" xml:space="preserve"><value>ex. : 225125</value></data>
+  <data name="exclusivo" xml:space="preserve"><value>exclusif</value></data>
+  <data name="há {0} dia(s)" xml:space="preserve"><value>il y a {0} jour(s)</value></data>
+  <data name="ilimitado" xml:space="preserve"><value>illimité</value></data>
+  <data name="oral" xml:space="preserve"><value>orale</value></data>
+  <data name="padrão do médico" xml:space="preserve"><value>par défaut du médecin</value></data>
+  <data name="suspensão temporária (ex.: pagamento em atraso); ninguém da clínica entra até ser reativado." xml:space="preserve"><value>suspension temporaire (ex. : paiement en retard) ; personne de la clinique ne peut se connecter jusqu'à la réactivation.</value></data>
+  <data name="tela de login das clínicas" xml:space="preserve"><value>page de connexion des cliniques</value></data>
+  <data name="usa o sistema normalmente." xml:space="preserve"><value>utilise le système normalement.</value></data>
+  <data name="vence em {0}." xml:space="preserve"><value>échoit le {0}.</value></data>
+  <data name="vence hoje." xml:space="preserve"><value>échoit aujourd'hui.</value></data>
+  <data name="venceu em {0}." xml:space="preserve"><value>échue le {0}.</value></data>
+  <data name="{0} (CRM {1}/{2})" xml:space="preserve"><value>{0} (CRM {1}/{2})</value></data>
+  <data name="{0} - {1} (inativo)" xml:space="preserve"><value>{0} - {1} (inactif)</value></data>
+  <data name="{0} MB" xml:space="preserve"><value>{0} Mo</value></data>
+  <data name="{0} agendamento(s)" xml:space="preserve"><value>{0} rendez-vous</value></data>
+  <data name="{0} anos" xml:space="preserve"><value>{0} ans</value></data>
+  <data name="{0} anos · nascido(a) em {1}" xml:space="preserve"><value>{0} ans · né(e) le {1}</value></data>
+  <data name="{0} arquivos anexados ao prontuário." xml:space="preserve"><value>{0} fichiers joints au dossier médical.</value></data>
+  <data name="{0} cliente(s)" xml:space="preserve"><value>{0} client(s)</value></data>
+  <data name="{0} cobrança(s)" xml:space="preserve"><value>{0} facture(s)</value></data>
+  <data name="{0} cobrança(s) · {1} cliente(s)" xml:space="preserve"><value>{0} facture(s) · {1} client(s)</value></data>
+  <data name="{0} convênio(s)" xml:space="preserve"><value>{0} mutuelle(s)</value></data>
+  <data name="{0} de {1}" xml:space="preserve"><value>{0} sur {1}</value></data>
+  <data name="{0} desde {1}{2}. Os usuários desta clínica não conseguem entrar no sistema." xml:space="preserve"><value>{0} depuis le {1}{2}. Les utilisateurs de cette clinique ne peuvent pas se connecter au système.</value></data>
+  <data name="{0} dia(s) restante(s)" xml:space="preserve"><value>{0} jour(s) restant(s)</value></data>
+  <data name="{0} dias" xml:space="preserve"><value>{0} jours</value></data>
+  <data name="{0} mensalidade(s) de {1:MM/yyyy} gerada(s)." xml:space="preserve"><value>{0} abonnement(s) de {1:MM/yyyy} généré(s).</value></data>
+  <data name="{0} min" xml:space="preserve"><value>{0} min</value></data>
+  <data name="{0} médico(s)" xml:space="preserve"><value>{0} médecin(s)</value></data>
+  <data name="{0} médico(s), {1} ativo(s)" xml:space="preserve"><value>{0} médecin(s), {1} actif(s)</value></data>
+  <data name="{0} paciente(s)" xml:space="preserve"><value>{0} patient(s)</value></data>
+  <data name="{0} perfil(is)" xml:space="preserve"><value>{0} profil(s)</value></data>
+  <data name="{0} usuário(s)" xml:space="preserve"><value>{0} utilisateur(s)</value></data>
+  <data name="{0} · Administração do sistema" xml:space="preserve"><value>{0} · Administration du système</value></data>
+  <data name="· CPF {0}" xml:space="preserve"><value>· CPF {0}</value></data>
+  <data name="· validade {0} dias" xml:space="preserve"><value>· validité {0} jours</value></data>
+  <data name="· {0} de {1} ativos permitidos no plano" xml:space="preserve"><value>· {0} sur {1} actifs autorisés par l'abonnement</value></data>
+  <data name="· {0} · vencimento {1} ·" xml:space="preserve"><value>· {0} · échéance {1} ·</value></data>
+  <data name="É a mensalidade do mês do vencimento (não deixa gerar o mesmo mês de novo)" xml:space="preserve"><value>C'est l'abonnement du mois de l'échéance (empêche de générer à nouveau le même mois)</value></data>
+  <data name="Último acesso" xml:space="preserve"><value>Dernier accès</value></data>
+</root>

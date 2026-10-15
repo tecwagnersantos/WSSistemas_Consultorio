@@ -1,0 +1,67 @@
+@model AtendimentosVM
+@{
+    ViewData["Title"] = T["Relatório de atendimentos"].Value;
+    var atendidos = Model.Itens.Where(i => i.Status == "ATENDIDO").ToList();
+    var esperas = atendidos.Where(i => i.EsperaMin != null).Select(i => i.EsperaMin!.Value).ToList();
+}
+<form method="get" class="barra-filtros nao-imprimir">
+    <div class="filtros-linha">
+        <label class="campo-inline">@T["De"] <input type="date" name="de" value="@Exibicao.Iso(Model.De)" /></label>
+        <label class="campo-inline">@T["Até"] <input type="date" name="ate" value="@Exibicao.Iso(Model.Ate)" /></label>
+        <partial name="_FiltroMedico" model="(Model.PodeEscolherMedico, Model.Medicos, Model.MedicoId)" />
+        <label class="campo-inline">@T["Status"]
+            <select name="status">
+                <option value="">@T["Todos"]</option>
+                @foreach (var (codigo, nome) in Exibicao.StatusRelatorio)
+                {
+                    <option value="@codigo" selected="@(codigo == Model.Status)">@Exibicao.Tr(nome)</option>
+                }
+            </select>
+        </label>
+        <button class="btn btn-secundario" type="submit">@T["Filtrar"]</button>
+    </div>
+    <div class="grupo-botoes">
+        <button class="btn btn-leve" type="submit" name="formato" value="csv">@T["Exportar CSV"]</button>
+        <button class="btn btn-leve" type="button" onclick="window.print()">@T["Imprimir"]</button>
+    </div>
+</form>
+
+<section class="kpis">
+    <div class="kpi"><span>@T["Registros"]</span><strong>@Model.Itens.Count</strong></div>
+    <div class="kpi"><span>@T["Atendidos"]</span><strong>@atendidos.Count</strong></div>
+    <div class="kpi"><span>@T["Faltas"]</span><strong>@Model.Itens.Count(i => i.Status == "FALTOU")</strong></div>
+    <div class="kpi"><span>@T["Valor atendido"]</span><strong>@Exibicao.Moeda(atendidos.Sum(i => i.Valor ?? 0))</strong></div>
+    <div class="kpi"><span>@T["Espera média"]</span><strong>@(esperas.Count > 0 ? $"{esperas.Average():0} min" : "—")</strong></div>
+</section>
+
+<section class="cartao">
+    <h2 class="so-impressao">@T["Atendimentos de {0} a {1}", Exibicao.Data(Model.De), Exibicao.Data(Model.Ate)]</h2>
+    @if (Model.Itens.Count == 0)
+    {
+        <p class="vazio-texto">@T["Nenhum registro no período."]</p>
+    }
+    else
+    {
+        <div class="tabela-rolagem">
+        <table class="tabela compacta">
+            <thead><tr><th>@T["Data/hora"]</th><th>@T["Paciente"]</th><th>@T["Médico"]</th><th>@T["Especialidade"]</th><th>@T["Tipo"]</th><th>@T["Convênio"]</th><th>@T["Status"]</th><th class="num">@T["Valor"]</th><th class="num">@T["Espera"]</th></tr></thead>
+            <tbody>
+                @foreach (var a in Model.Itens)
+                {
+                    <tr>
+                        <td>@Exibicao.DataHora(a.Inicio)</td>
+                        <td>@a.Paciente</td>
+                        <td>@a.Medico</td>
+                        <td>@a.Especialidade</td>
+                        <td>@Exibicao.NomeTipoRelatorio(a.TipoAtendimento)</td>
+                        <td>@(a.Convenio is null ? T["Particular"].Value : $"{a.Convenio} {a.Plano}")</td>
+                        <td><span class="badge status-@a.Status.ToLowerInvariant().Replace("_", "")">@Exibicao.NomeStatusRelatorio(a.Status)</span></td>
+                        <td class="num">@Exibicao.Moeda(a.Valor)</td>
+                        <td class="num">@(a.EsperaMin is int e ? $"{e} min" : "")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        </div>
+    }
+</section>

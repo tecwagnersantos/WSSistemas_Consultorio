@@ -1,0 +1,137 @@
+@model PacienteDto
+@{
+    var novo = Model.Id == 0;
+    ViewData["Title"] = novo ? T["Novo paciente"].Value : (Model.NomeSocial ?? Model.Nome);
+    var convenios = (ViewBag.Convenios as List<ConvenioDto>) ?? [];
+    var planosOpcoes = convenios.Where(c => c.Ativo).SelectMany(c => c.Planos.Where(p => p.Ativo).Select(p => new { p.Id, Nome = $"{c.Nome} - {p.Nome}" })).ToList();
+}
+<form method="post" class="cartao formulario" data-somente-digitos="Cpf,Cns,Cep,CpfResponsavel">
+    <partial name="_ResumoErros" />
+    @if (!novo)
+    {
+        <div class="cabecalho-acoes">
+            <span class="muted">@T["Paciente nº {0}", Model.Id]</span>
+            <div class="acoes-linha">
+                @if (User.Pode(Transacoes.ProntuarioVer))
+                {
+                    <a class="btn btn-secundario" asp-controller="Prontuario" asp-action="Index" asp-route-pacienteId="@Model.Id">@T["Abrir prontuário"]</a>
+                }
+                @if (User.Pode(Transacoes.AgendaAgendar))
+                {
+                    <a class="btn btn-leve" asp-controller="Agenda" asp-action="Novo" asp-route-pacienteId="@Model.Id" asp-route-pacienteNome="@(Model.NomeSocial ?? Model.Nome)">@T["Agendar consulta"]</a>
+                }
+            </div>
+        </div>
+    }
+
+    <fieldset>
+        <legend>@T["Identificação"]</legend>
+        <div class="linha">
+            <label class="campo largo"><span>@T["Nome completo *"]</span><input name="Nome" value="@Model.Nome" maxlength="150" required /></label>
+            <label class="campo largo"><span>@T["Nome social"]</span><input name="NomeSocial" value="@Model.NomeSocial" maxlength="150" /></label>
+        </div>
+        <div class="linha">
+            <label class="campo"><span>@T["Data de nascimento *"]</span>
+                <input name="DataNascimento" type="date" value="@(Model.DataNascimento == default ? "" : Exibicao.Iso(Model.DataNascimento))" max="@Exibicao.Iso(DateOnly.FromDateTime(DateTime.Today))" required /></label>
+            <label class="campo"><span>@T["Sexo *"]</span>
+                <select name="Sexo">
+                    <option value="F" selected="@(Model.Sexo == "F")">@T["Feminino"]</option>
+                    <option value="M" selected="@(Model.Sexo == "M")">@T["Masculino"]</option>
+                    <option value="I" selected="@(Model.Sexo == "I")">@T["Intersexo / não informado"]</option>
+                </select></label>
+            <label class="campo"><span>@T["CPF"]</span><input name="Cpf" value="@Exibicao.Cpf(Model.Cpf)" data-mascara="cpf" inputmode="numeric" /></label>
+            <label class="campo"><span>@T["Cartão SUS (CNS)"]</span><input name="Cns" value="@Model.Cns" inputmode="numeric" maxlength="15" /></label>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>@T["Contato"]</legend>
+        <div class="linha">
+            <label class="campo"><span>@T["Celular"]</span><input name="Celular" value="@Model.Celular" data-mascara="telefone" inputmode="tel" maxlength="20" /></label>
+            <label class="campo"><span>@T["Telefone"]</span><input name="Telefone" value="@Model.Telefone" data-mascara="telefone" inputmode="tel" maxlength="20" /></label>
+            <label class="campo largo"><span>@T["E-mail"]</span><input name="Email" type="email" value="@Model.Email" maxlength="254" /></label>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>@T["Endereço"]</legend>
+        <div class="linha">
+            <label class="campo"><span>@T["CEP"]</span><input name="Cep" value="@Model.Cep" data-mascara="cep" data-buscar-cep inputmode="numeric" /></label>
+            <label class="campo largo"><span>@T["Logradouro"]</span><input name="Logradouro" value="@Model.Logradouro" maxlength="150" /></label>
+            <label class="campo curto"><span>@T["Número"]</span><input name="Numero" value="@Model.Numero" maxlength="10" /></label>
+        </div>
+        <div class="linha">
+            <label class="campo"><span>@T["Complemento"]</span><input name="Complemento" value="@Model.Complemento" maxlength="60" /></label>
+            <label class="campo"><span>@T["Bairro"]</span><input name="Bairro" value="@Model.Bairro" maxlength="80" /></label>
+            <label class="campo"><span>@T["Cidade"]</span><input name="Cidade" value="@Model.Cidade" maxlength="80" /></label>
+            <label class="campo curto"><span>@T["UF"]</span><input name="Uf" value="@Model.Uf" maxlength="2" class="maiusculas" /></label>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>@T["Responsável (menores ou tutelados)"]</legend>
+        <div class="linha">
+            <label class="campo largo"><span>@T["Nome do responsável"]</span><input name="NomeResponsavel" value="@Model.NomeResponsavel" maxlength="150" /></label>
+            <label class="campo"><span>@T["CPF do responsável"]</span><input name="CpfResponsavel" value="@Exibicao.Cpf(Model.CpfResponsavel)" data-mascara="cpf" inputmode="numeric" /></label>
+        </div>
+    </fieldset>
+
+    <fieldset data-lista="Planos">
+        <legend>@T["Convênios / carteirinhas"]</legend>
+        @if (planosOpcoes.Count == 0)
+        {
+            <p class="muted">@T["Nenhum convênio cadastrado. O paciente será atendido como particular."]</p>
+        }
+        <div class="lista-itens">
+            @for (var i = 0; i < Model.Planos.Count; i++)
+            {
+                var p = Model.Planos[i];
+                <div class="item-lista linha">
+                    <input type="hidden" name="Planos[@i].Id" value="@p.Id" />
+                    <label class="campo largo"><span>@T["Convênio / plano"]</span>
+                        <select name="Planos[@i].PlanoId" required>
+                            @foreach (var o in planosOpcoes) { <option value="@o.Id" selected="@(o.Id == p.PlanoId)">@o.Nome</option> }
+                            @if (!planosOpcoes.Any(o => o.Id == p.PlanoId)) { <option value="@p.PlanoId" selected>@T["{0} - {1} (inativo)", p.Convenio, p.Plano]</option> }
+                        </select></label>
+                    <label class="campo"><span>@T["Nº carteirinha"]</span><input name="Planos[@i].NumeroCarteirinha" value="@p.NumeroCarteirinha" maxlength="30" required /></label>
+                    <label class="campo"><span>@T["Validade"]</span><input type="date" name="Planos[@i].ValidadeCarteirinha" value="@Exibicao.Iso(p.ValidadeCarteirinha)" /></label>
+                    <label class="check"><input type="checkbox" name="Planos[@i].Titular" value="true" checked="@p.Titular" /><input type="hidden" name="Planos[@i].Titular" value="false" /> @T["Titular"]</label>
+                    <label class="check"><input type="checkbox" name="Planos[@i].Ativo" value="true" checked="@p.Ativo" /><input type="hidden" name="Planos[@i].Ativo" value="false" /> @T["Ativa"]</label>
+                    <button type="button" class="btn-icone" data-remover-item title="@T["Remover"]">&times;</button>
+                </div>
+            }
+        </div>
+        @if (planosOpcoes.Count > 0)
+        {
+            <button type="button" class="btn btn-leve" data-adicionar-item>@T["+ Adicionar carteirinha"]</button>
+            <template>
+                <div class="item-lista linha">
+                    <input type="hidden" name="Planos[__i__].Id" value="" />
+                    <label class="campo largo"><span>@T["Convênio / plano"]</span>
+                        <select name="Planos[__i__].PlanoId" required>
+                            @foreach (var o in planosOpcoes) { <option value="@o.Id">@o.Nome</option> }
+                        </select></label>
+                    <label class="campo"><span>@T["Nº carteirinha"]</span><input name="Planos[__i__].NumeroCarteirinha" maxlength="30" required /></label>
+                    <label class="campo"><span>@T["Validade"]</span><input type="date" name="Planos[__i__].ValidadeCarteirinha" /></label>
+                    <label class="check"><input type="checkbox" name="Planos[__i__].Titular" value="true" checked /><input type="hidden" name="Planos[__i__].Titular" value="false" /> @T["Titular"]</label>
+                    <label class="check"><input type="checkbox" name="Planos[__i__].Ativo" value="true" checked /><input type="hidden" name="Planos[__i__].Ativo" value="false" /> @T["Ativa"]</label>
+                    <button type="button" class="btn-icone" data-remover-item title="@T["Remover"]">&times;</button>
+                </div>
+            </template>
+        }
+    </fieldset>
+
+    <fieldset>
+        <legend>@T["Outros"]</legend>
+        <label class="campo"><span>@T["Observações"]</span><textarea name="Observacoes" rows="2" maxlength="500">@Model.Observacoes</textarea></label>
+        <label class="check"><input type="checkbox" name="ConsentimentoLgpd" value="true" checked="@Model.ConsentimentoLgpd" /><input type="hidden" name="ConsentimentoLgpd" value="false" />
+            @T["Paciente autorizou o tratamento dos dados pessoais (LGPD)"]</label>
+        <label class="check"><input type="checkbox" name="Ativo" value="true" checked="@Model.Ativo" /><input type="hidden" name="Ativo" value="false" /> @T["Cadastro ativo"]</label>
+    </fieldset>
+
+    <div class="acoes">
+        @if (User.Pode(Transacoes.PacientesEditar)) { <button type="submit" class="btn btn-primario">@T["Salvar"]</button> }
+        @if (novo && User.Pode(Transacoes.AgendaAgendar)) { <button type="submit" name="depois" value="agendar" class="btn btn-secundario">@T["Salvar e agendar"]</button> }
+        <a class="btn btn-leve" asp-action="Index">@T["Voltar"]</a>
+    </div>
+</form>

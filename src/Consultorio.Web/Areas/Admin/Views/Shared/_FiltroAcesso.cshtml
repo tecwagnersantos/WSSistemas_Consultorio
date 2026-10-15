@@ -1,0 +1,7 @@
+@model string?
+<select name="acesso" data-enviar-ao-mudar>
+    <option value="">@T["Qualquer acesso"]</option>
+    <option value="teste" selected="@(Model == "teste")">@T["Em teste"]</option>
+    <option value="vencidos" selected="@(Model == "vencidos")">@T["Teste vencido"]</option>
+    <option value="definitivo" selected="@(Model == "definitivo")">@T["Definitivo"]</option>
+</select>

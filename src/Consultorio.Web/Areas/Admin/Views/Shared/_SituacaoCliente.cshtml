@@ -1,0 +1,10 @@
+@model (string Situacao, string? Motivo)
+@* Selo da situação do cliente. Ativo não mostra nada (é o normal); bloqueado e inativo mostram o motivo ao passar o mouse. *@
+@if (Model.Situacao == Consultorio.Domain.Entities.SituacoesCliente.Bloqueado)
+{
+    <span class="badge status-faltou" title="@Model.Motivo">@T["Bloqueado"]</span>
+}
+else if (Model.Situacao == Consultorio.Domain.Entities.SituacoesCliente.Inativo)
+{
+    <span class="badge status-cancelado" title="@Model.Motivo">@T["Inativo"]</span>
+}

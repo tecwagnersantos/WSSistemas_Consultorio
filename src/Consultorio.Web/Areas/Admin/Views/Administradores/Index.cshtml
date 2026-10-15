@@ -1,0 +1,22 @@
+@model List<AdministradorDto>
+@{ ViewData["Title"] = T["Administradores do sistema"].Value; }
+<div class="barra-filtros">
+    <span class="muted">@T["Quem tem acesso à área de administração. Não são usuários de nenhuma clínica."]</span>
+    <a class="btn btn-primario" asp-action="Form">@T["+ Novo administrador"]</a>
+</div>
+<section class="cartao">
+    <table class="tabela">
+        <thead><tr><th>@T["Nome"]</th><th>@T["E-mail"]</th><th>@T["Último acesso"]</th><th></th></tr></thead>
+        <tbody>
+            @foreach (var a in Model)
+            {
+                <tr class="@(a.Ativo ? "" : "inativo")">
+                    <td><strong>@a.Nome</strong>@if (!a.Ativo) { <span class="badge status-cancelado">@T["Inativo"]</span> }</td>
+                    <td>@a.Email</td>
+                    <td>@(a.UltimoAcessoEm is DateTime d ? Exibicao.DataHora(d) : T["Nunca"].Value)</td>
+                    <td class="col-acoes"><a class="btn btn-p btn-leve" asp-action="Form" asp-route-id="@a.Id">@T["Editar"]</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</section>

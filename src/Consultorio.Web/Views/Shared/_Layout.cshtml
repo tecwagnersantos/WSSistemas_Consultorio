@@ -1,0 +1,128 @@
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Antiforgery
+@inject Microsoft.Extensions.Configuration.IConfiguration Config
+@{
+    var controller = ViewContext.RouteData.Values["controller"]?.ToString();
+    var action = ViewContext.RouteData.Values["action"]?.ToString();
+    string Ativo(string c, string? a = null) => controller == c && (a == null || action == a) ? "ativo" : "";
+    // Nome da clínica (cliente) do usuário logado
+    var nomeClinica = User.NomeClinica() is { Length: > 0 } n ? n : Config["Consultorio:Nome"] ?? T["Consultório Médico"].Value;
+    // Clínica em período de teste: avisa nos últimos 15 dias
+    int? diasRestantes = Context.Items[UsuarioAtual.ItemAcessoAte] is DateOnly acessoAte
+        ? acessoAte.DayNumber - DateOnly.FromDateTime(DateTime.Today).DayNumber : null;
+    var perfis = User.Claims.Where(c => c.Type == System.Security.Claims.ClaimTypes.Role).Select(c => Exibicao.NomePerfil(c.Value));
+}
+<!DOCTYPE html>
+<html lang="@System.Globalization.CultureInfo.CurrentUICulture.Name">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="csrf-token" content="@Antiforgery.GetAndStoreTokens(Context).RequestToken" />
+    <meta name="app-base" content="@Url.Content("~/")" />
+    <title>@ViewData["Title"] · @nomeClinica</title>
+    <link rel="icon" href="~/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    @await RenderSectionAsync("Head", required: false)
+</head>
+<body>
+    <div class="app">
+        <aside class="sidebar" id="sidebar">
+            <div class="marca">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3h4v7h7v4h-7v7h-4v-7H3v-4h7z" /></svg>
+                <span>@nomeClinica</span>
+            </div>
+            <nav>
+                @* Menu montado pelas transações dos perfis do usuário (área /Admin → Perfis de acesso) *@
+                @if (User.Pode(Transacoes.DashboardVer))
+                {
+                    <a class="@Ativo("Home")" asp-controller="Home" asp-action="Index"><i class="ic ic-dashboard"></i>@T["Dashboard"]</a>
+                }
+                @if (User.Pode(Transacoes.AgendaVer))
+                {
+                    <a class="@Ativo("Agenda", "Index") @Ativo("Agenda", "Novo")" asp-controller="Agenda" asp-action="Index"><i class="ic ic-agenda"></i>@T["Agenda"]</a>
+                }
+                @if (User.Pode(Transacoes.PacientesVer))
+                {
+                    <a class="@Ativo("Pacientes") @Ativo("Prontuario")" asp-controller="Pacientes" asp-action="Index"><i class="ic ic-pacientes"></i>@T["Pacientes"]</a>
+                }
+                @if (User.Pode(Transacoes.AgendaVer))
+                {
+                    <a class="@Ativo("Agenda", "Bloqueios")" asp-controller="Agenda" asp-action="Bloqueios"><i class="ic ic-bloqueio"></i>@T["Bloqueios"]</a>
+                }
+                @if (User.PodeAlgum(Transacoes.CadastrosMedicos, Transacoes.CadastrosEspecialidades, Transacoes.CadastrosConvenios))
+                {
+                    <div class="grupo">@T["Cadastros"]</div>
+                    @if (User.Pode(Transacoes.CadastrosMedicos))
+                    {
+                        <a class="@Ativo("Cadastros", "Medicos") @Ativo("Cadastros", "Medico") @Ativo("Cadastros", "Horarios")" asp-controller="Cadastros" asp-action="Medicos"><i class="ic ic-medico"></i>@T["Médicos"]</a>
+                    }
+                    @if (User.Pode(Transacoes.CadastrosEspecialidades))
+                    {
+                        <a class="@Ativo("Cadastros", "Especialidades")" asp-controller="Cadastros" asp-action="Especialidades"><i class="ic ic-especialidade"></i>@T["Especialidades"]</a>
+                    }
+                    @if (User.Pode(Transacoes.CadastrosConvenios))
+                    {
+                        <a class="@Ativo("Cadastros", "Convenios") @Ativo("Cadastros", "Convenio")" asp-controller="Cadastros" asp-action="Convenios"><i class="ic ic-convenio"></i>@T["Convênios"]</a>
+                    }
+                }
+                @if (User.Pode(Transacoes.RelatoriosVer))
+                {
+                    <div class="grupo">@T["Relatórios"]</div>
+                    <a class="@Ativo("Relatorios", "Atendimentos")" asp-controller="Relatorios" asp-action="Atendimentos"><i class="ic ic-relatorio"></i>@T["Atendimentos"]</a>
+                    <a class="@Ativo("Relatorios", "Indicadores")" asp-controller="Relatorios" asp-action="Indicadores"><i class="ic ic-grafico"></i>@T["Indicadores mensais"]</a>
+                }
+                @if (User.Pode(Transacoes.UsuariosGerenciar))
+                {
+                    <div class="grupo">@T["Administração"]</div>
+                    <a class="@Ativo("Usuarios")" asp-controller="Usuarios" asp-action="Index"><i class="ic ic-usuarios"></i>@T["Usuários"]</a>
+                }
+            </nav>
+        </aside>
+        <div class="principal">
+            <header class="topo">
+                <button type="button" class="btn-icone menu" data-alternar-menu aria-label="@T["Abrir menu"]">&#9776;</button>
+                <h1>@ViewData["Title"]</h1>
+                <div class="usuario">
+                    <div class="usuario-info">
+                        <strong>@User.Identity?.Name</strong>
+                        <small>@string.Join(" · ", perfis)</small>
+                    </div>
+                    <partial name="_Idioma" />
+                    <a class="btn btn-leve btn-p" asp-controller="Conta" asp-action="AlterarSenha">@T["Alterar senha"]</a>
+                    <form method="post" asp-controller="Conta" asp-action="Sair">
+                        <button class="btn btn-leve btn-p" type="submit">@T["Sair"]</button>
+                    </form>
+                </div>
+            </header>
+            <main class="conteudo">
+                @if (diasRestantes is int dias && dias <= 15)
+                {
+                    <div class="alerta alerta-aviso">
+                        @(dias == 0 ? T["Hoje é o último dia do período de acesso desta clínica."]
+                                    : T["O período de acesso desta clínica termina em {0} dia(s) ({1}).", dias, Exibicao.Data(DateTime.Today.AddDays(dias))])
+                        @T["Fale com o suporte para liberar a versão definitiva."]
+                    </div>
+                }
+                @if (Context.Items[UsuarioAtual.ItemCobranca] is Consultorio.Application.Admin.AvisoCobrancaDto cob)
+                {
+                    var diasCob = cob.Vencimento.DayNumber - DateOnly.FromDateTime(DateTime.Today).DayNumber;
+                    <div class="alerta @(diasCob < 0 ? "alerta-erro" : "alerta-aviso")">
+                        @T["{0} de {1}", cob.Descricao, Exibicao.Moeda(cob.Valor)]
+                        @(diasCob < 0 ? T["venceu em {0}.", Exibicao.Data(cob.Vencimento)] : diasCob == 0 ? T["vence hoje."] : T["vence em {0}.", Exibicao.Data(cob.Vencimento)])
+                        @if (cob.BloqueiaEm is DateOnly bloqueia)
+                        {
+                            <text>@T["Sem o pagamento, o acesso da clínica será bloqueado em {0}.", Exibicao.Data(bloqueia)]</text>
+                        }
+                        @T["Se já pagou, desconsidere ou envie o comprovante ao suporte."]
+                    </div>
+                }
+                <partial name="_Mensagens" />
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+    <div id="toasts" class="toasts" aria-live="polite"></div>
+    <partial name="_TextosJs" />
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,39 @@
+@model List<MedicoDto>
+@{ ViewData["Title"] = T["Médicos"].Value; }
+<div class="barra-filtros">
+    <span class="muted">@T["{0} médico(s)", Model.Count]@if (ViewBag.Uso is UsoPlanoDto uso && uso.MaxMedicos is short max)
+        {<text> @T["· {0} de {1} ativos permitidos no plano", uso.MedicosAtivos, max]</text>}</span>
+    <a class="btn btn-primario" asp-action="Medico">@T["+ Novo médico"]</a>
+</div>
+<section class="cartao">
+    @if (Model.Count == 0)
+    {
+        <p class="vazio-texto">@T["Nenhum médico cadastrado. Cadastre as especialidades primeiro."]</p>
+    }
+    else
+    {
+        <div class="tabela-rolagem">
+        <table class="tabela">
+            <thead><tr><th>@T["Nome"]</th><th>@T["CRM"]</th><th>@T["Especialidades"]</th><th>@T["Consulta"]</th><th>@T["Usuário"]</th><th></th></tr></thead>
+            <tbody>
+                @foreach (var m in Model)
+                {
+                    <tr class="@(m.Ativo ? "" : "inativo")">
+                        <td><strong>@m.Nome</strong>@if (!m.Ativo) { <span class="badge status-cancelado">@T["Inativo"]</span> }</td>
+                        <td>@m.Crm/@m.UfCrm</td>
+                        <td>@string.Join(", ", m.Especialidades.Select(e => e.Especialidade + (e.Principal ? " ★" : "")))</td>
+                        <td>@T["{0} min", m.DuracaoConsultaPadraoMin]</td>
+                        <td>@(m.UsuarioId is null ? "—" : T["Vinculado"].Value)</td>
+                        <td class="col-acoes">
+                            <div class="acoes-linha">
+                                <a class="btn btn-p btn-secundario" asp-action="Horarios" asp-route-id="@m.Id">@T["Horários"]</a>
+                                <a class="btn btn-p btn-leve" asp-action="Medico" asp-route-id="@m.Id">@T["Editar"]</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        </div>
+    }
+</section>

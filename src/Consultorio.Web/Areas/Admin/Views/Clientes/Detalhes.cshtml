@@ -1,0 +1,181 @@
+@model ClienteDetalhesDto
+@{
+    var c = Model.Cliente;
+    ViewData["Title"] = c.Nome;
+    static string Limite(short? max) => max is short m ? m.ToString() : Exibicao.Tr("ilimitado");
+    var opcoesPerfis = (List<PerfilOpcaoDto>)ViewBag.Perfis;
+}
+<div class="barra-filtros">
+    <span class="muted">
+        @if (c.Ativo) { <span class="badge status-atendido">@T["Ativo"]</span> } else { <partial name="_SituacaoCliente" model="(c.Situacao, c.MotivoSituacao)" /> }
+        @if (c.AcessoDefinitivo) { <span class="badge status-atendido">@T["Versão definitiva"]</span> }
+        else if (c.AcessoVencido) { <span class="badge status-faltou">@T["Acesso vencido em {0}", c.AcessoAte?.ToString("d")]</span> }
+        else { <span class="badge status-aguardando">@T["Em teste até {0}", c.AcessoAte?.ToString("d")]</span> }
+        @T["Cliente desde {0}", Exibicao.Data(c.CriadoEm)]@(c.Cidade is null ? "" : $" · {c.Cidade}/{c.Uf}")@(c.Cnpj is null ? "" : $" · CNPJ {c.Cnpj}")
+    </span>
+    <div class="acoes">
+        @if (!c.AcessoDefinitivo)
+        {
+            <form method="post" asp-action="LiberarDefinitivo" asp-route-id="@c.Id" class="em-linha"
+                  data-confirmar="Liberar a versão definitiva para @c.Nome? O acesso deixa de ter data para terminar.">
+                <button class="btn btn-leve" type="submit">@T["Liberar versão definitiva"]</button>
+            </form>
+        }
+        <a class="btn btn-primario" asp-action="Form" asp-route-id="@c.Id">@T["Editar cliente e limites"]</a>
+    </div>
+</div>
+
+<section class="cartao">
+    <h2>@T["Situação do cliente"]</h2>
+    @if (!c.Ativo)
+    {
+        <p class="alerta-aviso">@T["{0} desde {1}{2}. Os usuários desta clínica não conseguem entrar no sistema.", c.Situacao == Consultorio.Domain.Entities.SituacoesCliente.Bloqueado ? "Bloqueado" : "Inativo", c.SituacaoDesde is DateTime sd ? Exibicao.DataHora(sd) : "", c.MotivoSituacao is null ? "" : $": {c.MotivoSituacao}"]</p>
+        <form method="post" asp-action="AlterarSituacao" asp-route-id="@c.Id" class="em-linha"
+              data-confirmar="Reativar @c.Nome? Os usuários da clínica voltam a entrar no sistema.">
+            <input type="hidden" name="situacao" value="@Consultorio.Domain.Entities.SituacoesCliente.Ativo" />
+            <button class="btn btn-primario" type="submit">@T["Reativar cliente"]</button>
+        </form>
+    }
+    else
+    {
+        <p class="muted">@T["Ativo: os usuários da clínica usam o sistema normalmente."]</p>
+    }
+    <form method="post" asp-action="AlterarSituacao" asp-route-id="@c.Id" class="filtros-linha"
+          data-confirmar="Alterar a situação de @c.Nome? Bloqueado ou inativo, ninguém da clínica entra e as sessões abertas são encerradas.">
+        <select name="situacao" aria-label="@T["Nova situação"]">
+            @if (c.Situacao != Consultorio.Domain.Entities.SituacoesCliente.Bloqueado) { <option value="@Consultorio.Domain.Entities.SituacoesCliente.Bloqueado">@T["Bloquear (temporário)"]</option> }
+            @if (c.Situacao != Consultorio.Domain.Entities.SituacoesCliente.Inativo) { <option value="@Consultorio.Domain.Entities.SituacoesCliente.Inativo">@T["Inativar (deixou de ser cliente)"]</option> }
+        </select>
+        <input name="motivo" maxlength="300" required placeholder="@T["Motivo (ex.: mensalidade em atraso)"]" aria-label="@T["Motivo"]" />
+        <button class="btn btn-leve" type="submit">@T["Aplicar"]</button>
+    </form>
+</section>
+
+<section class="kpis">
+    <div class="kpi @(Model.Uso.MaxUsuarios is short mu && Model.Uso.UsuariosAtivos >= mu ? "alerta-kpi" : "")"><span>@T["Usuários ativos"]</span><strong>@Model.Uso.UsuariosAtivos <small>@T["de {0}", Limite(Model.Uso.MaxUsuarios)]</small></strong></div>
+    <div class="kpi @(Model.Uso.MaxMedicos is short mm && Model.Uso.MedicosAtivos >= mm ? "alerta-kpi" : "")"><span>@T["Médicos ativos"]</span><strong>@Model.Uso.MedicosAtivos <small>@T["de {0}", Limite(Model.Uso.MaxMedicos)]</small></strong></div>
+    <div class="kpi"><span>@T["Pacientes"]</span><strong>@Model.Pacientes</strong></div>
+    <div class="kpi"><span>@T["Agendamentos no mês"]</span><strong>@Model.AgendamentosMes</strong></div>
+    <div class="kpi"><span>@T["Anexos do prontuário"]</span><strong>@Model.Anexos <small>@T["{0} MB", (Model.BytesAnexos / 1048576d).ToString("0.0", Exibicao.Cultura)]</small></strong></div>
+</section>
+@if (!string.IsNullOrEmpty(c.Observacoes))
+{
+    <div class="alerta alerta-info">@c.Observacoes</div>
+}
+
+@{
+    var cobs = (List<CobrancaDto>)ViewBag.Cobrancas;
+    var voltarCob = Url.Action("Detalhes", new { id = c.Id }) + "#pagamentos";
+}
+<section class="cartao" id="pagamentos">
+    <h2>@T["Pagamentos"]</h2>
+    <p class="muted">
+        @(c.ValorMensalidade is decimal vm ? T["Mensalidade de {0} com vencimento todo dia {1}.", Exibicao.Moeda(vm), c.DiaVencimento] : T["Sem mensalidade definida (só cobranças avulsas)."])
+        @(c.BloqueioPorAtraso ? T["Bloqueio automático {0} dia(s) após o vencimento.", c.DiasTolerancia] : T["Bloqueio automático por atraso desligado."])
+        @if (c.BloqueadoPorAtraso) { <span class="badge status-faltou">@T["Bloqueado por atraso"]</span> }
+        @T["Em aberto:"] @Exibicao.Moeda(cobs.Where(x => x.Status is "ABERTA" or "ATRASADA").Sum(x => x.Valor)) ·
+        @T["Total recebido:"] @Exibicao.Moeda(cobs.Sum(x => x.ValorPago ?? 0))
+    </p>
+    <partial name="_TabelaCobrancas" model="((IReadOnlyList<CobrancaDto>)cobs.Take(24).ToList(), false, voltarCob)" />
+    <details>
+        <summary class="btn btn-leve">@T["+ Nova cobrança"]</summary>
+        <form method="post" asp-controller="Pagamentos" asp-action="Nova" asp-route-clinicaId="@c.Id" class="formulario">
+            <input type="hidden" name="voltar" value="@voltarCob" />
+            <div class="linha">
+                <label class="campo largo"><span>@T["Descrição *"]</span><input name="Descricao" maxlength="100" required placeholder="@T["Ex.: Implantação, Mensalidade 11/2026"]" /></label>
+                <label class="campo"><span>@T["Vencimento *"]</span><input type="date" name="Vencimento" required /></label>
+                <label class="campo"><span>@T["Valor (R$) *"]</span><input type="number" name="Valor" min="0.01" step="0.01" value="@c.ValorMensalidade?.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture)" required /></label>
+            </div>
+            <label class="check"><input type="checkbox" name="Mensalidade" value="true" /><input type="hidden" name="Mensalidade" value="false" /> @T["É a mensalidade do mês do vencimento (não deixa gerar o mesmo mês de novo)"]</label>
+            <button class="btn btn-primario" type="submit">@T["Criar cobrança"]</button>
+        </form>
+    </details>
+</section>
+
+<div class="grade-2 grade-form-lista">
+    <section class="cartao">
+        <h2>@T["Novo usuário da clínica"]</h2>
+        <form method="post" asp-action="NovoUsuario" asp-route-id="@c.Id" class="formulario">
+            <label class="campo"><span>@T["Nome *"]</span><input name="Nome" maxlength="150" required /></label>
+            <label class="campo"><span>@T["E-mail (login) *"]</span><input name="Email" type="email" maxlength="254" autocomplete="off" required /></label>
+            <label class="campo"><span>@T["Senha inicial *"]</span><input name="Senha" type="password" minlength="8" autocomplete="new-password" required /></label>
+            <div class="campo">
+                <span>@T["Perfis de acesso *"]</span>
+                @foreach (var p in opcoesPerfis)
+                {
+                    <label class="check"><input type="checkbox" name="PerfilIds" value="@p.Id" /> @Exibicao.NomePerfil(p.Nome)@(p.Exclusivo ? " (" + T["exclusivo"] + ")" : "")</label>
+                }
+            </div>
+            <button class="btn btn-primario" type="submit">@T["Criar usuário"]</button>
+        </form>
+    </section>
+    <section class="cartao">
+        <h2>@T["Usuários ({0})", Model.Usuarios.Count]</h2>
+        <div class="tabela-rolagem">
+            <table class="tabela">
+                <thead><tr><th>@T["Nome"]</th><th>@T["Perfis"]</th><th>@T["Último acesso"]</th><th></th></tr></thead>
+                <tbody>
+                    @foreach (var u in Model.Usuarios)
+                    {
+                        <tr class="@(u.Ativo ? "" : "inativo")">
+                            <td><strong>@u.Nome</strong><br /><small class="muted">@u.Email</small>
+                                @if (!u.Ativo) { <span class="badge status-cancelado">@T["Inativo"]</span> }
+                                @if (u.Bloqueado) { <span class="badge status-faltou">@T["Bloqueado"]</span> }</td>
+                            <td>@string.Join(", ", u.Perfis.Select(Exibicao.NomePerfil))</td>
+                            <td>@(u.UltimoAcessoEm is DateTime d ? Exibicao.DataHora(d) : T["Nunca"].Value)</td>
+                            <td class="col-acoes">
+                                <form method="post" asp-action="SituacaoUsuario" asp-route-id="@c.Id" class="em-linha">
+                                    <input type="hidden" name="usuarioId" value="@u.Id" /><input type="hidden" name="ativo" value="@(u.Ativo ? "false" : "true")" />
+                                    <button class="btn btn-p btn-leve" type="submit">@(u.Ativo ? T["Inativar"] : T["Reativar"])</button>
+                                </form>
+                                <details class="em-linha">
+                                    <summary class="btn btn-p btn-leve">@T["Perfis"]</summary>
+                                    <form method="post" asp-action="PerfisUsuario" asp-route-id="@c.Id">
+                                        <input type="hidden" name="usuarioId" value="@u.Id" />
+                                        @foreach (var p in opcoesPerfis)
+                                        {
+                                            <label class="check"><input type="checkbox" name="perfilIds" value="@p.Id" checked="@u.PerfilIds.Contains(p.Id)" /> @Exibicao.NomePerfil(p.Nome)</label>
+                                        }
+                                        <button class="btn btn-p btn-primario" type="submit">@T["Salvar perfis"]</button>
+                                    </form>
+                                </details>
+                                <details class="em-linha">
+                                    <summary class="btn btn-p btn-leve">@T["Redefinir senha"]</summary>
+                                    <form method="post" asp-action="RedefinirSenha" asp-route-id="@c.Id">
+                                        <input type="hidden" name="usuarioId" value="@u.Id" />
+                                        <input name="senha" type="password" minlength="8" autocomplete="new-password" placeholder="@T["Nova senha"]" required />
+                                        <button class="btn btn-p btn-primario" type="submit">@T["Salvar"]</button>
+                                    </form>
+                                </details>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>
+
+<section class="cartao">
+    <h2>@T["Médicos ({0})", Model.Medicos.Count]</h2>
+    @if (Model.Medicos.Count == 0)
+    {
+        <p class="muted">@T["A clínica ainda não cadastrou médicos."]</p>
+    }
+    else
+    {
+        <table class="tabela">
+            <thead><tr><th>@T["Nome"]</th><th>@T["CRM"]</th><th>@T["Usuário de acesso"]</th><th>@T["Situação"]</th></tr></thead>
+            <tbody>
+                @foreach (var m in Model.Medicos)
+                {
+                    <tr class="@(m.Ativo ? "" : "inativo")">
+                        <td>@m.Nome</td><td>@m.Crm/@m.UfCrm</td><td>@(m.UsuarioEmail ?? "—")</td>
+                        <td>@(m.Ativo ? T["Ativo"] : T["Inativo"])</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <p class="muted">@T["Médicos são cadastrados e ativados pela própria clínica, respeitando o limite do plano."]</p>
+    }
+</section>

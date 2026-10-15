@@ -1,0 +1,30 @@
+@model List<ConvenioDto>
+@{ ViewData["Title"] = T["Convênios"].Value; }
+<div class="barra-filtros">
+    <span class="muted">@T["{0} convênio(s)", Model.Count]</span>
+    <a class="btn btn-primario" asp-action="Convenio">@T["+ Novo convênio"]</a>
+</div>
+<section class="cartao">
+    @if (Model.Count == 0)
+    {
+        <p class="vazio-texto">@T["Nenhum convênio cadastrado."]</p>
+    }
+    else
+    {
+        <table class="tabela">
+            <thead><tr><th>@T["Convênio"]</th><th>@T["Registro ANS"]</th><th>@T["Planos"]</th><th>@T["Retorno"]</th><th></th></tr></thead>
+            <tbody>
+                @foreach (var c in Model)
+                {
+                    <tr class="@(c.Ativo ? "" : "inativo")">
+                        <td><strong>@c.Nome</strong></td>
+                        <td>@c.RegistroAns</td>
+                        <td>@string.Join(", ", c.Planos.Where(p => p.Ativo).Select(p => p.Nome))</td>
+                        <td>@T["{0} dias", c.PrazoRetornoDias]</td>
+                        <td class="col-acoes"><a class="btn btn-p btn-leve" asp-action="Convenio" asp-route-id="@c.Id">@T["Editar"]</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</section>

@@ -1,0 +1,18 @@
+@inject Microsoft.Extensions.Configuration.IConfiguration Config
+<!DOCTYPE html>
+<html lang="@System.Globalization.CultureInfo.CurrentUICulture.Name">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] · @(Config["Consultorio:Nome"] ?? T["Consultório Médico"].Value)</title>
+    <link rel="icon" href="~/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body class="@ViewData["ClasseBody"]">
+    <div class="idioma-canto"><partial name="_Idioma" /></div>
+    @RenderBody()
+    <partial name="_TextosJs" />
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

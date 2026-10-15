@@ -1,0 +1,40 @@
+@model List<EspecialidadeDto>
+@{ ViewData["Title"] = T["Especialidades"].Value; }
+<div class="grade-2 grade-form-lista">
+    <form method="post" asp-action="SalvarEspecialidade" class="cartao formulario" id="form-especialidade">
+        <h2 data-titulo-form>@T["Nova especialidade"]</h2>
+        <input type="hidden" name="Id" />
+        <label class="campo"><span>@T["Nome *"]</span><input name="Nome" maxlength="100" required /></label>
+        <label class="campo"><span>@T["Código CBO"]</span><input name="CodigoCbo" maxlength="10" placeholder="@T["ex.: 225125"]" /></label>
+        <label class="check"><input type="checkbox" name="Ativo" value="true" checked /><input type="hidden" name="Ativo" value="false" /> @T["Ativa"]</label>
+        <div class="acoes">
+            <button class="btn btn-primario" type="submit">@T["Salvar"]</button>
+            <button class="btn btn-leve" type="reset" data-limpar-form>@T["Limpar"]</button>
+        </div>
+    </form>
+    <section class="cartao">
+        @if (Model.Count == 0)
+        {
+            <p class="vazio-texto">@T["Nenhuma especialidade cadastrada."]</p>
+        }
+        else
+        {
+            <table class="tabela">
+                <thead><tr><th>@T["Nome"]</th><th>@T["CBO"]</th><th>@T["Situação"]</th><th></th></tr></thead>
+                <tbody>
+                    @foreach (var e in Model)
+                    {
+                        <tr class="@(e.Ativo ? "" : "inativo")">
+                            <td>@e.Nome</td><td>@e.CodigoCbo</td>
+                            <td>@(e.Ativo ? T["Ativa"] : T["Inativa"])</td>
+                            <td class="col-acoes">
+                                <button type="button" class="btn btn-p btn-leve" data-editar-em="#form-especialidade"
+                                        data-valores='@System.Text.Json.JsonSerializer.Serialize(new { e.Id, e.Nome, e.CodigoCbo, e.Ativo })'>@T["Editar"]</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </section>
+</div>

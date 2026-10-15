@@ -1,0 +1,44 @@
+@model UsuariosRelVM
+@{ ViewData["Title"] = T["Usuários de todos os clientes"].Value; }
+<form method="get" class="barra-filtros nao-imprimir">
+    <div class="filtros-linha">
+        <partial name="_FiltroCliente" model="(Model.Clientes, Model.ClinicaId)" />
+        <select name="perfil" data-enviar-ao-mudar>
+            <option value="">@T["Todos os perfis"]</option>
+            @foreach (var p in Model.Perfis)
+            {
+                <option value="@p" selected="@(p == Model.Perfil)">@Exibicao.NomePerfil(p)</option>
+            }
+        </select>
+        <partial name="_FiltroSituacao" model='(Model.Situacao, "Inativos")' />
+        <span class="muted">@T["{0} usuário(s)", Model.Itens.Count]</span>
+    </div>
+    <partial name="_Botoes" />
+</form>
+<section class="cartao">
+    @if (Model.Itens.Count == 0)
+    {
+        <p class="vazio-texto">@T["Nenhum usuário encontrado."]</p>
+    }
+    else
+    {
+        <div class="tabela-rolagem">
+        <table class="tabela">
+            <thead><tr><th>@T["Cliente"]</th><th>@T["Nome"]</th><th>@T["E-mail"]</th><th>@T["Perfis"]</th><th>@T["Último acesso"]</th><th>@T["Criado em"]</th></tr></thead>
+            <tbody>
+                @foreach (var u in Model.Itens)
+                {
+                    <tr class="@(u.Ativo ? "" : "inativo")">
+                        <td>@u.Cliente</td>
+                        <td><strong>@u.Nome</strong>@if (!u.Ativo) { <span class="badge status-cancelado">@T["Inativo"]</span> }</td>
+                        <td>@u.Email</td>
+                        <td>@string.Join(", ", u.Perfis.Select(Exibicao.NomePerfil))</td>
+                        <td>@(u.UltimoAcessoEm is DateTime d ? Exibicao.DataHora(d) : T["Nunca"].Value)</td>
+                        <td>@Exibicao.Data(u.CriadoEm)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        </div>
+    }
+</section>

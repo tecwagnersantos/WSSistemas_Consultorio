@@ -1,0 +1,244 @@
+@model ProntuarioVM
+@using Consultorio.Domain.Entities
+@{
+    var p = Model.Paciente;
+    ViewData["Title"] = T["Prontuário"].Value;
+    var r = Model.Resumo;
+    var tipos = new[] { "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-" };
+    var nomesTipoReceita = new Dictionary<string, string> { ["S"] = "Simples", ["C"] = "Controle especial", ["A"] = "Antimicrobiano" };
+    var anexosPorEvolucao = Model.Anexos.Where(a => a.EvolucaoId != null).ToLookup(a => a.EvolucaoId!.Value);
+    var evolucaoPorId = Model.Evolucoes.ToDictionary(e => e.Id);
+    static string Tamanho(long b) => b >= 1024 * 1024 ? $"{(b / 1048576d).ToString("0.0", Exibicao.Cultura)} MB" : $"{Math.Max(1, b / 1024)} KB";
+    var aceitos = string.Join(",", AnexoService.Formatos.Keys);
+    var podeEditar = User.Pode(Transacoes.ProntuarioEditar);
+    var podeAnexos = User.Pode(Transacoes.ProntuarioAnexos);
+}
+<section class="cartao paciente-cabecalho">
+    <div>
+        <h2>@(p.NomeSocial ?? p.Nome)</h2>
+        <p class="muted">
+            @T["{0} anos · nascido(a) em {1}", Exibicao.Idade(p.DataNascimento), Exibicao.Data(p.DataNascimento)]
+            · @T["Sexo:"] @(p.Sexo switch { "F" => T["Feminino"], "M" => T["Masculino"], _ => T["Não informado"] })
+            @if (p.Cpf != null) { <text>@T["· CPF {0}", Exibicao.Cpf(p.Cpf)]</text> }
+        </p>
+        <p class="muted">
+            @(p.Planos.Any(x => x.Ativo) ? string.Join(", ", p.Planos.Where(x => x.Ativo).Select(x => $"{x.Convenio} {x.Plano}")) : T["Particular"].Value)
+            @if (!string.IsNullOrEmpty(p.Celular)) { <text>· @p.Celular</text> }
+        </p>
+    </div>
+    @if (r is not null && !string.IsNullOrWhiteSpace(r.Alergias))
+    {
+        <div class="alerta-alergia"><strong>@T["Alergias:"]</strong> @r.Alergias</div>
+    }
+    <div class="acoes-linha">
+        @if (podeEditar && Model.MedicoLogadoId != null)
+        {
+            <a class="btn btn-primario" asp-action="NovaEvolucao" asp-route-pacienteId="@p.Id" asp-route-agendamentoId="@Model.AgendamentoId">@T["+ Nova evolução"]</a>
+            <a class="btn btn-secundario" asp-action="NovaPrescricao" asp-route-pacienteId="@p.Id">@T["+ Prescrição"]</a>
+        }
+        @if (podeAnexos) { <a class="btn btn-secundario" href="#anexos">@T["+ Anexo"]</a> }
+    </div>
+</section>
+
+@if (podeEditar && Model.MedicoLogadoId is null)
+{
+    <div class="alerta alerta-erro">@T["Seu usuário não está vinculado a um cadastro de médico. Você pode consultar o prontuário, mas não registrar evoluções ou prescrições. Peça ao administrador para vincular em Cadastros › Médicos."]</div>
+}
+
+<div class="abas" data-abas>
+    <div class="abas-botoes" role="tablist">
+        <button type="button" data-aba="evolucoes">@T["Evoluções ({0})", Model.Evolucoes.Count]</button>
+        <button type="button" data-aba="resumo">@T["Resumo clínico"]</button>
+        <button type="button" data-aba="prescricoes">@T["Prescrições ({0})", Model.Prescricoes.Count]</button>
+        @if (podeAnexos) { <button type="button" data-aba="anexos">@T["Anexos ({0})", Model.Anexos.Count]</button> }
+    </div>
+
+    <section class="aba" id="evolucoes">
+        @if (Model.Evolucoes.Count == 0)
+        {
+            <div class="cartao vazio"><p>@T["Nenhuma evolução registrada para este paciente."]</p></div>
+        }
+        <ol class="linha-tempo">
+            @foreach (var e in Model.Evolucoes)
+            {
+                var assinada = e.Situacao == "A";
+                var minha = e.MedicoId == Model.MedicoLogadoId;
+                <li class="cartao evolucao @(assinada ? "" : "rascunho")">
+                    <header>
+                        <div>
+                            <strong>@Exibicao.DataHora(e.DataHora)</strong> · @e.Medico
+                            @if (e.EvolucaoRetificadaId != null) { <span class="badge status-remarcado">@T["Retificação"]</span> }
+                            @if (assinada) { <span class="badge status-atendido" title="@T["Assinada em {0}", Exibicao.DataHora(e.AssinadaEm!.Value)]">@T["Assinada"]</span> }
+                            else { <span class="badge status-agendado">@T["Rascunho"]</span> }
+                        </div>
+                        <div class="acoes-linha">
+                            @if (!assinada && minha && podeEditar)
+                            {
+                                <a class="btn btn-p btn-leve" asp-action="EditarEvolucao" asp-route-pacienteId="@p.Id" asp-route-id="@e.Id">@T["Editar"]</a>
+                                <form method="post" asp-action="Assinar" asp-route-pacienteId="@p.Id" asp-route-id="@e.Id" data-confirmar="@T["Assinar a evolução? Depois de assinada ela não pode mais ser alterada."]">
+                                    <button class="btn btn-p btn-primario" type="submit">@T["Assinar"]</button>
+                                </form>
+                            }
+                            @if (assinada && Model.MedicoLogadoId != null && podeEditar)
+                            {
+                                <a class="btn btn-p btn-leve" asp-action="NovaEvolucao" asp-route-pacienteId="@p.Id" asp-route-retificaId="@e.Id">@T["Retificar"]</a>
+                            }
+                        </div>
+                    </header>
+                    @{
+                        var sinais = new List<string>();
+                        if (e.PressaoSistolica != null && e.PressaoDiastolica != null) sinais.Add($"{T["PA"]} {e.PressaoSistolica}x{e.PressaoDiastolica} mmHg");
+                        if (e.FrequenciaCardiaca != null) sinais.Add($"{T["FC"]} {e.FrequenciaCardiaca} bpm");
+                        if (e.TemperaturaC != null) sinais.Add($"T {e.TemperaturaC.Value.ToString("0.0", Exibicao.Cultura)} °C");
+                        if (e.SaturacaoO2 != null) sinais.Add($"SpO₂ {e.SaturacaoO2}%");
+                        if (e.PesoKg != null) sinais.Add($"{T["Peso"]} {e.PesoKg.Value.ToString("0.##", Exibicao.Cultura)} kg");
+                        if (e.AlturaCm != null) sinais.Add($"{T["Altura"]} {e.AlturaCm.Value.ToString("0.#", Exibicao.Cultura)} cm");
+                        if (e.PesoKg is decimal peso && e.AlturaCm is decimal alt && alt > 0) sinais.Add($"{T["IMC"]} {(peso / (alt / 100 * alt / 100)).ToString("0.0", Exibicao.Cultura)}");
+                    }
+                    @if (sinais.Count > 0) { <p class="sinais">@string.Join(" · ", sinais)</p> }
+                    <dl class="evolucao-texto">
+                        @if (!string.IsNullOrWhiteSpace(e.QueixaPrincipal)) { <dt>@T["Queixa principal"]</dt><dd>@e.QueixaPrincipal</dd> }
+                        @if (!string.IsNullOrWhiteSpace(e.HistoriaDoencaAtual)) { <dt>@T["História da doença atual"]</dt><dd>@e.HistoriaDoencaAtual</dd> }
+                        @if (!string.IsNullOrWhiteSpace(e.ExameFisico)) { <dt>@T["Exame físico"]</dt><dd>@e.ExameFisico</dd> }
+                        @if (!string.IsNullOrWhiteSpace(e.HipoteseDiagnostica)) { <dt>@T["Hipótese diagnóstica"]</dt><dd>@e.HipoteseDiagnostica</dd> }
+                        @if (!string.IsNullOrWhiteSpace(e.Conduta)) { <dt>@T["Conduta"]</dt><dd>@e.Conduta</dd> }
+                    </dl>
+                    @if (anexosPorEvolucao.Contains(e.Id))
+                    {
+                        <p class="anexos-evolucao">📎
+                            @foreach (var a in anexosPorEvolucao[e.Id])
+                            {
+                                <a asp-action="Anexo" asp-route-pacienteId="@p.Id" asp-route-id="@a.Id" target="_blank" rel="noopener">@a.NomeArquivo</a>
+                            }
+                        </p>
+                    }
+                </li>
+            }
+        </ol>
+    </section>
+
+    <section class="aba" id="resumo">
+        <form method="post" asp-action="Resumo" asp-route-pacienteId="@p.Id" class="cartao formulario">
+            <div class="linha">
+                <label class="campo curto"><span>@T["Tipo sanguíneo"]</span>
+                    <select name="TipoSanguineo">
+                        <option value="">—</option>
+                        @foreach (var t in tipos) { <option value="@t" selected="@(r?.TipoSanguineo == t)">@t</option> }
+                    </select></label>
+            </div>
+            <div class="linha">
+                <label class="campo largo"><span>@T["Alergias"]</span><textarea name="Alergias" rows="2" maxlength="1000">@r?.Alergias</textarea></label>
+                <label class="campo largo"><span>@T["Comorbidades"]</span><textarea name="Comorbidades" rows="2" maxlength="1000">@r?.Comorbidades</textarea></label>
+            </div>
+            <div class="linha">
+                <label class="campo largo"><span>@T["Medicamentos em uso"]</span><textarea name="MedicamentosEmUso" rows="2" maxlength="1000">@r?.MedicamentosEmUso</textarea></label>
+                <label class="campo largo"><span>@T["Hábitos"]</span><textarea name="Habitos" rows="2" maxlength="1000">@r?.Habitos</textarea></label>
+            </div>
+            <div class="linha">
+                <label class="campo largo"><span>@T["Antecedentes pessoais"]</span><textarea name="AntecedentesPessoais" rows="3" maxlength="2000">@r?.AntecedentesPessoais</textarea></label>
+                <label class="campo largo"><span>@T["Antecedentes familiares"]</span><textarea name="AntecedentesFamiliares" rows="3" maxlength="2000">@r?.AntecedentesFamiliares</textarea></label>
+            </div>
+            <div class="acoes">
+                @if (podeEditar) { <button class="btn btn-primario" type="submit">@T["Salvar resumo"]</button> }
+                @if (r?.AtualizadoEm is DateTime at) { <span class="muted">@T["Atualizado em {0}", Exibicao.DataHora(at)]</span> }
+            </div>
+        </form>
+    </section>
+
+    <section class="aba" id="prescricoes">
+        @if (Model.Prescricoes.Count == 0)
+        {
+            <div class="cartao vazio"><p>@T["Nenhuma prescrição emitida."]</p></div>
+        }
+        @foreach (var rx in Model.Prescricoes)
+        {
+            <article class="cartao prescricao">
+                <header>
+                    <div><strong>@Exibicao.DataHora(rx.EmitidaEm)</strong> · Receita @(nomesTipoReceita.GetValueOrDefault(rx.Tipo, rx.Tipo))
+                        @if (rx.ValidadeDias != null) { <span class="muted">@T["· validade {0} dias", rx.ValidadeDias]</span> }</div>
+                    <a class="btn btn-p btn-leve" asp-action="Receita" asp-route-pacienteId="@p.Id" asp-route-id="@rx.Id" target="_blank">@T["Imprimir"]</a>
+                </header>
+                <ol>
+                    @foreach (var i in rx.Itens)
+                    {
+                        <li><strong>@i.Medicamento</strong> @i.Concentracao @i.FormaFarmaceutica
+                            @if (i.Quantidade != null) { <span class="muted">(@i.Quantidade)</span> }
+                            @if (i.UsoContinuo) { <span class="badge status-confirmado">@T["Uso contínuo"]</span> }
+                            <br /><span>@i.ViaAdministracao @i.Posologia</span></li>
+                    }
+                </ol>
+                @if (!string.IsNullOrWhiteSpace(rx.Observacoes)) { <p class="muted">@rx.Observacoes</p> }
+            </article>
+        }
+    </section>
+
+    @if (podeAnexos)
+    {
+    <section class="aba" id="anexos">
+        <form method="post" asp-action="Anexos" asp-route-pacienteId="@p.Id" enctype="multipart/form-data" class="cartao formulario">
+            <div class="linha">
+                <label class="campo largo"><span>@T["Arquivos * (imagens, PDF, documentos; até 10 por vez)"]</span>
+                    <input type="file" name="Arquivos" multiple required accept="@aceitos" /></label>
+                <label class="campo"><span>@T["Tipo"]</span>
+                    <select name="Tipo">
+                        @foreach (var t in TiposAnexo.Todos) { <option value="@t">@T[TiposAnexo.Nome(t)]</option> }
+                    </select></label>
+            </div>
+            <div class="linha">
+                <label class="campo largo"><span>@T["Descrição"]</span><input name="Descricao" maxlength="200" placeholder="@T["Ex.: Hemograma de 10/10, RX de tórax"]" /></label>
+                <label class="campo"><span>@T["Ligar à evolução"]</span>
+                    <select name="EvolucaoId">
+                        <option value="">@T["Nenhuma"]</option>
+                        @foreach (var e in Model.Evolucoes) { <option value="@e.Id">@Exibicao.DataHora(e.DataHora) · @e.Medico</option> }
+                    </select></label>
+            </div>
+            <div class="acoes">
+                <button class="btn btn-primario" type="submit">@T["Anexar"]</button>
+                <span class="muted">@T["Formatos:"] @string.Join(", ", AnexoService.Formatos.Keys.Select(k => k.TrimStart('.')))</span>
+            </div>
+        </form>
+
+        @if (Model.Anexos.Count == 0)
+        {
+            <div class="cartao vazio"><p>@T["Nenhum arquivo anexado a este prontuário."]</p></div>
+        }
+        <div class="anexos-grade">
+            @foreach (var a in Model.Anexos)
+            {
+                <article class="cartao anexo">
+                    <a class="anexo-previa" asp-action="Anexo" asp-route-pacienteId="@p.Id" asp-route-id="@a.Id" target="_blank" rel="noopener" title="@T["Abrir {0}", a.NomeArquivo]">
+                        @if (a.EhImagem)
+                        {
+                            <img src="@Url.Action("Anexo", new { pacienteId = p.Id, id = a.Id })" alt="@a.NomeArquivo" loading="lazy" />
+                        }
+                        else
+                        {
+                            <span class="anexo-ext">@System.IO.Path.GetExtension(a.NomeArquivo).TrimStart('.').ToUpperInvariant()</span>
+                        }
+                    </a>
+                    <div>
+                        <span class="badge">@T[TiposAnexo.Nome(a.Tipo)]</span>
+                        <strong class="anexo-nome" title="@a.NomeArquivo">@a.NomeArquivo</strong>
+                        @if (a.Descricao != null) { <div>@a.Descricao</div> }
+                        <small class="muted">@Exibicao.DataHora(a.EnviadoEm) · @Tamanho(a.TamanhoBytes)@(a.EnviadoPor is null ? "" : $" · {a.EnviadoPor}")</small>
+                        @if (a.EvolucaoId is int evo && evolucaoPorId.TryGetValue(evo, out var ev))
+                        {
+                            <small class="muted">@T["Evolução de {0}", Exibicao.DataHora(ev.DataHora)]</small>
+                        }
+                    </div>
+                    <div class="acoes-linha">
+                        <a class="btn btn-p btn-leve" asp-action="Anexo" asp-route-pacienteId="@p.Id" asp-route-id="@a.Id" asp-route-baixar="true">@T["Baixar"]</a>
+                        @if (a.EnviadoPorUsuarioId == Model.UsuarioLogadoId)
+                        {
+                            <form method="post" asp-action="RemoverAnexo" asp-route-pacienteId="@p.Id" asp-route-id="@a.Id" class="em-linha"
+                                  data-confirmar="Remover @a.NomeArquivo do prontuário? O arquivo continua guardado para auditoria, mas sai da lista.">
+                                <button class="btn btn-p btn-leve" type="submit">@T["Remover"]</button>
+                            </form>
+                        }
+                    </div>
+                </article>
+            }
+        </div>
+    </section>
+    }
+</div>

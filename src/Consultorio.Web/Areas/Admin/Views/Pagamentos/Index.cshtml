@@ -1,0 +1,46 @@
+@model PagamentosVM
+@{
+    ViewData["Title"] = T["Pagamentos dos clientes"].Value;
+    var r = Model.ResumoMes;
+    var hoje = DateTime.Today;
+    var voltar = Context.Request.Path + Context.Request.QueryString;
+}
+<section class="kpis">
+    <div class="kpi"><span>@T["Previsto no mês"]</span><strong>@Exibicao.Moeda(r.Previsto)</strong></div>
+    <div class="kpi"><span>@T["Recebido no mês"]</span><strong>@Exibicao.Moeda(r.Recebido)</strong></div>
+    <div class="kpi"><span>@T["Em aberto (a vencer)"]</span><strong>@Exibicao.Moeda(r.EmAberto)</strong></div>
+    <a class="kpi @(r.CobrancasAtrasadas > 0 ? "destaque" : "")" asp-action="Index" asp-route-status="ATRASADA"><span>@T["Em atraso"]</span><strong>@Exibicao.Moeda(r.EmAtraso) <small>@T["{0} cobrança(s) · {1} cliente(s)", r.CobrancasAtrasadas, r.ClientesEmAtraso]</small></strong></a>
+</section>
+
+<form method="get" class="barra-filtros nao-imprimir">
+    <div class="filtros-linha">
+        <select name="status" data-enviar-ao-mudar aria-label="@T["Situação"]">
+            @foreach (var (v, n) in new[] { ("PENDENTES", T["Pendentes (em aberto e atrasadas)"].Value), ("ATRASADA", T["Atrasadas"].Value), ("ABERTA", T["Em aberto (a vencer)"].Value), ("PAGA", T["Pagas"].Value), ("CANCELADA", T["Canceladas"].Value), ("TODAS", T["Todas"].Value) })
+            {
+                <option value="@v" selected="@(Model.Status == v)">@n</option>
+            }
+        </select>
+        <partial name="_FiltroCliente" model="(Model.Clientes, Model.ClinicaId)" />
+        <label class="campo-inline">@T["Vencimento de"] <input type="date" name="de" value="@Exibicao.Iso(Model.De)" /></label>
+        <label class="campo-inline">@T["a"] <input type="date" name="ate" value="@Exibicao.Iso(Model.Ate)" /></label>
+        <button class="btn btn-secundario" type="submit">@T["Filtrar"]</button>
+        <span class="muted">@T["{0} cobrança(s)", Model.Itens.Count] · @Exibicao.Moeda(Model.Itens.Where(c => !c.Cancelada).Sum(c => c.Valor))</span>
+    </div>
+    <div class="grupo-botoes">
+        <button class="btn btn-leve" type="submit" name="formato" value="csv">@T["Exportar CSV"]</button>
+    </div>
+</form>
+
+<section class="cartao nao-imprimir">
+    <h2>@T["Gerar mensalidades"]</h2>
+    <form method="post" asp-action="Gerar" class="filtros-linha"
+          data-confirmar="@T["Gerar as mensalidades do mês escolhido para todos os clientes com valor de mensalidade?"]">
+        <input type="month" name="competencia" value="@hoje.ToString("yyyy-MM")" required aria-label="@T["Mês"]" />
+        <button class="btn btn-primario" type="submit">@T["Gerar mensalidades do mês"]</button>
+    </form>
+    <small class="muted">@T["Cria a mensalidade do mês para cada cliente ativo ou bloqueado que tem valor de mensalidade no cadastro, com vencimento no dia configurado. Não repete o mês já gerado. O sistema também gera sozinho, no início de cada mês, as mensalidades ainda não vencidas. Cobranças avulsas (implantação, treinamento etc.) são criadas na página do cliente."]</small>
+</section>
+
+<section class="cartao">
+    <partial name="_TabelaCobrancas" model="((IReadOnlyList<CobrancaDto>)Model.Itens, true, voltar)" />
+</section>

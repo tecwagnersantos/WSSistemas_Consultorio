@@ -1,0 +1,66 @@
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Antiforgery
+@{
+    var controller = ViewContext.RouteData.Values["controller"]?.ToString();
+    var action = ViewContext.RouteData.Values["action"]?.ToString();
+    string Ativo(string c, string? a = null) => controller == c && (a == null || action == a) ? "ativo" : "";
+}
+<!DOCTYPE html>
+<html lang="@System.Globalization.CultureInfo.CurrentUICulture.Name">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="csrf-token" content="@Antiforgery.GetAndStoreTokens(Context).RequestToken" />
+    <meta name="app-base" content="@Url.Content("~/")" />
+    <title>@T["{0} · Administração do sistema", ViewData["Title"]]</title>
+    <link rel="icon" href="~/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body class="area-admin">
+    <div class="app">
+        <aside class="sidebar" id="sidebar">
+            <div class="marca">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1l9 4v6c0 5.5-3.8 10.7-9 12-5.2-1.3-9-6.5-9-12V5z" /></svg>
+                <span>@T["Administração do sistema"]</span>
+            </div>
+            <nav>
+                <a class="@Ativo("Home")" asp-area="Admin" asp-controller="Home" asp-action="Index"><i class="ic ic-dashboard"></i>@T["Dashboard"]</a>
+                <a class="@Ativo("Clientes")" asp-area="Admin" asp-controller="Clientes" asp-action="Index"><i class="ic ic-clinica"></i>@T["Clientes"]</a>
+                <a class="@Ativo("Pagamentos")" asp-area="Admin" asp-controller="Pagamentos" asp-action="Index"><i class="ic ic-relatorio"></i>@T["Pagamentos"]</a>
+                <a class="@Ativo("Perfis")" asp-area="Admin" asp-controller="Perfis" asp-action="Index"><i class="ic ic-usuarios"></i>@T["Perfis de acesso"]</a>
+                <div class="grupo">@T["Relatórios"]</div>
+                <a class="@Ativo("Relatorios", "Clientes")" asp-area="Admin" asp-controller="Relatorios" asp-action="Clientes"><i class="ic ic-relatorio"></i>@T["Clientes e uso do plano"]</a>
+                <a class="@Ativo("Relatorios", "Medicos")" asp-area="Admin" asp-controller="Relatorios" asp-action="Medicos"><i class="ic ic-medico"></i>@T["Médicos"]</a>
+                <a class="@Ativo("Relatorios", "Usuarios")" asp-area="Admin" asp-controller="Relatorios" asp-action="Usuarios"><i class="ic ic-pacientes"></i>@T["Usuários"]</a>
+                <a class="@Ativo("Relatorios", "Agendamentos")" asp-area="Admin" asp-controller="Relatorios" asp-action="Agendamentos"><i class="ic ic-grafico"></i>@T["Agendamentos"]</a>
+                <div class="grupo">@T["Configuração"]</div>
+                <a class="@Ativo("Administradores")" asp-area="Admin" asp-controller="Administradores" asp-action="Index"><i class="ic ic-usuarios"></i>@T["Administradores"]</a>
+            </nav>
+        </aside>
+        <div class="principal">
+            <header class="topo">
+                <button type="button" class="btn-icone menu" data-alternar-menu aria-label="@T["Abrir menu"]">&#9776;</button>
+                <h1>@ViewData["Title"]</h1>
+                <div class="usuario">
+                    <div class="usuario-info">
+                        <strong>@User.Identity?.Name</strong>
+                        <small>@T["Administrador do sistema"]</small>
+                    </div>
+                    <partial name="_Idioma" />
+                    <a class="btn btn-leve btn-p" asp-area="Admin" asp-controller="Conta" asp-action="AlterarSenha">@T["Alterar senha"]</a>
+                    <form method="post" asp-area="Admin" asp-controller="Conta" asp-action="Sair">
+                        <button class="btn btn-leve btn-p" type="submit">@T["Sair"]</button>
+                    </form>
+                </div>
+            </header>
+            <main class="conteudo">
+                <partial name="_Mensagens" />
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+    <div id="toasts" class="toasts" aria-live="polite"></div>
+    <partial name="_TextosJs" />
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

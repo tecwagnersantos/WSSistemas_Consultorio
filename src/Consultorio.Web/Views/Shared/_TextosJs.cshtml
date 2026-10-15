@@ -1,0 +1,18 @@
+@* Textos usados pelo JavaScript (wwwroot/js), no idioma da página. A chave é o texto em português (window.traduzir). *@
+@{
+    string[] chaves =
+    [
+        "Não foi possível falar com o servidor. Verifique a conexão e tente novamente.",
+        "Sua sessão expirou. Entre novamente.",
+        "Seu perfil não tem permissão para esta operação.",
+        "Não foi possível concluir a operação. Tente novamente.",
+        "Status atualizado.", "Marcar falta de {0}?", "Agendamento remarcado.",
+        "Nenhum paciente encontrado.", "Particular", "Selecione o médico", "Médico sem especialidade cadastrada",
+        "padrão: {0} min", "Selecione médico e dia.", "Carregando...",
+        "Nenhum horário livre na grade deste dia. Para encaixe, digite a hora.",
+        "Selecione o paciente na lista de sugestões.",
+        "Atendimentos, faltas e cancelamentos por dia nos últimos 30 dias", "atendidos", "faltas", "cancelados"
+    ];
+    var textos = chaves.ToDictionary(c => c, c => T[c].Value);
+}
+<script>window.textos = @Json.Serialize(textos);</script>

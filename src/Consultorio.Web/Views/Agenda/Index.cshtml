@@ -1,0 +1,190 @@
+@model AgendaVM
+@{
+    ViewData["Title"] = T["Agenda"].Value;
+    var semana = Model.Visao == "semana";
+    var passo = semana ? 7 : 1;
+    var dias = Enumerable.Range(0, Model.Ate.DayNumber - Model.De.DayNumber + 1).Select(i => Model.De.AddDays(i)).ToList();
+    var hoje = DateOnly.FromDateTime(DateTime.Today);
+    var porStatus = Model.Itens.GroupBy(i => i.Status).OrderBy(g => g.Key).ToList();
+    var mostrarMedico = Model.MedicoId is null;
+    var podeAgendar = User.Pode(Transacoes.AgendaAgendar);
+    var podeAtender = User.Pode(Transacoes.ProntuarioEditar);
+    var meuMedicoId = User.TemMedicoVinculado() ? (int?)int.Parse(User.FindFirst(UsuarioAtual.ClaimMedicoId)!.Value) : null;
+}
+
+<div class="barra-filtros">
+    <form method="get" class="filtros-linha" id="filtros-agenda">
+        <input type="hidden" name="visao" value="@Model.Visao" />
+        <div class="grupo-botoes">
+            <a class="btn btn-leve" title="@T["Anterior"]" asp-route-data="@Model.Data.AddDays(-passo).ToString("yyyy-MM-dd")" asp-route-visao="@Model.Visao" asp-route-medicoId="@Model.MedicoId">&#8249;</a>
+            <a class="btn btn-leve" asp-route-data="@hoje.ToString("yyyy-MM-dd")" asp-route-visao="@Model.Visao" asp-route-medicoId="@Model.MedicoId">@T["Hoje"]</a>
+            <a class="btn btn-leve" title="@T["Próximo"]" asp-route-data="@Model.Data.AddDays(passo).ToString("yyyy-MM-dd")" asp-route-visao="@Model.Visao" asp-route-medicoId="@Model.MedicoId">&#8250;</a>
+        </div>
+        <input type="date" name="data" value="@Exibicao.Iso(Model.Data)" data-enviar-ao-mudar />
+        <div class="grupo-botoes">
+            <a class="btn @(semana ? "btn-leve" : "btn-secundario")" asp-route-data="@Model.Data.ToString("yyyy-MM-dd")" asp-route-visao="dia" asp-route-medicoId="@Model.MedicoId">@T["Dia"]</a>
+            <a class="btn @(semana ? "btn-secundario" : "btn-leve")" asp-route-data="@Model.Data.ToString("yyyy-MM-dd")" asp-route-visao="semana" asp-route-medicoId="@Model.MedicoId">@T["Semana"]</a>
+        </div>
+        @if (Model.PodeEscolherMedico)
+        {
+            <select name="medicoId" data-enviar-ao-mudar>
+                <option value="">@T["Todos os médicos"]</option>
+                @foreach (var m in Model.Medicos)
+                {
+                    <option value="@m.Id" selected="@(m.Id == Model.MedicoId)">@m.Nome</option>
+                }
+            </select>
+        }
+    </form>
+    @if (podeAgendar)
+    {
+        <a class="btn btn-primario" asp-action="Novo" asp-route-data="@Model.Data.ToString("yyyy-MM-dd")" asp-route-medicoId="@Model.MedicoId">@T["+ Novo agendamento"]</a>
+    }
+</div>
+
+<div class="resumo-status">
+    <span class="titulo-periodo">
+        @if (semana) { <text>@Exibicao.Data(Model.De) a @Exibicao.Data(Model.Ate)</text> }
+        else { <text>@Exibicao.DiaSemanaData(Model.Data)</text> }
+    </span>
+    <span class="chip">@T["{0} agendamento(s)", Model.Itens.Count]</span>
+    @foreach (var g in porStatus)
+    {
+        <span class="badge @g.Key.Css()">@g.Key.Nome(): @g.Count()</span>
+    }
+</div>
+
+@foreach (var dia in dias)
+{
+    var itensDia = Model.Itens.Where(i => DateOnly.FromDateTime(i.Inicio) == dia).ToList();
+    var bloqueiosDia = Model.Bloqueios.Where(b => DateOnly.FromDateTime(b.Inicio) <= dia && DateOnly.FromDateTime(b.Fim) >= dia).ToList();
+    if (semana && itensDia.Count == 0 && bloqueiosDia.Count == 0) { continue; }
+
+    <section class="cartao agenda-dia">
+        @if (semana)
+        {
+            <h2 class="@(dia == hoje ? "hoje" : "")">@(dia.ToString("dddd", Exibicao.Cultura) + ", " + Exibicao.DiaMes(dia))</h2>
+        }
+        @foreach (var b in bloqueiosDia)
+        {
+            <div class="bloqueio-faixa">
+                Bloqueado @Exibicao.DataHora(b.Inicio) – @Exibicao.DataHora(b.Fim)
+                @(b.MedicoId is null ? T["(todos os médicos)"].Value : $"({Model.Medicos.FirstOrDefault(m => m.Id == b.MedicoId)?.Nome})")
+                @(string.IsNullOrEmpty(b.Motivo) ? "" : $"· {b.Motivo}")
+            </div>
+        }
+        @if (itensDia.Count == 0)
+        {
+            <p class="vazio-texto">@T["Nenhum agendamento neste dia."]</p>
+        }
+        else
+        {
+            <div class="tabela-rolagem">
+            <table class="tabela agenda">
+                <thead>
+                    <tr>
+                        <th>@T["Horário"]</th><th>@T["Paciente"]</th>
+                        @if (mostrarMedico) { <th>@T["Médico"]</th> }
+                        <th>@T["Atendimento"]</th><th>@T["Convênio"]</th><th>@T["Status"]</th><th class="col-acoes">@T["Ações"]</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var a in itensDia)
+                    {
+                        var ativo = a.Status is not (StatusAgendamento.Cancelado or StatusAgendamento.Remarcado or StatusAgendamento.Faltou);
+                        var ehMeu = meuMedicoId == a.MedicoId;
+                        <tr class="@(ativo ? "" : "inativo")" data-id="@a.Id" data-paciente="@a.Paciente"
+                            data-inicio="@Exibicao.IsoLocal(a.Inicio)" data-duracao="@((int)(a.Fim - a.Inicio).TotalMinutes)">
+                            <td class="hora">@Exibicao.Hora(a.Inicio)<small>@Exibicao.Hora(a.Fim)</small></td>
+                            <td>
+                                <a asp-controller="Pacientes" asp-action="Editar" asp-route-id="@a.PacienteId"><strong>@a.Paciente</strong></a>
+                                @if (!string.IsNullOrEmpty(a.Celular)) { <small class="bloco muted">@a.Celular</small> }
+                                @if (!string.IsNullOrEmpty(a.Observacoes)) { <small class="bloco obs">@a.Observacoes</small> }
+                            </td>
+                            @if (mostrarMedico) { <td>@a.Medico</td> }
+                            <td>@a.Tipo.Nome()<small class="bloco muted">@a.Especialidade</small></td>
+                            <td>@(a.Convenio ?? T["Particular"].Value)@if (a.Valor is decimal v) { <small class="bloco muted">@Exibicao.Moeda(v)</small> }</td>
+                            <td><span class="badge @a.Status.Css()">@a.Status.Nome()</span></td>
+                            <td class="col-acoes">
+                                <div class="acoes-linha">
+                                @switch (a.Status)
+                                {
+                                    case StatusAgendamento.Agendado when podeAgendar:
+                                        <button class="btn btn-p btn-leve" data-status="Confirmado">@T["Confirmar"]</button>
+                                        <button class="btn btn-p btn-secundario" data-status="Aguardando">@T["Chegou"]</button>
+                                        break;
+                                    case StatusAgendamento.Confirmado when podeAgendar:
+                                        <button class="btn btn-p btn-secundario" data-status="Aguardando">@T["Chegou"]</button>
+                                        break;
+                                    case StatusAgendamento.Aguardando:
+                                        if (ehMeu && podeAtender)
+                                        {
+                                            <a class="btn btn-p btn-primario" asp-controller="Prontuario" asp-action="NovaEvolucao" asp-route-pacienteId="@a.PacienteId" asp-route-agendamentoId="@a.Id">@T["Atender"]</a>
+                                        }
+                                        break;
+                                    case StatusAgendamento.EmAtendimento:
+                                        if (ehMeu && podeAtender)
+                                        {
+                                            <a class="btn btn-p btn-primario" asp-controller="Prontuario" asp-action="Index" asp-route-pacienteId="@a.PacienteId" asp-route-agendamentoId="@a.Id">@T["Prontuário"]</a>
+                                            if (podeAgendar) { <button class="btn btn-p btn-leve" data-status="Atendido">@T["Finalizar"]</button> }
+                                        }
+                                        break;
+                                }
+                                @if (podeAgendar && a.Status is StatusAgendamento.Agendado or StatusAgendamento.Confirmado or StatusAgendamento.Aguardando)
+                                {
+                                    <details class="menu-mais">
+                                        <summary class="btn btn-p btn-leve" title="@T["Mais ações"]">&#8943;</summary>
+                                        <div class="menu-mais-itens">
+                                            @if (a.Status != StatusAgendamento.Aguardando)
+                                            {
+                                                <button data-remarcar>@T["Remarcar"]</button>
+                                                <button data-status="Faltou">@T["Marcar falta"]</button>
+                                            }
+                                            <button data-status="Cancelado" data-pedir-motivo class="perigo">@T["Cancelar"]</button>
+                                        </div>
+                                    </details>
+                                }
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            </div>
+        }
+    </section>
+}
+@if (semana && Model.Itens.Count == 0 && Model.Bloqueios.Count == 0)
+{
+    <div class="cartao vazio"><p>@T["Nenhum agendamento nesta semana."]</p></div>
+}
+
+<dialog id="dlg-remarcar" class="dialogo">
+    <form method="dialog" id="form-remarcar">
+        <h2>@T["Remarcar"]</h2>
+        <p class="muted" data-paciente-nome></p>
+        <label class="campo"><span>@T["Nova data e hora"]</span><input type="datetime-local" name="novoInicio" required step="300" /></label>
+        <label class="campo"><span>@T["Duração (min)"]</span><input type="number" name="duracaoMin" min="5" max="480" step="5" /></label>
+        <label class="campo"><span>@T["Observação"]</span><input type="text" name="observacao" maxlength="200" /></label>
+        <div class="acoes">
+            <button type="submit" class="btn btn-primario" value="ok">@T["Remarcar"]</button>
+            <button type="button" class="btn btn-leve" data-fechar-dialogo>@T["Voltar"]</button>
+        </div>
+    </form>
+</dialog>
+
+<dialog id="dlg-motivo" class="dialogo">
+    <form method="dialog" id="form-motivo">
+        <h2>@T["Cancelar agendamento"]</h2>
+        <p class="muted" data-paciente-nome></p>
+        <label class="campo"><span>@T["Motivo do cancelamento"]</span><input type="text" name="observacao" maxlength="200" required /></label>
+        <div class="acoes">
+            <button type="submit" class="btn btn-perigo" value="ok">@T["Cancelar agendamento"]</button>
+            <button type="button" class="btn btn-leve" data-fechar-dialogo>@T["Voltar"]</button>
+        </div>
+    </form>
+</dialog>
+
+@section Scripts {
+    <script src="~/js/agenda.js" asp-append-version="true"></script>
+}

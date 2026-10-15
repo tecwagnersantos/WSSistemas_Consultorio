@@ -1,0 +1,6 @@
+@model (string? Situacao, string RotuloInativos)
+<select name="situacao" data-enviar-ao-mudar>
+    <option value="">@T["Todos"]</option>
+    <option value="ativos" selected="@(Model.Situacao == "ativos")">@T["Ativos"]</option>
+    <option value="suspensos" selected="@(Model.Situacao == "suspensos")">@T[Model.RotuloInativos]</option>
+</select>

@@ -1,0 +1,24 @@
+@model List<UsuarioDto>
+@{ ViewData["Title"] = T["Usuários"].Value; }
+<div class="barra-filtros">
+    <span class="muted">@T["{0} usuário(s)", Model.Count]@if (ViewBag.Uso is UsoPlanoDto uso && uso.MaxUsuarios is short max)
+        {<text> @T["· {0} de {1} ativos permitidos no plano", uso.UsuariosAtivos, max]</text>}</span>
+    <a class="btn btn-primario" asp-action="Form">@T["+ Novo usuário"]</a>
+</div>
+<section class="cartao">
+    <table class="tabela">
+        <thead><tr><th>@T["Nome"]</th><th>@T["E-mail"]</th><th>@T["Perfis"]</th><th>@T["Último acesso"]</th><th></th></tr></thead>
+        <tbody>
+            @foreach (var u in Model)
+            {
+                <tr class="@(u.Ativo ? "" : "inativo")">
+                    <td><strong>@u.Nome</strong>@if (!u.Ativo) { <span class="badge status-cancelado">@T["Inativo"]</span> }</td>
+                    <td>@u.Email</td>
+                    <td>@string.Join(", ", u.Perfis.Select(Exibicao.NomePerfil))</td>
+                    <td>@(u.UltimoAcessoEm is DateTime d ? Exibicao.DataHora(d) : T["Nunca"].Value)</td>
+                    <td class="col-acoes"><a class="btn btn-p btn-leve" asp-action="Form" asp-route-id="@u.Id">@T["Editar"]</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</section>

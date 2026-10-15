@@ -1,0 +1,21 @@
+@model LoginVM
+@{
+    ViewData["Title"] = T["Administração do sistema"].Value;
+    ViewData["ClasseBody"] = "pagina-login area-admin";
+    Layout = "_LayoutSimples";
+}
+<div class="login-caixa">
+    <div class="login-marca">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1l9 4v6c0 5.5-3.8 10.7-9 12-5.2-1.3-9-6.5-9-12V5z" /></svg>
+        <h1>@T["Administração do sistema"]</h1>
+        <p>@T["Clientes, limites, dashboards e relatórios"]</p>
+    </div>
+    <form method="post" asp-area="Admin" asp-controller="Conta" asp-action="Login" class="formulario">
+        <partial name="_ResumoErros" />
+        <input type="hidden" asp-for="ReturnUrl" />
+        <label class="campo"><span>@T["E-mail"]</span><input asp-for="Email" type="email" autocomplete="username" autofocus required /></label>
+        <label class="campo"><span>@T["Senha"]</span><input asp-for="Senha" type="password" autocomplete="current-password" required /></label>
+        <button type="submit" class="btn btn-primario btn-bloco">@T["Entrar"]</button>
+    </form>
+    <p class="login-rodape">@T["Acesso exclusivo da equipe do sistema. Usuários das clínicas entram pela"] <a asp-area="" asp-controller="Conta" asp-action="Login">@T["tela de login das clínicas"]</a>.</p>
+</div>

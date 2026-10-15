@@ -1,0 +1,51 @@
+@model EvolucaoFormVM
+@{
+    var editando = Model.Id != null;
+    ViewData["Title"] = Model.EvolucaoRetificadaId != null ? T["Retificar evolução"].Value : editando ? T["Editar evolução"].Value : T["Nova evolução"].Value;
+}
+<form method="post" class="cartao formulario" data-avisar-saida>
+    <div class="cabecalho-acoes">
+        <div><strong>@Model.PacienteNome</strong> <span class="muted">· @DateTime.Now.ToString("g")</span></div>
+        <a class="btn btn-leve" asp-action="Index" asp-route-pacienteId="@Model.PacienteId">@T["Voltar ao prontuário"]</a>
+    </div>
+    <partial name="_ResumoErros" />
+    <input type="hidden" name="AgendamentoId" value="@Model.AgendamentoId" />
+    <input type="hidden" name="EvolucaoRetificadaId" value="@Model.EvolucaoRetificadaId" />
+
+    @if (Model.Retificada is { } orig)
+    {
+        <div class="alerta alerta-info">
+            @T["Esta evolução retifica a de"] <strong>@Exibicao.DataHora(orig.DataHora)</strong> @T["({0}). A original continua no prontuário, sem alterações.", orig.Medico]
+        </div>
+    }
+
+    <fieldset>
+        <legend>@T["Sinais vitais"]</legend>
+        <div class="linha sinais-vitais">
+            <label class="campo"><span>@T["PA sistólica (mmHg)"]</span><input type="number" name="PressaoSistolica" min="40" max="300" value="@Exibicao.Num(Model.PressaoSistolica)" /></label>
+            <label class="campo"><span>@T["PA diastólica (mmHg)"]</span><input type="number" name="PressaoDiastolica" min="20" max="200" value="@Exibicao.Num(Model.PressaoDiastolica)" /></label>
+            <label class="campo"><span>@T["FC (bpm)"]</span><input type="number" name="FrequenciaCardiaca" min="20" max="250" value="@Exibicao.Num(Model.FrequenciaCardiaca)" /></label>
+            <label class="campo"><span>@T["Temperatura (°C)"]</span><input type="number" name="TemperaturaC" min="30" max="45" step="0.1" value="@Exibicao.Num(Model.TemperaturaC)" /></label>
+            <label class="campo"><span>@T["SpO₂ (%)"]</span><input type="number" name="SaturacaoO2" min="50" max="100" value="@Exibicao.Num(Model.SaturacaoO2)" /></label>
+            <label class="campo"><span>@T["Peso (kg)"]</span><input type="number" name="PesoKg" min="0.5" max="400" step="0.01" value="@Exibicao.Num(Model.PesoKg)" data-imc="peso" /></label>
+            <label class="campo"><span>@T["Altura (cm)"]</span><input type="number" name="AlturaCm" min="20" max="250" step="0.1" value="@Exibicao.Num(Model.AlturaCm)" data-imc="altura" /></label>
+            <div class="campo"><span>@T["IMC"]</span><output data-imc="resultado">—</output></div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>@T["Anamnese e exame"]</legend>
+        <label class="campo"><span>@T["Queixa principal"]</span><input name="QueixaPrincipal" value="@Model.QueixaPrincipal" maxlength="500" /></label>
+        <label class="campo"><span>@T["História da doença atual"]</span><textarea name="HistoriaDoencaAtual" rows="5">@Model.HistoriaDoencaAtual</textarea></label>
+        <label class="campo"><span>@T["Exame físico"]</span><textarea name="ExameFisico" rows="4">@Model.ExameFisico</textarea></label>
+        <label class="campo"><span>@T["Hipótese diagnóstica"]</span><textarea name="HipoteseDiagnostica" rows="2" maxlength="1000">@Model.HipoteseDiagnostica</textarea></label>
+        <label class="campo"><span>@T["Conduta"]</span><textarea name="Conduta" rows="4">@Model.Conduta</textarea></label>
+    </fieldset>
+
+    <div class="acoes">
+        <button type="submit" name="Acao" value="rascunho" class="btn btn-secundario">@T["Salvar rascunho"]</button>
+        <button type="submit" name="Acao" value="assinar" class="btn btn-primario"
+                data-confirmar="@T["Assinar a evolução? Depois de assinada ela não pode mais ser alterada."]">@T["Salvar e assinar"]</button>
+        <span class="muted">@T["A evolução assinada fica imutável (com hash SHA-256 do conteúdo). Correções são feitas por retificação."]</span>
+    </div>
+</form>

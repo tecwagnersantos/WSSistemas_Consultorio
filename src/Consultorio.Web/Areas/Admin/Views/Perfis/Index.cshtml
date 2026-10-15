@@ -1,0 +1,36 @@
+@model PerfisVM
+@{ ViewData["Title"] = T["Perfis de acesso"].Value; }
+<form method="get" class="barra-filtros">
+    <div class="filtros-linha">
+        <select name="clinicaId" data-enviar-ao-mudar>
+            <option value="">@T["Todos os perfis"]</option>
+            @foreach (var c in Model.Clientes)
+            {
+                <option value="@c.Id" selected="@(c.Id == Model.ClinicaId)">@T["Disponíveis para {0}", c.Nome]</option>
+            }
+        </select>
+        <span class="muted">@T["{0} perfil(is)", Model.Itens.Count]</span>
+    </div>
+    <a class="btn btn-primario" asp-action="Form" asp-route-clinicaId="@Model.ClinicaId">@T["+ Novo perfil"]</a>
+</form>
+<section class="cartao">
+    <p class="muted">@T["Cada perfil libera um conjunto de transações (telas e ações). O usuário pode ter vários perfis e recebe a soma das transações deles. Perfil padrão vale para todos os clientes; perfil exclusivo só aparece para os usuários daquele cliente."]</p>
+    <div class="tabela-rolagem">
+        <table class="tabela">
+            <thead><tr><th>@T["Perfil"]</th><th>@T["Vale para"]</th><th class="num">@T["Transações"]</th><th class="num">@T["Usuários ativos"]</th><th></th></tr></thead>
+            <tbody>
+                @foreach (var p in Model.Itens)
+                {
+                    <tr class="@(p.Ativo ? "" : "inativo")">
+                        <td><strong>@Exibicao.NomePerfil(p.Nome)</strong>@if (!p.Ativo) { <span class="badge status-cancelado">@T["Inativo"]</span> }
+                            @if (p.Descricao != null) { <small class="bloco muted">@T[p.Descricao]</small> }</td>
+                        <td>@(p.Cliente ?? T["Todos os clientes (padrão)"].Value)</td>
+                        <td class="num">@T["{0} de {1}", p.Transacoes, Transacoes.Todas.Count]</td>
+                        <td class="num">@p.Usuarios</td>
+                        <td class="col-acoes"><a class="btn btn-p btn-leve" asp-action="Form" asp-route-id="@p.Id">@T["Editar"]</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>

@@ -1,0 +1,28 @@
+@model PagamentoVM
+@using Consultorio.Domain.Entities
+@{
+    var c = Model.Cobranca!;
+    ViewData["Title"] = T["Registrar pagamento"].Value;
+}
+<form method="post" class="cartao formulario">
+    <partial name="_ResumoErros" />
+    <input type="hidden" name="Voltar" value="@Model.Voltar" />
+    <p><strong>@c.Cliente</strong> @T["· {0} · vencimento {1} ·", c.Descricao, c.Vencimento.ToString("d")] <strong>@Exibicao.Moeda(c.Valor)</strong></p>
+    <div class="linha">
+        <label class="campo"><span>@T["Data do pagamento *"]</span><input type="date" name="PagoEm" value="@Exibicao.Iso(Model.PagoEm)" max="@Exibicao.Iso(DateOnly.FromDateTime(DateTime.Today))" required /></label>
+        <label class="campo"><span>@T["Valor pago *"]</span><input type="number" name="ValorPago" min="0.01" step="0.01" value="@Model.ValorPago?.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture)" required /></label>
+        <label class="campo"><span>@T["Forma de pagamento *"]</span>
+            <select name="FormaPagamento" required>
+                @foreach (var f in FormasPagamento.Todas)
+                {
+                    <option value="@f.Codigo" selected="@(f.Codigo == Model.FormaPagamento)">@T[f.Nome]</option>
+                }
+            </select></label>
+    </div>
+    <label class="campo"><span>@T["Observações"]</span><input name="Observacoes" value="@Model.Observacoes" maxlength="300" placeholder="@T["Ex.: comprovante recebido por e-mail, número do boleto"]" /></label>
+    <small class="muted">@T["Se o cliente estava bloqueado pelo sistema por causa deste atraso e não tiver outra cobrança vencida além da tolerância, ele é reativado na hora."]</small>
+    <div class="acoes">
+        <button class="btn btn-primario" type="submit">@T["Registrar pagamento"]</button>
+        <a class="btn btn-leve" href="@(string.IsNullOrEmpty(Model.Voltar) || !Url.IsLocalUrl(Model.Voltar) ? Url.Action("Index") : Model.Voltar)">@T["Voltar"]</a>
+    </div>
+</form>

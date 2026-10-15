@@ -1,0 +1,28 @@
+@model LoginVM
+@inject Microsoft.Extensions.Configuration.IConfiguration Config
+@{
+    ViewData["Title"] = T["Entrar"].Value;
+    ViewData["ClasseBody"] = "pagina-login";
+    Layout = "_LayoutSimples";
+}
+<div class="login-caixa">
+    <div class="login-marca">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3h4v7h7v4h-7v7h-4v-7H3v-4h7z" /></svg>
+        <h1>@(Config["Consultorio:Nome"] ?? T["Consultório Médico"].Value)</h1>
+        <p>@T["Agenda, prontuário e relatórios"]</p>
+    </div>
+    <form method="post" asp-action="Login" class="formulario">
+        <partial name="_ResumoErros" />
+        <input type="hidden" asp-for="ReturnUrl" />
+        <label class="campo">
+            <span>@T["E-mail"]</span>
+            <input asp-for="Email" type="email" autocomplete="username" autofocus required />
+        </label>
+        <label class="campo">
+            <span>@T["Senha"]</span>
+            <input asp-for="Senha" type="password" autocomplete="current-password" required />
+        </label>
+        <button type="submit" class="btn btn-primario btn-bloco">@T["Entrar"]</button>
+    </form>
+    <p class="login-rodape">@T["Acesso restrito. As operações no prontuário são registradas (LGPD)."]</p>
+</div>

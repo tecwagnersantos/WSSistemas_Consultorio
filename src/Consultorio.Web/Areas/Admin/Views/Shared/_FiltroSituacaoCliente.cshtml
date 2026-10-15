@@ -1,0 +1,9 @@
+@model string?
+@* Vazio = clientes atuais (ativos e bloqueados); os inativos (ex-clientes) só aparecem quando pedidos. *@
+<select name="situacao" data-enviar-ao-mudar>
+    <option value="">@T["Ativos e bloqueados"]</option>
+    <option value="ativos" selected="@(Model == "ativos")">@T["Só ativos"]</option>
+    <option value="bloqueados" selected="@(Model is "bloqueados" or "suspensos")">@T["Bloqueados"]</option>
+    <option value="inativos" selected="@(Model == "inativos")">@T["Inativos"]</option>
+    <option value="todos" selected="@(Model == "todos")">@T["Todos"]</option>
+</select>

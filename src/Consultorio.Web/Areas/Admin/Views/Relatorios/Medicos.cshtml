@@ -1,0 +1,43 @@
+@model MedicosRelVM
+@{ ViewData["Title"] = T["Médicos de todos os clientes"].Value; }
+<form method="get" class="barra-filtros nao-imprimir">
+    <div class="filtros-linha">
+        <partial name="_FiltroCliente" model="(Model.Clientes, Model.ClinicaId)" />
+        <partial name="_FiltroSituacao" model='(Model.Situacao, "Inativos")' />
+        <label class="campo-inline">@T["Agendamentos de"] <input type="date" name="de" value="@Exibicao.Iso(Model.De)" /></label>
+        <label class="campo-inline">@T["a"] <input type="date" name="ate" value="@Exibicao.Iso(Model.Ate)" /></label>
+        <button class="btn btn-secundario" type="submit">@T["Filtrar"]</button>
+    </div>
+    <partial name="_Botoes" />
+</form>
+<section class="cartao">
+    @if (Model.Itens.Count == 0)
+    {
+        <p class="vazio-texto">@T["Nenhum médico encontrado."]</p>
+    }
+    else
+    {
+        <div class="tabela-rolagem">
+        <table class="tabela">
+            <thead><tr><th>@T["Cliente"]</th><th>@T["Médico"]</th><th>@T["CRM"]</th><th>@T["Especialidades"]</th><th>@T["Usuário de acesso"]</th>
+                <th class="num">@T["Agendamentos"]</th><th class="num">@T["Atendidos"]</th></tr></thead>
+            <tbody>
+                @foreach (var m in Model.Itens)
+                {
+                    <tr class="@(m.Ativo ? "" : "inativo")">
+                        <td>@m.Cliente</td>
+                        <td><strong>@m.Nome</strong>@if (!m.Ativo) { <span class="badge status-cancelado">@T["Inativo"]</span> }</td>
+                        <td>@m.Crm/@m.UfCrm</td>
+                        <td>@m.Especialidades</td>
+                        <td>@(m.UsuarioEmail ?? "—")</td>
+                        <td class="num">@m.Agendamentos</td>
+                        <td class="num">@m.Atendidos</td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot><tr><td colspan="5">@T["{0} médico(s), {1} ativo(s)", Model.Itens.Count, Model.Itens.Count(m => m.Ativo)]</td>
+                <td class="num">@Model.Itens.Sum(m => m.Agendamentos)</td><td class="num">@Model.Itens.Sum(m => m.Atendidos)</td></tr></tfoot>
+        </table>
+        </div>
+    }
+</section>

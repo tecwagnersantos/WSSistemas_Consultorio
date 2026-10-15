@@ -1,0 +1,105 @@
+@model AdminDashboardDto
+@{
+    ViewData["Title"] = T["Dashboard"].Value;
+    var d = Model;
+    var cob = (ResumoCobrancasDto)ViewBag.Cobrancas;
+    var atrasadas = (List<CobrancaDto>)ViewBag.Atrasadas;
+    var voltarDash = Url.Action("Index", "Home")!;
+    var serie = d.AgendamentosUltimos30Dias.Select(s => new { data = s.Data.ToString("yyyy-MM-dd"), s.Atendidos, s.Faltas, s.Cancelados });
+    var maxAg = d.MaisAgendamentosMes.Count == 0 ? 1 : d.MaisAgendamentosMes.Max(c => c.AgendamentosMes);
+}
+<div class="barra-filtros">
+    <span class="muted">@T["Todos os clientes · {0}", Exibicao.DataLonga(DateTime.Today)]</span>
+    <a class="btn btn-primario" asp-controller="Clientes" asp-action="Form">@T["+ Novo cliente"]</a>
+</div>
+
+<section class="kpis">
+    <div class="kpi"><span>@T["Clientes ativos"]</span><strong>@d.ClientesAtivos</strong></div>
+    <a class="kpi @(d.ClientesBloqueados > 0 ? "destaque" : "")" asp-controller="Clientes" asp-action="Index" asp-route-situacao="bloqueados"><span>@T["Clientes bloqueados"]</span><strong>@d.ClientesBloqueados</strong></a>
+    <a class="kpi" asp-controller="Clientes" asp-action="Index" asp-route-situacao="inativos"><span>@T["Clientes inativos"]</span><strong>@d.ClientesInativos</strong></a>
+    <div class="kpi @(d.AcessoVencendo.Count > 0 ? "destaque" : "")"><span>@T["Clientes em teste"]</span><strong>@d.ClientesEmTeste</strong></div>
+    <a class="kpi" asp-controller="Pagamentos" asp-action="Index" asp-route-status="TODAS"><span>@T["Recebido no mês"]</span><strong>@Exibicao.Moeda(cob.Recebido) <small>@T["de {0}", Exibicao.Moeda(cob.Previsto)]</small></strong></a>
+    <a class="kpi @(cob.CobrancasAtrasadas > 0 ? "destaque" : "")" asp-controller="Pagamentos" asp-action="Index" asp-route-status="ATRASADA"><span>@T["Pagamentos em atraso"]</span><strong>@Exibicao.Moeda(cob.EmAtraso) <small>@T["{0} cliente(s)", cob.ClientesEmAtraso]</small></strong></a>
+    <div class="kpi"><span>@T["Usuários ativos"]</span><strong>@d.UsuariosAtivos</strong></div>
+    <div class="kpi"><span>@T["Médicos ativos"]</span><strong>@d.MedicosAtivos</strong></div>
+    <div class="kpi"><span>@T["Pacientes cadastrados"]</span><strong>@d.Pacientes</strong></div>
+    <div class="kpi"><span>@T["Agendamentos no mês"]</span><strong>@d.AgendamentosMes</strong></div>
+    <div class="kpi"><span>@T["Atendidos no mês"]</span><strong>@d.AtendidosMes</strong></div>
+    <div class="kpi"><span>@T["Acessos nos últimos 7 dias"]</span><strong>@d.AcessosUltimos7Dias</strong></div>
+</section>
+
+<div class="grade-2">
+    <section class="cartao">
+        <h2>@T["Agendamentos de todos os clientes (30 dias)"]</h2>
+        <div id="grafico-30dias" class="grafico" data-serie="@System.Text.Json.JsonSerializer.Serialize(serie)"></div>
+        <div class="legenda">
+            <span><i class="cor-atendidos"></i>@T["Atendidos"]</span>
+            <span><i class="cor-faltas"></i>@T["Faltas"]</span>
+            <span><i class="cor-cancelados"></i>@T["Cancelados"]</span>
+        </div>
+    </section>
+    <section class="cartao">
+        <h2>@T["Clientes com mais agendamentos no mês"]</h2>
+        @if (d.MaisAgendamentosMes.Count == 0)
+        {
+            <p class="muted">@T["Nenhum agendamento neste mês."]</p>
+        }
+        else
+        {
+            <ul class="barras-h">
+                @foreach (var c in d.MaisAgendamentosMes)
+                {
+                    <li>
+                        <div class="barras-h-rotulo"><a asp-controller="Clientes" asp-action="Detalhes" asp-route-id="@c.Id">@c.Nome</a><span>@c.AgendamentosMes</span></div>
+                        <div class="barras-h-trilho"><div style="width:@((c.AgendamentosMes * 100 / maxAg).ToString())%"></div></div>
+                    </li>
+                }
+            </ul>
+        }
+    </section>
+</div>
+
+<section class="cartao">
+    <h2>@T["Período de acesso vencendo (15 dias) ou vencido"]</h2>
+    @if (d.AcessoVencendo.Count == 0)
+    {
+        <p class="muted">@T["Nenhum cliente em teste com acesso terminando nos próximos 15 dias."]</p>
+    }
+    else
+    {
+        <partial name="_TabelaClientes" model="d.AcessoVencendo" />
+    }
+</section>
+
+@if (atrasadas.Count > 0)
+{
+    <section class="cartao">
+        <h2>@T["Pagamentos em atraso"]</h2>
+        <partial name="_TabelaCobrancas" model="((IReadOnlyList<CobrancaDto>)atrasadas, true, voltarDash)" />
+    </section>
+}
+
+@if (d.Bloqueados.Count > 0)
+{
+    <section class="cartao">
+        <h2>@T["Clientes bloqueados"]</h2>
+        <p class="muted">@T["Sem acesso ao sistema até serem reativados. Passe o mouse no selo para ver o motivo."]</p>
+        <partial name="_TabelaClientes" model="d.Bloqueados" />
+    </section>
+}
+
+<section class="cartao">
+    <h2>@T["Clientes no limite do plano"]</h2>
+    @if (d.PertoDoLimite.Count == 0)
+    {
+        <p class="muted">@T["Nenhum cliente ativo com 90% ou mais do limite de usuários ou médicos."]</p>
+    }
+    else
+    {
+        <partial name="_TabelaClientes" model="d.PertoDoLimite" />
+    }
+</section>
+
+@section Scripts {
+    <script src="~/js/dashboard.js" asp-append-version="true"></script>
+}

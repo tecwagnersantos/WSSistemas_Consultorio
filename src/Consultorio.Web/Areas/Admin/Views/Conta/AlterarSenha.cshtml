@@ -1,0 +1,13 @@
+@model AlterarSenhaVM
+@{ ViewData["Title"] = T["Alterar senha"].Value; }
+<form method="post" class="cartao formulario estreito">
+    <partial name="_ResumoErros" />
+    <label class="campo"><span>@T["Senha atual"]</span><input asp-for="SenhaAtual" type="password" autocomplete="current-password" required /></label>
+    <label class="campo"><span>@T["Nova senha"]</span><input asp-for="NovaSenha" type="password" autocomplete="new-password" minlength="8" required />
+        <small>@T["Mínimo de 8 caracteres, com letras e números."]</small></label>
+    <label class="campo"><span>@T["Confirme a nova senha"]</span><input asp-for="Confirmacao" type="password" autocomplete="new-password" required /></label>
+    <div class="acoes">
+        <button class="btn btn-primario" type="submit">@T["Salvar"]</button>
+        <a class="btn btn-leve" asp-area="Admin" asp-controller="Home" asp-action="Index">@T["Cancelar"]</a>
+    </div>
+</form>

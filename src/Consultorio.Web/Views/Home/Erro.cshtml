@@ -1,0 +1,6 @@
+@{ ViewData["Title"] = T["Erro"].Value; Layout = "_LayoutSimples"; }
+<div class="login-caixa">
+    <h2>@T["Algo deu errado"]</h2>
+    <p>@(ViewBag.Mensagem ?? T["Ocorreu um erro inesperado. Tente novamente ou contate o suporte."].Value)</p>
+    <a class="btn btn-primario" href="~/">@T["Voltar ao início"]</a>
+</div>

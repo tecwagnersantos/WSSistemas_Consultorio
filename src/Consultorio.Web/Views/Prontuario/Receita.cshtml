@@ -1,0 +1,43 @@
+@model PrescricaoImpressaoDto
+@{
+    ViewData["Title"] = T["Receita"].Value;
+    ViewData["ClasseBody"] = "pagina-impressao";
+    Layout = "_LayoutSimples";
+    var tipo = Model.Tipo switch { "C" => T["RECEITUÁRIO DE CONTROLE ESPECIAL"].Value, "A" => T["RECEITA DE ANTIMICROBIANO"].Value, _ => T["RECEITUÁRIO"].Value };
+}
+<div class="barra-impressao nao-imprimir">
+    <button class="btn btn-primario" onclick="window.print()">@T["Imprimir"]</button>
+    <a class="btn btn-leve" asp-action="Index" asp-route-pacienteId="@ViewContext.RouteData.Values["pacienteId"]">@T["Voltar ao prontuário"]</a>
+</div>
+<article class="receita">
+    <header>
+        <h1>@Model.Clinica</h1>
+        <p>@string.Join(" · ", new[] { Model.EnderecoClinica, Model.CidadeClinica, string.IsNullOrEmpty(Model.TelefoneClinica) ? null : T["Tel."] + " " + Model.TelefoneClinica }.Where(x => !string.IsNullOrEmpty(x)))</p>
+        <h2>@tipo</h2>
+    </header>
+    <section class="receita-paciente">
+        <p><strong>@T["Paciente:"]</strong> @Model.Paciente</p>
+        <p>
+            <strong>@T["Nascimento:"]</strong> @Exibicao.Data(Model.DataNascimento) (@T["{0} anos", Exibicao.Idade(Model.DataNascimento)])
+            @if (Model.CpfPaciente != null) { <text> · <strong>@T["CPF:"]</strong> @Exibicao.Cpf(Model.CpfPaciente)</text> }
+        </p>
+    </section>
+    <ol class="receita-itens">
+        @foreach (var i in Model.Itens)
+        {
+            <li>
+                <div class="receita-med"><strong>@i.Medicamento @i.Concentracao</strong> <span>@i.FormaFarmaceutica</span><span class="pontilhado"></span><span>@i.Quantidade</span></div>
+                <div class="receita-pos">@(i.ViaAdministracao is null ? "" : T["Uso {0}.", i.ViaAdministracao] + " ")@i.Posologia @(i.UsoContinuo ? T["(uso contínuo)"].Value : "")</div>
+            </li>
+        }
+    </ol>
+    @if (!string.IsNullOrWhiteSpace(Model.Observacoes)) { <p class="receita-obs">@Model.Observacoes</p> }
+    <footer>
+        <p>@Exibicao.DataLonga(Model.EmitidaEm)@(Model.ValidadeDias is short v ? " · " + T["Validade: {0} dias", v] : "")</p>
+        <div class="assinatura">
+            <span></span>
+            <strong>@Model.Medico</strong>
+            <small>@T["CRM {0}/{1}", Model.Crm, Model.UfCrm]</small>
+        </div>
+    </footer>
+</article>

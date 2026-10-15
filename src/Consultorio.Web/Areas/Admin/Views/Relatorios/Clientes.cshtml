@@ -1,0 +1,19 @@
+@model ClientesVM
+@{ ViewData["Title"] = T["Clientes e uso do plano"].Value; }
+<form method="get" class="barra-filtros nao-imprimir">
+    <div class="filtros-linha">
+        <partial name="_FiltroSituacaoCliente" model="Model.Situacao" />
+        <partial name="_FiltroAcesso" model="Model.Acesso" />
+        <span class="muted">@T["{0} cliente(s)", Model.Itens.Count]</span>
+    </div>
+    <partial name="_Botoes" />
+</form>
+<section class="cartao">
+    <partial name="_TabelaClientes" model="Model.Itens" />
+    @if (Model.Itens.Count > 0)
+    {
+        <p class="muted">Totais: @Model.Itens.Sum(c => c.UsuariosAtivos) usuários ativos · @Model.Itens.Sum(c => c.MedicosAtivos) médicos ativos ·
+            @Model.Itens.Sum(c => c.Pacientes) pacientes · @Model.Itens.Sum(c => c.AgendamentosMes) agendamentos no mês.
+            Em amarelo, uso a partir de 90% do limite; em vermelho, acima do limite.</p>
+    }
+</section>

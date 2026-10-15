@@ -1,0 +1,30 @@
+@model UsuarioFormVM
+@{
+    ViewData["Title"] = Model.Id is null ? T["Novo usuário"].Value : Model.Nome;
+}
+<form method="post" class="cartao formulario estreito">
+    <partial name="_ResumoErros" />
+    <input type="hidden" name="Id" value="@Model.Id" />
+    <label class="campo"><span>@T["Nome *"]</span><input name="Nome" value="@Model.Nome" maxlength="150" required /></label>
+    <label class="campo"><span>@T["E-mail (login) *"]</span><input name="Email" type="email" value="@Model.Email" maxlength="254" required autocomplete="off" /></label>
+    <label class="campo"><span>@(Model.Id is null ? T["Senha inicial *"] : T["Nova senha"])</span>
+        <input name="Senha" type="password" minlength="8" autocomplete="new-password" @(Model.Id is null ? "required" : "") />
+        <small>@(Model.Id is null ? T["Mínimo de 8 caracteres, com letras e números."] : T["Deixe em branco para manter a senha atual."])</small></label>
+    <div class="campo">
+        <span>@T["Perfis de acesso *"]</span>
+        @foreach (var p in Model.Opcoes)
+        {
+            <label class="check opcao-descrita">
+                <input type="checkbox" name="PerfilIds" value="@p.Id" checked="@Model.PerfilIds.Contains(p.Id)" />
+                <span><strong>@Exibicao.NomePerfil(p.Nome)</strong><small>@(p.Descricao is null ? "" : T[p.Descricao])</small></span>
+            </label>
+        }
+        <small class="muted">@T["O que cada perfil libera é definido pelo suporte do sistema. Se precisar de um perfil diferente, peça a ele."]</small>
+    </div>
+    <label class="check"><input type="checkbox" name="Ativo" value="true" checked="@Model.Ativo" /><input type="hidden" name="Ativo" value="false" /> @T["Ativo"]</label>
+    <p class="muted">@T["Para médicos: depois de criar o usuário, vincule-o ao cadastro em Cadastros › Médicos."]</p>
+    <div class="acoes">
+        <button class="btn btn-primario" type="submit">@T["Salvar"]</button>
+        <a class="btn btn-leve" asp-action="Index">@T["Voltar"]</a>
+    </div>
+</form>

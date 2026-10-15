@@ -1,0 +1,57 @@
+@model BloqueiosVM
+@{
+    ViewData["Title"] = T["Bloqueios de agenda"].Value;
+    var podeEditar = User.Pode(Transacoes.AgendaBloqueios);
+}
+<div class="grade-2 grade-form-lista">
+    @if (podeEditar)
+    {
+        <form method="post" asp-action="Bloquear" class="cartao formulario">
+            <h2>@T["Novo bloqueio"]</h2>
+            <p class="muted">@T["Feriados, férias, congressos: nenhum agendamento pode ser feito no período."]</p>
+            <label class="campo">
+                <span>@T["Médico"]</span>
+                <select name="MedicoId">
+                    <option value="">@T["Todos os médicos (consultório fechado)"]</option>
+                    @foreach (var m in Model.Medicos.Where(m => m.Ativo))
+                    {
+                        <option value="@m.Id">@m.Nome</option>
+                    }
+                </select>
+            </label>
+            <div class="linha">
+                <label class="campo"><span>@T["Início"]</span><input type="datetime-local" name="Inicio" required /></label>
+                <label class="campo"><span>@T["Fim"]</span><input type="datetime-local" name="Fim" required /></label>
+            </div>
+            <label class="campo"><span>@T["Motivo"]</span><input type="text" name="Motivo" maxlength="200" /></label>
+            <div class="acoes"><button type="submit" class="btn btn-primario">@T["Bloquear período"]</button></div>
+        </form>
+    }
+    <section class="cartao">
+        <form method="get" class="filtros-linha">
+            <label class="campo-inline">@T["De"] <input type="date" name="de" value="@Exibicao.Iso(Model.De)" /></label>
+            <label class="campo-inline">@T["Até"] <input type="date" name="ate" value="@Exibicao.Iso(Model.Ate)" /></label>
+            <button class="btn btn-leve" type="submit">@T["Filtrar"]</button>
+        </form>
+        @if (Model.Itens.Count == 0)
+        {
+            <p class="vazio-texto">@T["Nenhum bloqueio no período."]</p>
+        }
+        else
+        {
+            <table class="tabela">
+                <thead><tr><th>@T["Período"]</th><th>@T["Médico"]</th><th>@T["Motivo"]</th></tr></thead>
+                <tbody>
+                    @foreach (var b in Model.Itens)
+                    {
+                        <tr>
+                            <td>@Exibicao.DataHora(b.Inicio) – @Exibicao.DataHora(b.Fim)</td>
+                            <td>@(b.MedicoId is null ? T["Todos"].Value : Model.Medicos.FirstOrDefault(m => m.Id == b.MedicoId)?.Nome)</td>
+                            <td>@b.Motivo</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </section>
+</div>

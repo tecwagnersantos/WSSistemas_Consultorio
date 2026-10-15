@@ -1,0 +1,13 @@
+@model ClientesVM
+@{ ViewData["Title"] = T["Clientes"].Value; }
+<form method="get" class="barra-filtros">
+    <div class="filtros-linha">
+        <partial name="_FiltroSituacaoCliente" model="Model.Situacao" />
+        <partial name="_FiltroAcesso" model="Model.Acesso" />
+        <span class="muted">@T["{0} cliente(s)", Model.Itens.Count]</span>
+    </div>
+    <a class="btn btn-primario" asp-action="Form">@T["+ Novo cliente"]</a>
+</form>
+<section class="cartao">
+    <partial name="_TabelaClientes" model="Model.Itens" />
+</section>

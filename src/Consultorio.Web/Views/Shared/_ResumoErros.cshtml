@@ -1,0 +1,14 @@
+@{
+    var erros = ViewContext.ViewData.ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage)
+        .Where(m => !string.IsNullOrWhiteSpace(m)).Distinct().ToList();
+}
+@if (erros.Count > 0)
+{
+    <div class="alerta alerta-erro">
+        @if (erros.Count == 1) { @erros[0] }
+        else
+        {
+            <ul>@foreach (var e in erros) { <li>@e</li> }</ul>
+        }
+    </div>
+}

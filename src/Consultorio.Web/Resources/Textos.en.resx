@@ -1,0 +1,858 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- Textos do sistema. A chave (name) é o texto em português; value é a tradução. -->
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="(todos os médicos)" xml:space="preserve"><value>(all doctors)</value></data>
+  <data name="(uso contínuo)" xml:space="preserve"><value>(continuous use)</value></data>
+  <data name="({0} anos)" xml:space="preserve"><value>({0} years old)</value></data>
+  <data name="({0}). A original continua no prontuário, sem alterações." xml:space="preserve"><value>({0}). The original remains in the medical record, unchanged.</value></data>
+  <data name="+ Adicionar carteirinha" xml:space="preserve"><value>+ Add insurance card</value></data>
+  <data name="+ Adicionar medicamento" xml:space="preserve"><value>+ Add medication</value></data>
+  <data name="+ Adicionar plano" xml:space="preserve"><value>+ Add plan</value></data>
+  <data name="+ Anexo" xml:space="preserve"><value>+ Attachment</value></data>
+  <data name="+ Nova cobrança" xml:space="preserve"><value>+ New charge</value></data>
+  <data name="+ Nova evolução" xml:space="preserve"><value>+ New progress note</value></data>
+  <data name="+ Novo administrador" xml:space="preserve"><value>+ New administrator</value></data>
+  <data name="+ Novo agendamento" xml:space="preserve"><value>+ New appointment</value></data>
+  <data name="+ Novo cliente" xml:space="preserve"><value>+ New client</value></data>
+  <data name="+ Novo convênio" xml:space="preserve"><value>+ New health plan</value></data>
+  <data name="+ Novo médico" xml:space="preserve"><value>+ New doctor</value></data>
+  <data name="+ Novo paciente" xml:space="preserve"><value>+ New patient</value></data>
+  <data name="+ Novo perfil" xml:space="preserve"><value>+ New profile</value></data>
+  <data name="+ Novo usuário" xml:space="preserve"><value>+ New user</value></data>
+  <data name="+ Prescrição" xml:space="preserve"><value>+ Prescription</value></data>
+  <data name="1 caixa" xml:space="preserve"><value>1 box</value></data>
+  <data name="1 comprimido de 8/8h por 7 dias" xml:space="preserve"><value>1 tablet every 8 hours for 7 days</value></data>
+  <data name="500 mg" xml:space="preserve"><value>500 mg</value></data>
+  <data name="A clínica ainda não cadastrou médicos." xml:space="preserve"><value>The clinic has not registered any doctors yet.</value></data>
+  <data name="A confirmação não confere com a nova senha." xml:space="preserve"><value>The confirmation does not match the new password.</value></data>
+  <data name="A data do pagamento não pode ser futura." xml:space="preserve"><value>The payment date cannot be in the future.</value></data>
+  <data name="A data final do período de acesso já passou." xml:space="preserve"><value>The end date of the access period has already passed.</value></data>
+  <data name="A evolução assinada fica imutável (com hash SHA-256 do conteúdo). Correções são feitas por retificação." xml:space="preserve"><value>A signed progress note is immutable (with a SHA-256 hash of its content). Corrections are made through amendments.</value></data>
+  <data name="A senha atual não confere." xml:space="preserve"><value>The current password is incorrect.</value></data>
+  <data name="A senha deve ter ao menos 8 caracteres, com letras e números." xml:space="preserve"><value>The password must have at least 8 characters, including letters and numbers.</value></data>
+  <data name="A tolerância deve ser de 0 a 60 dias." xml:space="preserve"><value>The grace period must be between 0 and 60 days.</value></data>
+  <data name="Abrir menu" xml:space="preserve"><value>Open menu</value></data>
+  <data name="Abrir prontuário" xml:space="preserve"><value>Open medical record</value></data>
+  <data name="Abrir {0}" xml:space="preserve"><value>Open {0}</value></data>
+  <data name="Acesso" xml:space="preserve"><value>Access</value></data>
+  <data name="Acesso até (período de teste)" xml:space="preserve"><value>Access until (trial period)</value></data>
+  <data name="Acesso bloqueado temporariamente por excesso de tentativas. Tente novamente em alguns minutos." xml:space="preserve"><value>Access temporarily blocked due to too many attempts. Try again in a few minutes.</value></data>
+  <data name="Acesso exclusivo da equipe do sistema. Usuários das clínicas entram pela" xml:space="preserve"><value>Access restricted to the system team. Clinic users sign in through the</value></data>
+  <data name="Acesso negado" xml:space="preserve"><value>Access denied</value></data>
+  <data name="Acesso restrito. As operações no prontuário são registradas (LGPD)." xml:space="preserve"><value>Restricted access. Medical record operations are logged (LGPD).</value></data>
+  <data name="Acesso vencido em {0}" xml:space="preserve"><value>Access expired on {0}</value></data>
+  <data name="Acessos nos últimos 7 dias" xml:space="preserve"><value>Logins in the last 7 days</value></data>
+  <data name="Administrador" xml:space="preserve"><value>Administrator</value></data>
+  <data name="Administrador da clínica *" xml:space="preserve"><value>Clinic administrator *</value></data>
+  <data name="Administrador do sistema" xml:space="preserve"><value>System administrator</value></data>
+  <data name="Administrador não encontrado." xml:space="preserve"><value>Administrator not found.</value></data>
+  <data name="Administrador salvo." xml:space="preserve"><value>Administrator saved.</value></data>
+  <data name="Administradores" xml:space="preserve"><value>Administrators</value></data>
+  <data name="Administradores do sistema" xml:space="preserve"><value>System administrators</value></data>
+  <data name="Administração" xml:space="preserve"><value>Administration</value></data>
+  <data name="Administração do sistema" xml:space="preserve"><value>System administration</value></data>
+  <data name="Agend. no mês" xml:space="preserve"><value>Appts. this month</value></data>
+  <data name="Agenda" xml:space="preserve"><value>Schedule</value></data>
+  <data name="Agenda de todos os médicos" xml:space="preserve"><value>Schedule for all doctors</value></data>
+  <data name="Agenda de todos os médicos, pacientes e cadastros; sem acesso ao prontuário" xml:space="preserve"><value>Schedule for all doctors, patients and registries; no access to medical records</value></data>
+  <data name="Agenda do dia/semana e horários livres" xml:space="preserve"><value>Daily/weekly schedule and open slots</value></data>
+  <data name="Agenda própria, prontuário e relatórios dos próprios atendimentos" xml:space="preserve"><value>Own schedule, medical records and reports on own appointments</value></data>
+  <data name="Agenda, prontuário e relatórios" xml:space="preserve"><value>Schedule, medical records and reports</value></data>
+  <data name="Agendado" xml:space="preserve"><value>Scheduled</value></data>
+  <data name="Agendados hoje" xml:space="preserve"><value>Scheduled today</value></data>
+  <data name="Agendamento criado para {0}." xml:space="preserve"><value>Appointment created for {0}.</value></data>
+  <data name="Agendamento não encontrado." xml:space="preserve"><value>Appointment not found.</value></data>
+  <data name="Agendamento não pertence ao paciente." xml:space="preserve"><value>Appointment does not belong to the patient.</value></data>
+  <data name="Agendamentos" xml:space="preserve"><value>Appointments</value></data>
+  <data name="Agendamentos de" xml:space="preserve"><value>Appointments from</value></data>
+  <data name="Agendamentos de todos os clientes (30 dias)" xml:space="preserve"><value>Appointments across all clients (30 days)</value></data>
+  <data name="Agendamentos no mês" xml:space="preserve"><value>Appointments this month</value></data>
+  <data name="Agendamentos por cliente" xml:space="preserve"><value>Appointments by client</value></data>
+  <data name="Agendar" xml:space="preserve"><value>Schedule</value></data>
+  <data name="Agendar consulta" xml:space="preserve"><value>Schedule appointment</value></data>
+  <data name="Agendar e atender a agenda" xml:space="preserve"><value>Schedule and manage appointments</value></data>
+  <data name="Agendar, remarcar, confirmar, registrar chegada e falta, cancelar" xml:space="preserve"><value>Schedule, reschedule, confirm, check in, mark no-show, cancel</value></data>
+  <data name="Alergias" xml:space="preserve"><value>Allergies</value></data>
+  <data name="Alergias:" xml:space="preserve"><value>Allergies:</value></data>
+  <data name="Algo deu errado" xml:space="preserve"><value>Something went wrong</value></data>
+  <data name="Alterar senha" xml:space="preserve"><value>Change password</value></data>
+  <data name="Altura" xml:space="preserve"><value>Height</value></data>
+  <data name="Altura (cm)" xml:space="preserve"><value>Height (cm)</value></data>
+  <data name="Altura inválida." xml:space="preserve"><value>Invalid height.</value></data>
+  <data name="Anamnese e exame" xml:space="preserve"><value>History and examination</value></data>
+  <data name="Anexar" xml:space="preserve"><value>Attach</value></data>
+  <data name="Anexo não encontrado." xml:space="preserve"><value>Attachment not found.</value></data>
+  <data name="Anexo removido da lista (continua guardado para auditoria)." xml:space="preserve"><value>Attachment removed from the list (still stored for auditing).</value></data>
+  <data name="Anexos ({0})" xml:space="preserve"><value>Attachments ({0})</value></data>
+  <data name="Anexos do prontuário" xml:space="preserve"><value>Medical record attachments</value></data>
+  <data name="Antecedentes familiares" xml:space="preserve"><value>Family history</value></data>
+  <data name="Antecedentes pessoais" xml:space="preserve"><value>Past medical history</value></data>
+  <data name="Anterior" xml:space="preserve"><value>Previous</value></data>
+  <data name="Antimicrobiano" xml:space="preserve"><value>Antimicrobial</value></data>
+  <data name="Aplicar" xml:space="preserve"><value>Apply</value></data>
+  <data name="Arquivo anexado ao prontuário." xml:space="preserve"><value>File attached to the medical record.</value></data>
+  <data name="Arquivos * (imagens, PDF, documentos; até 10 por vez)" xml:space="preserve"><value>Files * (images, PDF, documents; up to 10 at a time)</value></data>
+  <data name="As mudanças valem para os usuários com este perfil já na próxima página que abrirem, sem precisar sair e entrar de novo." xml:space="preserve"><value>Changes take effect for users with this profile on the next page they open, without having to sign out and back in.</value></data>
+  <data name="Assinada" xml:space="preserve"><value>Signed</value></data>
+  <data name="Assinada em {0}" xml:space="preserve"><value>Signed on {0}</value></data>
+  <data name="Assinar" xml:space="preserve"><value>Sign</value></data>
+  <data name="Assinar a evolução? Depois de assinada ela não pode mais ser alterada." xml:space="preserve"><value>Sign the progress note? Once signed, it can no longer be changed.</value></data>
+  <data name="Atende" xml:space="preserve"><value>Sees patients</value></data>
+  <data name="Atender" xml:space="preserve"><value>Start visit</value></data>
+  <data name="Atendido" xml:space="preserve"><value>Seen</value></data>
+  <data name="Atendidos" xml:space="preserve"><value>Seen</value></data>
+  <data name="Atendidos hoje" xml:space="preserve"><value>Seen today</value></data>
+  <data name="Atendidos no mês" xml:space="preserve"><value>Seen this month</value></data>
+  <data name="Atendidos no mês por convênio" xml:space="preserve"><value>Seen this month by health plan</value></data>
+  <data name="Atendimento" xml:space="preserve"><value>Visit</value></data>
+  <data name="Atendimentos" xml:space="preserve"><value>Visits</value></data>
+  <data name="Atendimentos de {0} a {1}" xml:space="preserve"><value>Visits from {0} to {1}</value></data>
+  <data name="Atendimentos e indicadores, com CSV" xml:space="preserve"><value>Visits and indicators, with CSV</value></data>
+  <data name="Atendimentos nos últimos 30 dias" xml:space="preserve"><value>Visits in the last 30 days</value></data>
+  <data name="Ativa" xml:space="preserve"><value>Active</value></data>
+  <data name="Ativo" xml:space="preserve"><value>Active</value></data>
+  <data name="Ativo (desmarque para tirar este acesso de todos os usuários que têm o perfil)" xml:space="preserve"><value>Active (uncheck to remove this access from all users who have this profile)</value></data>
+  <data name="Ativo:" xml:space="preserve"><value>Active:</value></data>
+  <data name="Ativo: os usuários da clínica usam o sistema normalmente." xml:space="preserve"><value>Active: clinic users use the system normally.</value></data>
+  <data name="Ativos" xml:space="preserve"><value>Active</value></data>
+  <data name="Ativos e bloqueados" xml:space="preserve"><value>Active and blocked</value></data>
+  <data name="Atrasada" xml:space="preserve"><value>Overdue</value></data>
+  <data name="Atrasadas" xml:space="preserve"><value>Overdue</value></data>
+  <data name="Atualizado em {0}" xml:space="preserve"><value>Updated on {0}</value></data>
+  <data name="Até" xml:space="preserve"><value>To</value></data>
+  <data name="Até (opcional)" xml:space="preserve"><value>To (optional)</value></data>
+  <data name="Ações" xml:space="preserve"><value>Actions</value></data>
+  <data name="Bairro" xml:space="preserve"><value>Neighborhood</value></data>
+  <data name="Baixar" xml:space="preserve"><value>Download</value></data>
+  <data name="Bloqueado" xml:space="preserve"><value>Blocked</value></data>
+  <data name="Bloqueado por atraso" xml:space="preserve"><value>Blocked for late payment</value></data>
+  <data name="Bloqueado:" xml:space="preserve"><value>Blocked:</value></data>
+  <data name="Bloqueados" xml:space="preserve"><value>Blocked</value></data>
+  <data name="Bloquear (temporário)" xml:space="preserve"><value>Block (temporary)</value></data>
+  <data name="Bloquear automaticamente quando houver cobrança vencida há mais dias que a tolerância" xml:space="preserve"><value>Automatically block when a charge is overdue by more days than the grace period</value></data>
+  <data name="Bloquear período" xml:space="preserve"><value>Block period</value></data>
+  <data name="Bloqueio automático por atraso desligado." xml:space="preserve"><value>Automatic blocking for late payment is off.</value></data>
+  <data name="Bloqueio automático {0} dia(s) após o vencimento." xml:space="preserve"><value>Automatic blocking {0} day(s) after the due date.</value></data>
+  <data name="Bloqueio registrado." xml:space="preserve"><value>Block saved.</value></data>
+  <data name="Bloqueios" xml:space="preserve"><value>Blocks</value></data>
+  <data name="Bloqueios de agenda" xml:space="preserve"><value>Schedule blocks</value></data>
+  <data name="Boleto" xml:space="preserve"><value>Bank slip (boleto)</value></data>
+  <data name="Buscar" xml:space="preserve"><value>Search</value></data>
+  <data name="Buscar por nome, CPF ou celular" xml:space="preserve"><value>Search by name, CPF or mobile</value></data>
+  <data name="CBO" xml:space="preserve"><value>CBO</value></data>
+  <data name="CEP" xml:space="preserve"><value>CEP</value></data>
+  <data name="CNPJ" xml:space="preserve"><value>CNPJ</value></data>
+  <data name="CNPJ deve ter 14 dígitos." xml:space="preserve"><value>CNPJ must have 14 digits.</value></data>
+  <data name="CNS deve ter 15 dígitos." xml:space="preserve"><value>CNS must have 15 digits.</value></data>
+  <data name="CPF" xml:space="preserve"><value>CPF</value></data>
+  <data name="CPF deve ter 11 dígitos." xml:space="preserve"><value>CPF must have 11 digits.</value></data>
+  <data name="CPF do responsável" xml:space="preserve"><value>Guardian's CPF</value></data>
+  <data name="CPF:" xml:space="preserve"><value>CPF:</value></data>
+  <data name="CRM" xml:space="preserve"><value>CRM</value></data>
+  <data name="CRM *" xml:space="preserve"><value>CRM *</value></data>
+  <data name="CRM {0}/{1}" xml:space="preserve"><value>CRM {0}/{1}</value></data>
+  <data name="Cada perfil libera um conjunto de transações (telas e ações). O usuário pode ter vários perfis e recebe a soma das transações deles. Perfil padrão vale para todos os clientes; perfil exclusivo só aparece para os usuários daquele cliente." xml:space="preserve"><value>Each profile grants a set of transactions (screens and actions). A user can have several profiles and receives the combined transactions of all of them. A standard profile applies to all clients; an exclusive profile is only available to users of that client.</value></data>
+  <data name="Cadastrar especialidades" xml:space="preserve"><value>Register specialties</value></data>
+  <data name="Cadastrar novo paciente" xml:space="preserve"><value>Register new patient</value></data>
+  <data name="Cadastrar pacientes" xml:space="preserve"><value>Register patients</value></data>
+  <data name="Cadastro ativo" xml:space="preserve"><value>Active record</value></data>
+  <data name="Cadastro atualizado." xml:space="preserve"><value>Record updated.</value></data>
+  <data name="Cadastro de convênios e planos" xml:space="preserve"><value>Health plans and plan tiers</value></data>
+  <data name="Cadastro de especialidades" xml:space="preserve"><value>Specialties</value></data>
+  <data name="Cadastro de médicos, vínculo com usuário e grade de horários" xml:space="preserve"><value>Doctors, user linking and schedule template</value></data>
+  <data name="Cadastros" xml:space="preserve"><value>Registries</value></data>
+  <data name="Cadastros, usuários, dashboard e relatórios; sem acesso ao prontuário" xml:space="preserve"><value>Registries, users, dashboard and reports; no access to medical records</value></data>
+  <data name="Campo obrigatório." xml:space="preserve"><value>Required field.</value></data>
+  <data name="Cancelada" xml:space="preserve"><value>Canceled</value></data>
+  <data name="Canceladas" xml:space="preserve"><value>Canceled</value></data>
+  <data name="Cancelado" xml:space="preserve"><value>Canceled</value></data>
+  <data name="Cancelados" xml:space="preserve"><value>Canceled</value></data>
+  <data name="Cancelar" xml:space="preserve"><value>Cancel</value></data>
+  <data name="Cancelar agendamento" xml:space="preserve"><value>Cancel appointment</value></data>
+  <data name="Cancelar cobrança" xml:space="preserve"><value>Cancel charge</value></data>
+  <data name="Carteirinha não pertence ao paciente." xml:space="preserve"><value>Insurance card does not belong to the patient.</value></data>
+  <data name="Cartão" xml:space="preserve"><value>Card</value></data>
+  <data name="Cartão SUS (CNS)" xml:space="preserve"><value>SUS card (CNS)</value></data>
+  <data name="Celular" xml:space="preserve"><value>Mobile</value></data>
+  <data name="Chegou" xml:space="preserve"><value>Arrived</value></data>
+  <data name="Cidade" xml:space="preserve"><value>City</value></data>
+  <data name="Cliente" xml:space="preserve"><value>Client</value></data>
+  <data name="Cliente bloqueado: os usuários da clínica não entram mais e as sessões abertas foram encerradas." xml:space="preserve"><value>Client blocked: clinic users can no longer sign in and open sessions have been ended.</value></data>
+  <data name="Cliente criado. O administrador da clínica já pode entrar com o e-mail e a senha informados." xml:space="preserve"><value>Client created. The clinic administrator can now sign in with the email and password provided.</value></data>
+  <data name="Cliente desde {0}" xml:space="preserve"><value>Client since {0}</value></data>
+  <data name="Cliente inativado: não entra mais no sistema e saiu da lista de clientes atuais. Os dados continuam guardados." xml:space="preserve"><value>Client deactivated: can no longer sign in and has been removed from the current clients list. The data remains stored.</value></data>
+  <data name="Cliente não encontrado." xml:space="preserve"><value>Client not found.</value></data>
+  <data name="Cliente reativado: os usuários da clínica já podem entrar." xml:space="preserve"><value>Client reactivated: clinic users can now sign in.</value></data>
+  <data name="Cliente salvo." xml:space="preserve"><value>Client saved.</value></data>
+  <data name="Clientes" xml:space="preserve"><value>Clients</value></data>
+  <data name="Clientes ativos" xml:space="preserve"><value>Active clients</value></data>
+  <data name="Clientes bloqueados" xml:space="preserve"><value>Blocked clients</value></data>
+  <data name="Clientes com mais agendamentos no mês" xml:space="preserve"><value>Clients with the most appointments this month</value></data>
+  <data name="Clientes e uso do plano" xml:space="preserve"><value>Clients and plan usage</value></data>
+  <data name="Clientes em teste" xml:space="preserve"><value>Clients on trial</value></data>
+  <data name="Clientes inativos" xml:space="preserve"><value>Inactive clients</value></data>
+  <data name="Clientes no limite do plano" xml:space="preserve"><value>Clients at plan limit</value></data>
+  <data name="Clientes, limites, dashboards e relatórios" xml:space="preserve"><value>Clients, limits, dashboards and reports</value></data>
+  <data name="Cobrança" xml:space="preserve"><value>Charge</value></data>
+  <data name="Cobrança cancelada não recebe pagamento." xml:space="preserve"><value>A canceled charge cannot receive payment.</value></data>
+  <data name="Cobrança cancelada." xml:space="preserve"><value>Charge canceled.</value></data>
+  <data name="Cobrança criada." xml:space="preserve"><value>Charge created.</value></data>
+  <data name="Cobrança não encontrada." xml:space="preserve"><value>Charge not found.</value></data>
+  <data name="Cobrança paga não pode ser cancelada. Estorne o pagamento antes." xml:space="preserve"><value>A paid charge cannot be canceled. Reverse the payment first.</value></data>
+  <data name="Com valor de mensalidade, o sistema gera a cobrança de cada mês com vencimento no dia escolhido (veja Pagamentos). Nos 5 dias antes do vencimento e depois dele, o administrador da clínica vê um aviso no topo das páginas. Passada a tolerância sem pagamento, a clínica é bloqueada; ao registrar o pagamento, ela é reativada na hora." xml:space="preserve"><value>With a monthly fee set, the system generates each month's charge due on the chosen day (see Payments). During the 5 days before the due date and after it, the clinic administrator sees a notice at the top of the pages. Once the grace period passes without payment, the clinic is blocked; when the payment is recorded, it is reactivated immediately.</value></data>
+  <data name="Comorbidades" xml:space="preserve"><value>Comorbidities</value></data>
+  <data name="Complemento" xml:space="preserve"><value>Address line 2</value></data>
+  <data name="Concentração" xml:space="preserve"><value>Strength</value></data>
+  <data name="Conduta" xml:space="preserve"><value>Plan</value></data>
+  <data name="Configuração" xml:space="preserve"><value>Settings</value></data>
+  <data name="Confirmado" xml:space="preserve"><value>Confirmed</value></data>
+  <data name="Confirmar" xml:space="preserve"><value>Confirm</value></data>
+  <data name="Confirme a nova senha" xml:space="preserve"><value>Confirm the new password</value></data>
+  <data name="Consulta" xml:space="preserve"><value>Appointment</value></data>
+  <data name="Consultar pacientes" xml:space="preserve"><value>Look up patients</value></data>
+  <data name="Consultório Médico" xml:space="preserve"><value>Medical Practice</value></data>
+  <data name="Contato" xml:space="preserve"><value>Contact</value></data>
+  <data name="Controle especial" xml:space="preserve"><value>Special control</value></data>
+  <data name="Convênio" xml:space="preserve"><value>Health plan</value></data>
+  <data name="Convênio / carteirinha" xml:space="preserve"><value>Health plan / card</value></data>
+  <data name="Convênio / plano" xml:space="preserve"><value>Health plan / tier</value></data>
+  <data name="Convênio não encontrado." xml:space="preserve"><value>Health plan not found.</value></data>
+  <data name="Convênio salvo." xml:space="preserve"><value>Health plan saved.</value></data>
+  <data name="Convênios" xml:space="preserve"><value>Health plans</value></data>
+  <data name="Convênios / carteirinhas" xml:space="preserve"><value>Health plans / cards</value></data>
+  <data name="Convênios e planos" xml:space="preserve"><value>Health plans and tiers</value></data>
+  <data name="Cria a mensalidade do mês para cada cliente ativo ou bloqueado que tem valor de mensalidade no cadastro, com vencimento no dia configurado. Não repete o mês já gerado. O sistema também gera sozinho, no início de cada mês, as mensalidades ainda não vencidas. Cobranças avulsas (implantação, treinamento etc.) são criadas na página do cliente." xml:space="preserve"><value>Creates the monthly fee for each active or blocked client that has a monthly fee amount on file, due on the configured day. Months already generated are not repeated. The system also automatically generates, at the start of each month, monthly fees not yet due. One-off charges (onboarding, training, etc.) are created on the client's page.</value></data>
+  <data name="Criado em" xml:space="preserve"><value>Created on</value></data>
+  <data name="Criar cobrança" xml:space="preserve"><value>Create charge</value></data>
+  <data name="Criar usuário" xml:space="preserve"><value>Create user</value></data>
+  <data name="Código" xml:space="preserve"><value>Code</value></data>
+  <data name="Código CBO" xml:space="preserve"><value>CBO code</value></data>
+  <data name="Dados da clínica" xml:space="preserve"><value>Clinic details</value></data>
+  <data name="Dados do médico" xml:space="preserve"><value>Doctor details</value></data>
+  <data name="Das" xml:space="preserve"><value>From</value></data>
+  <data name="Dashboard" xml:space="preserve"><value>Dashboard</value></data>
+  <data name="Dashboard e relatórios de todos os médicos" xml:space="preserve"><value>Dashboard and reports for all doctors</value></data>
+  <data name="Data de nascimento *" xml:space="preserve"><value>Date of birth *</value></data>
+  <data name="Data de nascimento no futuro." xml:space="preserve"><value>Date of birth is in the future.</value></data>
+  <data name="Data do pagamento *" xml:space="preserve"><value>Payment date *</value></data>
+  <data name="Data e horário" xml:space="preserve"><value>Date and time</value></data>
+  <data name="Data/hora" xml:space="preserve"><value>Date/time</value></data>
+  <data name="De" xml:space="preserve"><value>From</value></data>
+  <data name="Definitivo" xml:space="preserve"><value>Permanent</value></data>
+  <data name="Deixe em branco para manter a senha atual." xml:space="preserve"><value>Leave blank to keep the current password.</value></data>
+  <data name="Deixe em branco para não limitar. Os limites contam só cadastros ativos; reduzir abaixo do uso atual não inativa ninguém, apenas impede novas inclusões." xml:space="preserve"><value>Leave blank for no limit. Limits only count active records; lowering below current usage does not deactivate anyone, it only prevents new additions.</value></data>
+  <data name="Descrição" xml:space="preserve"><value>Description</value></data>
+  <data name="Descrição *" xml:space="preserve"><value>Description *</value></data>
+  <data name="Descrição com no máximo 200 caracteres." xml:space="preserve"><value>Description must be at most 200 characters.</value></data>
+  <data name="Dia" xml:space="preserve"><value>Day</value></data>
+  <data name="Dia de vencimento de 1 a 28." xml:space="preserve"><value>Due day must be from 1 to 28.</value></data>
+  <data name="Dia do vencimento" xml:space="preserve"><value>Due day</value></data>
+  <data name="Dias da semana" xml:space="preserve"><value>Days of the week</value></data>
+  <data name="Digite ao menos 2 letras" xml:space="preserve"><value>Type at least 2 letters</value></data>
+  <data name="Dinheiro" xml:space="preserve"><value>Cash</value></data>
+  <data name="Disponíveis para {0}" xml:space="preserve"><value>Available for {0}</value></data>
+  <data name="Documento" xml:space="preserve"><value>Document</value></data>
+  <data name="Duração (min)" xml:space="preserve"><value>Duration (min)</value></data>
+  <data name="Duração entre 5 e 240 minutos." xml:space="preserve"><value>Duration must be between 5 and 240 minutes.</value></data>
+  <data name="Duração entre 5 e 480 minutos." xml:space="preserve"><value>Duration must be between 5 and 480 minutes.</value></data>
+  <data name="Duração padrão da consulta (min)" xml:space="preserve"><value>Default appointment duration (min)</value></data>
+  <data name="E-mail" xml:space="preserve"><value>Email</value></data>
+  <data name="E-mail (login)" xml:space="preserve"><value>Email (login)</value></data>
+  <data name="E-mail (login) *" xml:space="preserve"><value>Email (login) *</value></data>
+  <data name="E-mail inválido." xml:space="preserve"><value>Invalid email.</value></data>
+  <data name="E-mail ou senha inválidos." xml:space="preserve"><value>Invalid email or password.</value></data>
+  <data name="Editar" xml:space="preserve"><value>Edit</value></data>
+  <data name="Editar cliente e limites" xml:space="preserve"><value>Edit client and limits</value></data>
+  <data name="Editar evolução" xml:space="preserve"><value>Edit progress note</value></data>
+  <data name="Em aberto" xml:space="preserve"><value>Open</value></data>
+  <data name="Em aberto (a vencer)" xml:space="preserve"><value>Open (not yet due)</value></data>
+  <data name="Em aberto:" xml:space="preserve"><value>Open:</value></data>
+  <data name="Em atendimento" xml:space="preserve"><value>In progress</value></data>
+  <data name="Em atraso" xml:space="preserve"><value>Overdue</value></data>
+  <data name="Em teste" xml:space="preserve"><value>On trial</value></data>
+  <data name="Em teste até {0}" xml:space="preserve"><value>On trial until {0}</value></data>
+  <data name="Em todos os casos os dados continuam guardados." xml:space="preserve"><value>In all cases the data remains stored.</value></data>
+  <data name="Emitir e imprimir" xml:space="preserve"><value>Issue and print</value></data>
+  <data name="Endereço" xml:space="preserve"><value>Address</value></data>
+  <data name="Enquanto a versão definitiva não for liberada, a clínica só entra até a data informada (inclusive); depois disso o login é recusado e as sessões abertas são encerradas. Nos últimos 15 dias a clínica vê um aviso no topo das páginas. Para prorrogar, altere a data." xml:space="preserve"><value>Until the permanent version is released, the clinic can only sign in until the date provided (inclusive); after that, login is refused and open sessions are ended. During the last 15 days the clinic sees a notice at the top of the pages. To extend, change the date.</value></data>
+  <data name="Entrar" xml:space="preserve"><value>Sign in</value></data>
+  <data name="Entre com um usuário da clínica para anexar arquivos." xml:space="preserve"><value>Sign in with a clinic user to attach files.</value></data>
+  <data name="Envie no máximo {0} arquivos por vez." xml:space="preserve"><value>Upload at most {0} files at a time.</value></data>
+  <data name="Erro" xml:space="preserve"><value>Error</value></data>
+  <data name="Escolha um horário livre ou informe a hora." xml:space="preserve"><value>Choose an open slot or enter the time.</value></data>
+  <data name="Especialidade" xml:space="preserve"><value>Specialty</value></data>
+  <data name="Especialidade não encontrada." xml:space="preserve"><value>Specialty not found.</value></data>
+  <data name="Especialidade salva." xml:space="preserve"><value>Specialty saved.</value></data>
+  <data name="Especialidades" xml:space="preserve"><value>Specialties</value></data>
+  <data name="Espera" xml:space="preserve"><value>Wait</value></data>
+  <data name="Espera (min)" xml:space="preserve"><value>Wait (min)</value></data>
+  <data name="Espera média" xml:space="preserve"><value>Average wait</value></data>
+  <data name="Espera média no mês" xml:space="preserve"><value>Average wait this month</value></data>
+  <data name="Esta clínica está inativa no sistema. Entre em contato com o suporte." xml:space="preserve"><value>This clinic is inactive in the system. Please contact support.</value></data>
+  <data name="Esta cobrança já está paga. Estorne o pagamento para registrar outro." xml:space="preserve"><value>This charge is already paid. Reverse the payment to record another one.</value></data>
+  <data name="Esta cobrança não tem pagamento registrado." xml:space="preserve"><value>This charge has no recorded payment.</value></data>
+  <data name="Esta evolução retifica a de" xml:space="preserve"><value>This progress note amends the one from</value></data>
+  <data name="Este perfil já está em usuários de outros clientes; não dá para torná-lo exclusivo de um cliente." xml:space="preserve"><value>This profile is already assigned to users of other clients; it cannot be made exclusive to one client.</value></data>
+  <data name="Estornar" xml:space="preserve"><value>Reverse</value></data>
+  <data name="Estornar pagamento" xml:space="preserve"><value>Reverse payment</value></data>
+  <data name="Evolução assinada não pode ser alterada ou excluída. Registre uma retificação." xml:space="preserve"><value>A signed progress note cannot be changed or deleted. Record an amendment.</value></data>
+  <data name="Evolução assinada não pode ser alterada. Registre uma retificação." xml:space="preserve"><value>A signed progress note cannot be changed. Record an amendment.</value></data>
+  <data name='Evolução assinada não pode ser alterada. Use "Retificar".' xml:space="preserve"><value>A signed progress note cannot be changed. Use "Amend".</value></data>
+  <data name="Evolução assinada." xml:space="preserve"><value>Progress note signed.</value></data>
+  <data name="Evolução de {0}" xml:space="preserve"><value>Progress note from {0}</value></data>
+  <data name="Evolução não encontrada." xml:space="preserve"><value>Progress note not found.</value></data>
+  <data name="Evolução não pertence ao paciente." xml:space="preserve"><value>Progress note does not belong to the patient.</value></data>
+  <data name="Evolução registrada e assinada." xml:space="preserve"><value>Progress note recorded and signed.</value></data>
+  <data name="Evoluções ({0})" xml:space="preserve"><value>Progress notes ({0})</value></data>
+  <data name="Ex.: Hemograma de 10/10, RX de tórax" xml:space="preserve"><value>E.g.: CBC from 10/10, chest X-ray</value></data>
+  <data name="Ex.: Implantação, Mensalidade 11/2026" xml:space="preserve"><value>E.g.: Onboarding, Monthly fee 11/2026</value></data>
+  <data name="Ex.: comprovante recebido por e-mail, número do boleto" xml:space="preserve"><value>E.g.: receipt received by email, bank slip number</value></data>
+  <data name="Ex.: enfermagem da triagem" xml:space="preserve"><value>E.g.: triage nursing</value></data>
+  <data name="Ex.: mensalidade em atraso, contrato encerrado" xml:space="preserve"><value>E.g.: overdue monthly fee, contract terminated</value></data>
+  <data name="Exame" xml:space="preserve"><value>Exam</value></data>
+  <data name="Exame físico" xml:space="preserve"><value>Physical examination</value></data>
+  <data name="Exportar CSV" xml:space="preserve"><value>Export CSV</value></data>
+  <data name="FC" xml:space="preserve"><value>HR</value></data>
+  <data name="FC (bpm)" xml:space="preserve"><value>HR (bpm)</value></data>
+  <data name="Fale com o suporte para liberar a versão definitiva." xml:space="preserve"><value>Contact support to release the permanent version.</value></data>
+  <data name="Faltas" xml:space="preserve"><value>No-shows</value></data>
+  <data name="Faltas no mês" xml:space="preserve"><value>No-shows this month</value></data>
+  <data name="Faltou" xml:space="preserve"><value>No-show</value></data>
+  <data name="Faturamento do mês" xml:space="preserve"><value>Revenue this month</value></data>
+  <data name="Feminino" xml:space="preserve"><value>Female</value></data>
+  <data name="Feriados, férias, congressos: nenhum agendamento pode ser feito no período." xml:space="preserve"><value>Holidays, vacations, conferences: no appointments can be made during the period.</value></data>
+  <data name="Filtrar" xml:space="preserve"><value>Filter</value></data>
+  <data name="Fim" xml:space="preserve"><value>End</value></data>
+  <data name="Finalizar" xml:space="preserve"><value>Finish</value></data>
+  <data name="Forma" xml:space="preserve"><value>Method</value></data>
+  <data name="Forma de pagamento *" xml:space="preserve"><value>Payment method *</value></data>
+  <data name="Formato inválido." xml:space="preserve"><value>Invalid format.</value></data>
+  <data name="Formato não aceito: {0}. Aceitos: {1}." xml:space="preserve"><value>Format not accepted: {0}. Accepted: {1}.</value></data>
+  <data name="Formatos:" xml:space="preserve"><value>Formats:</value></data>
+  <data name="Frequência inválida." xml:space="preserve"><value>Invalid frequency.</value></data>
+  <data name="Gerar as mensalidades do mês escolhido para todos os clientes com valor de mensalidade?" xml:space="preserve"><value>Generate the monthly fees for the selected month for all clients with a monthly fee amount?</value></data>
+  <data name="Gerar mensalidades" xml:space="preserve"><value>Generate monthly fees</value></data>
+  <data name="Gerar mensalidades do mês" xml:space="preserve"><value>Generate monthly fees for the month</value></data>
+  <data name="Grade atual" xml:space="preserve"><value>Current template</value></data>
+  <data name="Grade de horários" xml:space="preserve"><value>Schedule template</value></data>
+  <data name="Hipótese diagnóstica" xml:space="preserve"><value>Diagnostic impression</value></data>
+  <data name="História da doença atual" xml:space="preserve"><value>History of present illness</value></data>
+  <data name="Hoje" xml:space="preserve"><value>Today</value></data>
+  <data name="Hoje é o último dia do período de acesso desta clínica." xml:space="preserve"><value>Today is the last day of this clinic's access period.</value></data>
+  <data name="Hoje, {0}" xml:space="preserve"><value>Today, {0}</value></data>
+  <data name="Hora" xml:space="preserve"><value>Time</value></data>
+  <data name="Hora final deve ser maior que a inicial." xml:space="preserve"><value>End time must be later than start time.</value></data>
+  <data name="Horário" xml:space="preserve"><value>Time</value></data>
+  <data name="Horário atualizado." xml:space="preserve"><value>Time slot updated.</value></data>
+  <data name="Horário bloqueado na agenda." xml:space="preserve"><value>Time blocked on the schedule.</value></data>
+  <data name="Horário inválido." xml:space="preserve"><value>Invalid time.</value></data>
+  <data name="Horário não encontrado." xml:space="preserve"><value>Time slot not found.</value></data>
+  <data name="Horários" xml:space="preserve"><value>Time slots</value></data>
+  <data name="Horários incluídos." xml:space="preserve"><value>Time slots added.</value></data>
+  <data name="Horários livres na grade do médico (clique para escolher; para encaixe, digite a hora acima):" xml:space="preserve"><value>Open slots in the doctor's template (click to choose; for a walk-in, type the time above):</value></data>
+  <data name="Horários · " xml:space="preserve"><value>Time slots · </value></data>
+  <data name="Hábitos" xml:space="preserve"><value>Habits</value></data>
+  <data name="IMC" xml:space="preserve"><value>BMI</value></data>
+  <data name="Identificação" xml:space="preserve"><value>Identification</value></data>
+  <data name="Idioma" xml:space="preserve"><value>Language</value></data>
+  <data name="Imagem" xml:space="preserve"><value>Image</value></data>
+  <data name="Imprimir" xml:space="preserve"><value>Print</value></data>
+  <data name="Inativa" xml:space="preserve"><value>Inactive</value></data>
+  <data name="Inativar" xml:space="preserve"><value>Deactivate</value></data>
+  <data name="Inativar (deixou de ser cliente)" xml:space="preserve"><value>Deactivate (no longer a client)</value></data>
+  <data name="Inativo" xml:space="preserve"><value>Inactive</value></data>
+  <data name="Inativo:" xml:space="preserve"><value>Inactive:</value></data>
+  <data name="Inativos" xml:space="preserve"><value>Inactive</value></data>
+  <data name="Inclua ao menos um medicamento." xml:space="preserve"><value>Add at least one medication.</value></data>
+  <data name="Incluir e alterar pacientes e carteirinhas" xml:space="preserve"><value>Add and edit patients and insurance cards</value></data>
+  <data name="Incluir e alterar usuários e escolher os perfis de cada um" xml:space="preserve"><value>Add and edit users and choose each one's profiles</value></data>
+  <data name="Incluir e excluir férias, feriados e consultório fechado" xml:space="preserve"><value>Add and remove vacations, holidays and office closures</value></data>
+  <data name="Indicadores do dia e do mês, sala de espera e gráficos" xml:space="preserve"><value>Daily and monthly indicators, waiting room and charts</value></data>
+  <data name="Indicadores mensais" xml:space="preserve"><value>Monthly indicators</value></data>
+  <data name="Informe a UF do CRM." xml:space="preserve"><value>Enter the CRM state (UF).</value></data>
+  <data name="Informe a descrição da cobrança." xml:space="preserve"><value>Enter the charge description.</value></data>
+  <data name="Informe a forma de pagamento." xml:space="preserve"><value>Enter the payment method.</value></data>
+  <data name="Informe a hora final." xml:space="preserve"><value>Enter the end time.</value></data>
+  <data name="Informe a hora inicial." xml:space="preserve"><value>Enter the start time.</value></data>
+  <data name="Informe a nova senha." xml:space="preserve"><value>Enter the new password.</value></data>
+  <data name="Informe a posologia de todos os medicamentos." xml:space="preserve"><value>Enter the dosage instructions for all medications.</value></data>
+  <data name="Informe a senha atual." xml:space="preserve"><value>Enter the current password.</value></data>
+  <data name="Informe a senha inicial." xml:space="preserve"><value>Enter the initial password.</value></data>
+  <data name="Informe a senha." xml:space="preserve"><value>Enter the password.</value></data>
+  <data name="Informe ao menos um perfil." xml:space="preserve"><value>Select at least one profile.</value></data>
+  <data name="Informe até quando vai o período de acesso, ou marque a versão definitiva." xml:space="preserve"><value>Enter the end date of the access period, or check permanent version.</value></data>
+  <data name="Informe nome, e-mail e senha do administrador da clínica." xml:space="preserve"><value>Enter the clinic administrator's name, email and password.</value></data>
+  <data name="Informe o CRM." xml:space="preserve"><value>Enter the CRM.</value></data>
+  <data name="Informe o administrador da nova clínica." xml:space="preserve"><value>Enter the administrator of the new clinic.</value></data>
+  <data name="Informe o dia." xml:space="preserve"><value>Enter the day.</value></data>
+  <data name="Informe o e-mail." xml:space="preserve"><value>Enter the email.</value></data>
+  <data name="Informe o fim." xml:space="preserve"><value>Enter the end.</value></data>
+  <data name="Informe o início da vigência." xml:space="preserve"><value>Enter the effective start date.</value></data>
+  <data name="Informe o início." xml:space="preserve"><value>Enter the start.</value></data>
+  <data name="Informe o motivo do cancelamento." xml:space="preserve"><value>Enter the reason for cancellation.</value></data>
+  <data name="Informe o motivo do estorno." xml:space="preserve"><value>Enter the reason for the reversal.</value></data>
+  <data name="Informe o motivo para bloquear o cliente." xml:space="preserve"><value>Enter the reason for blocking the client.</value></data>
+  <data name="Informe o motivo para inativar o cliente." xml:space="preserve"><value>Enter the reason for deactivating the client.</value></data>
+  <data name="Informe o mês das mensalidades." xml:space="preserve"><value>Enter the month for the monthly fees.</value></data>
+  <data name="Informe o nome da especialidade." xml:space="preserve"><value>Enter the specialty name.</value></data>
+  <data name="Informe o nome do perfil." xml:space="preserve"><value>Enter the profile name.</value></data>
+  <data name="Informe o nome." xml:space="preserve"><value>Enter the name.</value></data>
+  <data name="Informe o novo vencimento." xml:space="preserve"><value>Enter the new due date.</value></data>
+  <data name="Informe o valor pago." xml:space="preserve"><value>Enter the amount paid.</value></data>
+  <data name="Informe um número." xml:space="preserve"><value>Enter a number.</value></data>
+  <data name="Informe um valor entre {1} e {2}." xml:space="preserve"><value>Enter a value between {1} and {2}.</value></data>
+  <data name="Informe {0}." xml:space="preserve"><value>Enter {0}.</value></data>
+  <data name="Intersexo / não informado" xml:space="preserve"><value>Intersex / not specified</value></data>
+  <data name="Intervalo" xml:space="preserve"><value>Interval</value></data>
+  <data name="Intervalo (min)" xml:space="preserve"><value>Interval (min)</value></data>
+  <data name="Intervalo entre 5 e 240 minutos." xml:space="preserve"><value>Interval must be between 5 and 240 minutes.</value></data>
+  <data name="Início" xml:space="preserve"><value>Start</value></data>
+  <data name="Já existe cliente com este CNPJ." xml:space="preserve"><value>A client with this CNPJ already exists.</value></data>
+  <data name="Já existe mensalidade de {0:MM/yyyy} para {1}." xml:space="preserve"><value>A monthly fee for {0:MM/yyyy} already exists for {1}.</value></data>
+  <data name="Já existe médico com este CRM/UF." xml:space="preserve"><value>A doctor with this CRM/UF already exists.</value></data>
+  <data name="Já existe paciente com este CPF." xml:space="preserve"><value>A patient with this CPF already exists.</value></data>
+  <data name="Já existe um administrador com este e-mail." xml:space="preserve"><value>An administrator with this email already exists.</value></data>
+  <data name="Já existe um perfil com este nome para este cliente (ou um perfil padrão com o mesmo nome)." xml:space="preserve"><value>A profile with this name already exists for this client (or a standard profile with the same name).</value></data>
+  <data name="Já existe um usuário com este e-mail (nesta ou em outra clínica)." xml:space="preserve"><value>A user with this email already exists (in this or another clinic).</value></data>
+  <data name="Já existe um usuário com este e-mail." xml:space="preserve"><value>A user with this email already exists.</value></data>
+  <data name="Laudo" xml:space="preserve"><value>Report</value></data>
+  <data name="Liberar versão definitiva" xml:space="preserve"><value>Release permanent version</value></data>
+  <data name="Ligar à evolução" xml:space="preserve"><value>Link to progress note</value></data>
+  <data name="Limite inválido." xml:space="preserve"><value>Invalid limit.</value></data>
+  <data name="Limite não pode ser negativo." xml:space="preserve"><value>Limit cannot be negative.</value></data>
+  <data name="Limpar" xml:space="preserve"><value>Clear</value></data>
+  <data name="Logradouro" xml:space="preserve"><value>Street</value></data>
+  <data name="Mais ações" xml:space="preserve"><value>More actions</value></data>
+  <data name="Mantenha ao menos um administrador do sistema ativo." xml:space="preserve"><value>Keep at least one system administrator active.</value></data>
+  <data name="Mantenha em você um perfil que gerencia usuários; senão você perde o acesso a esta tela." xml:space="preserve"><value>Keep a profile that manages users on your own account; otherwise you will lose access to this screen.</value></data>
+  <data name="Marcar falta" xml:space="preserve"><value>Mark no-show</value></data>
+  <data name="Marque ao menos um dia da semana." xml:space="preserve"><value>Check at least one day of the week.</value></data>
+  <data name="Marque ao menos uma transação." xml:space="preserve"><value>Check at least one transaction.</value></data>
+  <data name="Masculino" xml:space="preserve"><value>Male</value></data>
+  <data name="Medicamento *" xml:space="preserve"><value>Medication *</value></data>
+  <data name="Medicamentos" xml:space="preserve"><value>Medications</value></data>
+  <data name="Medicamentos em uso" xml:space="preserve"><value>Current medications</value></data>
+  <data name="Mensalidade de {0} com vencimento todo dia {1}." xml:space="preserve"><value>Monthly fee of {0} due on day {1} of each month.</value></data>
+  <data name="Motivo" xml:space="preserve"><value>Reason</value></data>
+  <data name="Motivo (ex.: mensalidade em atraso)" xml:space="preserve"><value>Reason (e.g.: overdue monthly fee)</value></data>
+  <data name="Motivo (obrigatório para bloqueado ou inativo)" xml:space="preserve"><value>Reason (required for blocked or inactive)</value></data>
+  <data name="Motivo do cancelamento" xml:space="preserve"><value>Reason for cancellation</value></data>
+  <data name="Motivo do estorno" xml:space="preserve"><value>Reason for reversal</value></data>
+  <data name="Máximo de médicos ativos" xml:space="preserve"><value>Maximum active doctors</value></data>
+  <data name="Máximo de usuários ativos" xml:space="preserve"><value>Maximum active users</value></data>
+  <data name="Máximo de {1} caracteres." xml:space="preserve"><value>Maximum of {1} characters.</value></data>
+  <data name="Médico" xml:space="preserve"><value>Doctor</value></data>
+  <data name="Médico não encontrado ou inativo." xml:space="preserve"><value>Doctor not found or inactive.</value></data>
+  <data name="Médico não encontrado." xml:space="preserve"><value>Doctor not found.</value></data>
+  <data name="Médico salvo." xml:space="preserve"><value>Doctor saved.</value></data>
+  <data name="Médicos" xml:space="preserve"><value>Doctors</value></data>
+  <data name="Médicos ({0})" xml:space="preserve"><value>Doctors ({0})</value></data>
+  <data name="Médicos ativos" xml:space="preserve"><value>Active doctors</value></data>
+  <data name="Médicos de todos os clientes" xml:space="preserve"><value>Doctors across all clients</value></data>
+  <data name="Médicos e horários" xml:space="preserve"><value>Doctors and schedules</value></data>
+  <data name="Médicos são cadastrados e ativados pela própria clínica, respeitando o limite do plano." xml:space="preserve"><value>Doctors are registered and activated by the clinic itself, within the plan limit.</value></data>
+  <data name="Mês" xml:space="preserve"><value>Month</value></data>
+  <data name="Mínimo de 8 caracteres, com letras e números." xml:space="preserve"><value>Minimum of 8 characters, including letters and numbers.</value></data>
+  <data name="Mínimo de 8 caracteres, com letras e números. Com o perfil Administrador, ele cadastra médicos, recepção e demais usuários da clínica; ele conta no limite de usuários." xml:space="preserve"><value>Minimum of 8 characters, including letters and numbers. With the Administrator profile, this user registers doctors, front desk staff and other clinic users; they count toward the user limit.</value></data>
+  <data name="Mínimo de {1} caracteres." xml:space="preserve"><value>Minimum of {1} characters.</value></data>
+  <data name="Na sala de espera" xml:space="preserve"><value>In the waiting room</value></data>
+  <data name="Nascimento" xml:space="preserve"><value>Date of birth</value></data>
+  <data name="Nascimento:" xml:space="preserve"><value>Date of birth:</value></data>
+  <data name="Nenhum agendamento nesta semana." xml:space="preserve"><value>No appointments this week.</value></data>
+  <data name="Nenhum agendamento neste dia." xml:space="preserve"><value>No appointments on this day.</value></data>
+  <data name="Nenhum agendamento neste mês." xml:space="preserve"><value>No appointments this month.</value></data>
+  <data name="Nenhum agendamento no período." xml:space="preserve"><value>No appointments in the period.</value></data>
+  <data name="Nenhum arquivo anexado a este prontuário." xml:space="preserve"><value>No files attached to this medical record.</value></data>
+  <data name="Nenhum atendimento concluído neste mês." xml:space="preserve"><value>No visits completed this month.</value></data>
+  <data name="Nenhum bloqueio no período." xml:space="preserve"><value>No blocks in the period.</value></data>
+  <data name="Nenhum cliente ativo com 90% ou mais do limite de usuários ou médicos." xml:space="preserve"><value>No active client at 90% or more of the user or doctor limit.</value></data>
+  <data name="Nenhum cliente em teste com acesso terminando nos próximos 15 dias." xml:space="preserve"><value>No trial client with access ending in the next 15 days.</value></data>
+  <data name="Nenhum cliente encontrado." xml:space="preserve"><value>No clients found.</value></data>
+  <data name="Nenhum convênio cadastrado." xml:space="preserve"><value>No health plans registered.</value></data>
+  <data name="Nenhum convênio cadastrado. O paciente será atendido como particular." xml:space="preserve"><value>No health plans registered. The patient will be seen as private pay.</value></data>
+  <data name="Nenhum dado no período." xml:space="preserve"><value>No data in the period.</value></data>
+  <data name="Nenhum horário cadastrado. Sem grade, a agenda não mostra horários livres (ainda é possível agendar digitando a hora)." xml:space="preserve"><value>No time slots registered. Without a template, the schedule shows no open slots (you can still schedule by typing the time).</value></data>
+  <data name="Nenhum médico cadastrado. Cadastre as especialidades primeiro." xml:space="preserve"><value>No doctors registered. Register the specialties first.</value></data>
+  <data name="Nenhum médico encontrado." xml:space="preserve"><value>No doctors found.</value></data>
+  <data name="Nenhum paciente cadastrado." xml:space="preserve"><value>No patients registered.</value></data>
+  <data name="Nenhum paciente encontrado." xml:space="preserve"><value>No patients found.</value></data>
+  <data name="Nenhum registro no período." xml:space="preserve"><value>No records in the period.</value></data>
+  <data name="Nenhum usuário encontrado." xml:space="preserve"><value>No users found.</value></data>
+  <data name="Nenhuma" xml:space="preserve"><value>None</value></data>
+  <data name="Nenhuma cobrança encontrada." xml:space="preserve"><value>No charges found.</value></data>
+  <data name="Nenhuma especialidade cadastrada." xml:space="preserve"><value>No specialties registered.</value></data>
+  <data name="Nenhuma evolução registrada para este paciente." xml:space="preserve"><value>No progress notes recorded for this patient.</value></data>
+  <data name="Nenhuma mensalidade nova para {1:MM/yyyy}: todos os clientes com mensalidade já têm a cobrança do mês." xml:space="preserve"><value>No new monthly fees for {1:MM/yyyy}: all clients with a monthly fee already have this month's charge.</value></data>
+  <data name="Nenhuma prescrição emitida." xml:space="preserve"><value>No prescriptions issued.</value></data>
+  <data name="Nenhuma tela liberada" xml:space="preserve"><value>No screens granted</value></data>
+  <data name="Nome" xml:space="preserve"><value>Name</value></data>
+  <data name="Nome *" xml:space="preserve"><value>Name *</value></data>
+  <data name="Nome completo *" xml:space="preserve"><value>Full name *</value></data>
+  <data name="Nome da clínica *" xml:space="preserve"><value>Clinic name *</value></data>
+  <data name="Nome do responsável" xml:space="preserve"><value>Guardian's name</value></data>
+  <data name="Nome social" xml:space="preserve"><value>Preferred name</value></data>
+  <data name="Nome, CPF ou celular" xml:space="preserve"><value>Name, CPF or mobile</value></data>
+  <data name="Nome, endereço e telefone aparecem no menu da clínica e no cabeçalho das receitas." xml:space="preserve"><value>Name, address and phone appear in the clinic menu and on the prescription header.</value></data>
+  <data name="Nova data e hora" xml:space="preserve"><value>New date and time</value></data>
+  <data name="Nova especialidade" xml:space="preserve"><value>New specialty</value></data>
+  <data name="Nova evolução" xml:space="preserve"><value>New progress note</value></data>
+  <data name="Nova prescrição" xml:space="preserve"><value>New prescription</value></data>
+  <data name="Nova senha" xml:space="preserve"><value>New password</value></data>
+  <data name="Nova situação" xml:space="preserve"><value>New status</value></data>
+  <data name="Novo administrador" xml:space="preserve"><value>New administrator</value></data>
+  <data name="Novo agendamento" xml:space="preserve"><value>New appointment</value></data>
+  <data name="Novo bloqueio" xml:space="preserve"><value>New block</value></data>
+  <data name="Novo cliente" xml:space="preserve"><value>New client</value></data>
+  <data name="Novo convênio" xml:space="preserve"><value>New health plan</value></data>
+  <data name="Novo horário" xml:space="preserve"><value>New time slot</value></data>
+  <data name="Novo médico" xml:space="preserve"><value>New doctor</value></data>
+  <data name="Novo paciente" xml:space="preserve"><value>New patient</value></data>
+  <data name="Novo perfil de acesso" xml:space="preserve"><value>New access profile</value></data>
+  <data name="Novo usuário" xml:space="preserve"><value>New user</value></data>
+  <data name="Novo usuário da clínica" xml:space="preserve"><value>New clinic user</value></data>
+  <data name="Novo vencimento" xml:space="preserve"><value>New due date</value></data>
+  <data name="Nunca" xml:space="preserve"><value>Never</value></data>
+  <data name="Nº carteirinha" xml:space="preserve"><value>Card no.</value></data>
+  <data name="Não" xml:space="preserve"><value>No</value></data>
+  <data name="Não encontrou?" xml:space="preserve"><value>Not found?</value></data>
+  <data name="Não foi possível concluir a operação. Tente novamente." xml:space="preserve"><value>The operation could not be completed. Please try again.</value></data>
+  <data name="Não foi possível falar com o servidor. Verifique a conexão e tente novamente." xml:space="preserve"><value>Could not reach the server. Check your connection and try again.</value></data>
+  <data name="Não há clínica definida para o usuário." xml:space="preserve"><value>No clinic is set for the user.</value></data>
+  <data name="Não há clínica definida." xml:space="preserve"><value>No clinic is set.</value></data>
+  <data name="Não informado" xml:space="preserve"><value>Not specified</value></data>
+  <data name="Não é possível passar de {0} para {1}." xml:space="preserve"><value>Cannot change from {0} to {1}.</value></data>
+  <data name="Número" xml:space="preserve"><value>Number</value></data>
+  <data name="O acesso desta clínica está bloqueado por pagamento em atraso. Entre em contato com o suporte." xml:space="preserve"><value>This clinic's access is blocked due to late payment. Please contact support.</value></data>
+  <data name="O acesso desta clínica está bloqueado. Entre em contato com o suporte." xml:space="preserve"><value>This clinic's access is blocked. Please contact support.</value></data>
+  <data name="O arquivo deste anexo não foi encontrado na pasta de anexos do servidor. Avise o suporte." xml:space="preserve"><value>The file for this attachment was not found in the server's attachments folder. Please notify support.</value></data>
+  <data name="O arquivo {0} está vazio." xml:space="preserve"><value>The file {0} is empty.</value></data>
+  <data name="O arquivo {0} passa de {1} MB." xml:space="preserve"><value>The file {0} exceeds {1} MB.</value></data>
+  <data name="O cliente tem pagamento em atraso ({0}, vencida em {1:d}). Registre o pagamento, prorrogue o vencimento ou desligue o bloqueio automático por atraso." xml:space="preserve"><value>The client has an overdue payment ({0}, due on {1:d}). Record the payment, extend the due date or turn off automatic blocking for late payment.</value></data>
+  <data name="O conteúdo de {0} não corresponde à extensão {1}." xml:space="preserve"><value>The content of {0} does not match the extension {1}.</value></data>
+  <data name="O dia de vencimento deve ser de 1 a 28." xml:space="preserve"><value>The due day must be from 1 to 28.</value></data>
+  <data name="O limite de usuários precisa comportar o administrador da clínica." xml:space="preserve"><value>The user limit must accommodate the clinic administrator.</value></data>
+  <data name="O motivo pode ter no máximo 300 caracteres." xml:space="preserve"><value>The reason can have at most 300 characters.</value></data>
+  <data name="O médico já tem agendamento nesse horário." xml:space="preserve"><value>The doctor already has an appointment at this time.</value></data>
+  <data name="O novo vencimento não pode estar no passado." xml:space="preserve"><value>The new due date cannot be in the past.</value></data>
+  <data name="O período de acesso desta clínica termina em {0} dia(s) ({1})." xml:space="preserve"><value>This clinic's access period ends in {0} day(s) ({1}).</value></data>
+  <data name="O período de acesso desta clínica terminou em {0:d}. Entre em contato com o suporte." xml:space="preserve"><value>This clinic's access period ended on {0:d}. Please contact support.</value></data>
+  <data name="O plano desta clínica permite {0} médico(s) ativo(s) e o limite foi atingido. Inative um médico ou peça ao suporte para aumentar o limite." xml:space="preserve"><value>This clinic's plan allows {0} active doctor(s) and the limit has been reached. Deactivate a doctor or ask support to increase the limit.</value></data>
+  <data name="O plano desta clínica permite {0} usuário(s) ativo(s) e o limite foi atingido. Inative um usuário ou peça ao suporte para aumentar o limite." xml:space="preserve"><value>This clinic's plan allows {0} active user(s) and the limit has been reached. Deactivate a user or ask support to increase the limit.</value></data>
+  <data name="O que cada perfil libera é definido pelo suporte do sistema. Se precisar de um perfil diferente, peça a ele." xml:space="preserve"><value>What each profile grants is defined by system support. If you need a different profile, ask them.</value></data>
+  <data name="O registro foi alterado por outro usuário. Recarregue a página e tente novamente." xml:space="preserve"><value>The record was changed by another user. Reload the page and try again.</value></data>
+  <data name="O valor da cobrança deve ser maior que zero." xml:space="preserve"><value>The charge amount must be greater than zero.</value></data>
+  <data name="O valor da mensalidade não pode ser negativo." xml:space="preserve"><value>The monthly fee amount cannot be negative.</value></data>
+  <data name="Observação" xml:space="preserve"><value>Note</value></data>
+  <data name="Observações" xml:space="preserve"><value>Notes</value></data>
+  <data name="Observações internas" xml:space="preserve"><value>Internal notes</value></data>
+  <data name="Ocorreu um erro inesperado. Tente novamente ou contate o suporte." xml:space="preserve"><value>An unexpected error occurred. Try again or contact support.</value></data>
+  <data name="Operação não permitida: o registro está vinculado a outros dados." xml:space="preserve"><value>Operation not allowed: the record is linked to other data.</value></data>
+  <data name="Os horários livres da agenda são gerados a partir desta grade." xml:space="preserve"><value>The schedule's open slots are generated from this template.</value></data>
+  <data name="Os perfis e o que cada um pode fazer são definidos pelo suporte do sistema. Fale com o administrador da sua clínica." xml:space="preserve"><value>Profiles and what each one can do are defined by system support. Talk to your clinic's administrator.</value></data>
+  <data name="Outro" xml:space="preserve"><value>Other</value></data>
+  <data name="Outros" xml:space="preserve"><value>Others</value></data>
+  <data name="PA" xml:space="preserve"><value>BP</value></data>
+  <data name="PA diastólica (mmHg)" xml:space="preserve"><value>Diastolic BP (mmHg)</value></data>
+  <data name="PA sistólica (mmHg)" xml:space="preserve"><value>Systolic BP (mmHg)</value></data>
+  <data name="Paciente" xml:space="preserve"><value>Patient</value></data>
+  <data name="Paciente autorizou o tratamento dos dados pessoais (LGPD)" xml:space="preserve"><value>Patient authorized the processing of personal data (LGPD)</value></data>
+  <data name="Paciente cadastrado." xml:space="preserve"><value>Patient registered.</value></data>
+  <data name="Paciente nº {0}" xml:space="preserve"><value>Patient no. {0}</value></data>
+  <data name="Paciente não encontrado ou inativo." xml:space="preserve"><value>Patient not found or inactive.</value></data>
+  <data name="Paciente não encontrado." xml:space="preserve"><value>Patient not found.</value></data>
+  <data name="Paciente:" xml:space="preserve"><value>Patient:</value></data>
+  <data name="Pacientes" xml:space="preserve"><value>Patients</value></data>
+  <data name="Pacientes cadastrados" xml:space="preserve"><value>Registered patients</value></data>
+  <data name="Paga" xml:space="preserve"><value>Paid</value></data>
+  <data name="Pagamento" xml:space="preserve"><value>Payment</value></data>
+  <data name="Pagamento estornado: a cobrança voltou a ficar em aberto." xml:space="preserve"><value>Payment reversed: the charge is open again.</value></data>
+  <data name="Pagamento registrado." xml:space="preserve"><value>Payment recorded.</value></data>
+  <data name="Pagamentos" xml:space="preserve"><value>Payments</value></data>
+  <data name="Pagamentos dos clientes" xml:space="preserve"><value>Client payments</value></data>
+  <data name="Pagamentos em atraso" xml:space="preserve"><value>Overdue payments</value></data>
+  <data name="Pagas" xml:space="preserve"><value>Paid</value></data>
+  <data name="Painel" xml:space="preserve"><value>Panel</value></data>
+  <data name="Para médicos: depois de criar o usuário, vincule-o ao cadastro em Cadastros › Médicos." xml:space="preserve"><value>For doctors: after creating the user, link it to the record under Registries › Doctors.</value></data>
+  <data name="Particular" xml:space="preserve"><value>Private pay</value></data>
+  <data name="Particulares" xml:space="preserve"><value>Private pay</value></data>
+  <data name="Pendentes (em aberto e atrasadas)" xml:space="preserve"><value>Pending (open and overdue)</value></data>
+  <data name="Perfil" xml:space="preserve"><value>Profile</value></data>
+  <data name="Perfil de acesso" xml:space="preserve"><value>Access profile</value></data>
+  <data name="Perfil de acesso inválido para esta clínica." xml:space="preserve"><value>Invalid access profile for this clinic.</value></data>
+  <data name="Perfil não encontrado." xml:space="preserve"><value>Profile not found.</value></data>
+  <data name="Perfil salvo. Os usuários com este perfil passam a ter o novo acesso na próxima página que abrirem." xml:space="preserve"><value>Profile saved. Users with this profile get the new access on the next page they open.</value></data>
+  <data name="Perfis" xml:space="preserve"><value>Profiles</value></data>
+  <data name="Perfis de acesso" xml:space="preserve"><value>Access profiles</value></data>
+  <data name="Perfis de acesso *" xml:space="preserve"><value>Access profiles *</value></data>
+  <data name="Perfis do usuário atualizados. Valem a partir da próxima página que ele abrir." xml:space="preserve"><value>User profiles updated. They take effect from the next page the user opens.</value></data>
+  <data name="Período" xml:space="preserve"><value>Period</value></data>
+  <data name="Período de acesso encerrado: a clínica não consegue entrar" xml:space="preserve"><value>Access period ended: the clinic cannot sign in</value></data>
+  <data name="Período de acesso vencendo (15 dias) ou vencido" xml:space="preserve"><value>Access period expiring (15 days) or expired</value></data>
+  <data name="Período inválido." xml:space="preserve"><value>Invalid period.</value></data>
+  <data name="Peso" xml:space="preserve"><value>Weight</value></data>
+  <data name="Peso (kg)" xml:space="preserve"><value>Weight (kg)</value></data>
+  <data name="Peso inválido." xml:space="preserve"><value>Invalid weight.</value></data>
+  <data name="Pesquisar e ver o cadastro e as carteirinhas" xml:space="preserve"><value>Search and view the record and insurance cards</value></data>
+  <data name="Peça ao administrador da sua clínica para revisar seus perfis." xml:space="preserve"><value>Ask your clinic's administrator to review your profiles.</value></data>
+  <data name="Pix" xml:space="preserve"><value>Pix</value></data>
+  <data name="Plano" xml:space="preserve"><value>Plan</value></data>
+  <data name="Plano de convênio não encontrado." xml:space="preserve"><value>Health plan tier not found.</value></data>
+  <data name="Plano e configurações" xml:space="preserve"><value>Plan and settings</value></data>
+  <data name="Planos" xml:space="preserve"><value>Plans</value></data>
+  <data name="Planos removidos de um convênio já em uso são apenas inativados." xml:space="preserve"><value>Plans removed from a health plan already in use are only deactivated.</value></data>
+  <data name="Posologia *" xml:space="preserve"><value>Dosage instructions *</value></data>
+  <data name="Prazo de retorno (dias)" xml:space="preserve"><value>Follow-up window (days)</value></data>
+  <data name="Prazo entre 0 e 365 dias." xml:space="preserve"><value>Window must be between 0 and 365 days.</value></data>
+  <data name="Prescrição emitida." xml:space="preserve"><value>Prescription issued.</value></data>
+  <data name="Prescrição não encontrada." xml:space="preserve"><value>Prescription not found.</value></data>
+  <data name="Prescrições ({0})" xml:space="preserve"><value>Prescriptions ({0})</value></data>
+  <data name="Pressão inválida." xml:space="preserve"><value>Invalid blood pressure.</value></data>
+  <data name="Previsto no mês" xml:space="preserve"><value>Expected this month</value></data>
+  <data name="Principal" xml:space="preserve"><value>Primary</value></data>
+  <data name="Procedimento" xml:space="preserve"><value>Procedure</value></data>
+  <data name="Prontuário" xml:space="preserve"><value>Medical record</value></data>
+  <data name="Prontuário é dado sensível (LGPD): libere só para perfis de profissionais de saúde. Todo acesso fica na auditoria." xml:space="preserve"><value>The medical record is sensitive data (LGPD): grant it only to healthcare professional profiles. Every access is audited.</value></data>
+  <data name="Prorrogar" xml:space="preserve"><value>Extend</value></data>
+  <data name="Próxima" xml:space="preserve"><value>Next</value></data>
+  <data name="Próximo" xml:space="preserve"><value>Next</value></data>
+  <data name="Página {0} de {1}" xml:space="preserve"><value>Page {0} of {1}</value></data>
+  <data name="Qualquer" xml:space="preserve"><value>Any</value></data>
+  <data name="Qualquer acesso" xml:space="preserve"><value>Any access</value></data>
+  <data name="Quantidade" xml:space="preserve"><value>Quantity</value></data>
+  <data name="Queixa principal" xml:space="preserve"><value>Chief complaint</value></data>
+  <data name="Quem tem acesso à área de administração. Não são usuários de nenhuma clínica." xml:space="preserve"><value>Who has access to the administration area. They are not users of any clinic.</value></data>
+  <data name="RECEITA DE ANTIMICROBIANO" xml:space="preserve"><value>ANTIMICROBIAL PRESCRIPTION</value></data>
+  <data name="RECEITUÁRIO" xml:space="preserve"><value>PRESCRIPTION</value></data>
+  <data name="RECEITUÁRIO DE CONTROLE ESPECIAL" xml:space="preserve"><value>SPECIAL CONTROL PRESCRIPTION</value></data>
+  <data name="RQE" xml:space="preserve"><value>RQE</value></data>
+  <data name="Rascunho" xml:space="preserve"><value>Draft</value></data>
+  <data name="Rascunho salvo, mas não foi possível assinar:" xml:space="preserve"><value>Draft saved, but it could not be signed:</value></data>
+  <data name="Rascunho salvo." xml:space="preserve"><value>Draft saved.</value></data>
+  <data name="Rascunho salvo. Assine a evolução para concluir o atendimento." xml:space="preserve"><value>Draft saved. Sign the progress note to complete the visit.</value></data>
+  <data name="Reativar" xml:space="preserve"><value>Reactivate</value></data>
+  <data name="Reativar cliente" xml:space="preserve"><value>Reactivate client</value></data>
+  <data name="Recebido no mês" xml:space="preserve"><value>Received this month</value></data>
+  <data name="Receita" xml:space="preserve"><value>Prescription</value></data>
+  <data name="Recepção" xml:space="preserve"><value>Front desk</value></data>
+  <data name="Redefinir senha" xml:space="preserve"><value>Reset password</value></data>
+  <data name="Registrar no prontuário" xml:space="preserve"><value>Record in medical record</value></data>
+  <data name="Registrar pagamento" xml:space="preserve"><value>Record payment</value></data>
+  <data name="Registro ANS" xml:space="preserve"><value>ANS registration</value></data>
+  <data name="Registro duplicado." xml:space="preserve"><value>Duplicate record.</value></data>
+  <data name="Registro: {0}" xml:space="preserve"><value>Registration: {0}</value></data>
+  <data name="Registros" xml:space="preserve"><value>Records</value></data>
+  <data name="Relatório de atendimentos" xml:space="preserve"><value>Visits report</value></data>
+  <data name="Relatórios" xml:space="preserve"><value>Reports</value></data>
+  <data name="Remarcado" xml:space="preserve"><value>Rescheduled</value></data>
+  <data name="Remarcados" xml:space="preserve"><value>Rescheduled</value></data>
+  <data name="Remarcar" xml:space="preserve"><value>Reschedule</value></data>
+  <data name="Remover" xml:space="preserve"><value>Remove</value></data>
+  <data name="Responsável (menores ou tutelados)" xml:space="preserve"><value>Guardian (minors or wards)</value></data>
+  <data name="Resumo clínico" xml:space="preserve"><value>Clinical summary</value></data>
+  <data name="Resumo clínico salvo." xml:space="preserve"><value>Clinical summary saved.</value></data>
+  <data name="Resumo clínico, evoluções e prescrições (evolução e prescrição exigem usuário vinculado a um médico)" xml:space="preserve"><value>Clinical summary, progress notes and prescriptions (progress notes and prescriptions require a user linked to a doctor)</value></data>
+  <data name="Resumo clínico, evoluções, prescrições e receitas" xml:space="preserve"><value>Clinical summary, progress notes, prescriptions and printouts</value></data>
+  <data name="Retificar" xml:space="preserve"><value>Amend</value></data>
+  <data name="Retificar evolução" xml:space="preserve"><value>Amend progress note</value></data>
+  <data name="Retificação" xml:space="preserve"><value>Amendment</value></data>
+  <data name="Retorno" xml:space="preserve"><value>Follow-up</value></data>
+  <data name="Sair" xml:space="preserve"><value>Sign out</value></data>
+  <data name="Salvar" xml:space="preserve"><value>Save</value></data>
+  <data name="Salvar e agendar" xml:space="preserve"><value>Save and schedule</value></data>
+  <data name="Salvar e assinar" xml:space="preserve"><value>Save and sign</value></data>
+  <data name="Salvar perfis" xml:space="preserve"><value>Save profiles</value></data>
+  <data name="Salvar rascunho" xml:space="preserve"><value>Save draft</value></data>
+  <data name="Salvar resumo" xml:space="preserve"><value>Save summary</value></data>
+  <data name="Saturação inválida." xml:space="preserve"><value>Invalid oxygen saturation.</value></data>
+  <data name="Se já pagou, desconsidere ou envie o comprovante ao suporte." xml:space="preserve"><value>If you have already paid, disregard this or send the receipt to support.</value></data>
+  <data name="Se o cliente estava bloqueado pelo sistema por causa deste atraso e não tiver outra cobrança vencida além da tolerância, ele é reativado na hora." xml:space="preserve"><value>If the client was blocked by the system because of this late payment and has no other charge overdue beyond the grace period, it is reactivated immediately.</value></data>
+  <data name="Selecione a especialidade." xml:space="preserve"><value>Select the specialty.</value></data>
+  <data name="Selecione ao menos um arquivo." xml:space="preserve"><value>Select at least one file.</value></data>
+  <data name="Selecione ao menos uma especialidade." xml:space="preserve"><value>Select at least one specialty.</value></data>
+  <data name="Selecione médico e dia." xml:space="preserve"><value>Select doctor and day.</value></data>
+  <data name="Selecione o médico" xml:space="preserve"><value>Select the doctor</value></data>
+  <data name="Selecione o médico." xml:space="preserve"><value>Select the doctor.</value></data>
+  <data name="Selecione o paciente." xml:space="preserve"><value>Select the patient.</value></data>
+  <data name="Selecione..." xml:space="preserve"><value>Select...</value></data>
+  <data name="Sem acesso ao sistema" xml:space="preserve"><value>No system access</value></data>
+  <data name="Sem acesso ao sistema até serem reativados. Passe o mouse no selo para ver o motivo." xml:space="preserve"><value>No system access until reactivated. Hover over the badge to see the reason.</value></data>
+  <data name="Sem esta transação o usuário só vê a agenda do médico vinculado a ele" xml:space="preserve"><value>Without this transaction the user only sees the schedule of the doctor linked to them</value></data>
+  <data name="Sem esta transação o usuário só vê os números do médico vinculado a ele" xml:space="preserve"><value>Without this transaction the user only sees the figures of the doctor linked to them</value></data>
+  <data name="Sem limite" xml:space="preserve"><value>No limit</value></data>
+  <data name="Sem mensalidade" xml:space="preserve"><value>No monthly fee</value></data>
+  <data name="Sem mensalidade definida (só cobranças avulsas)." xml:space="preserve"><value>No monthly fee set (one-off charges only).</value></data>
+  <data name="Sem o pagamento, o acesso da clínica será bloqueado em {0}." xml:space="preserve"><value>Without payment, the clinic's access will be blocked on {0}.</value></data>
+  <data name="Sem telas liberadas" xml:space="preserve"><value>No screens granted</value></data>
+  <data name="Semana" xml:space="preserve"><value>Week</value></data>
+  <data name="Senha" xml:space="preserve"><value>Password</value></data>
+  <data name="Senha alterada com sucesso." xml:space="preserve"><value>Password changed successfully.</value></data>
+  <data name="Senha atual" xml:space="preserve"><value>Current password</value></data>
+  <data name="Senha inicial" xml:space="preserve"><value>Initial password</value></data>
+  <data name="Senha inicial *" xml:space="preserve"><value>Initial password *</value></data>
+  <data name="Senha redefinida e usuário desbloqueado. Passe a nova senha ao usuário." xml:space="preserve"><value>Password reset and user unlocked. Give the new password to the user.</value></data>
+  <data name="Seu perfil não tem permissão para esta operação." xml:space="preserve"><value>Your profile does not have permission for this operation.</value></data>
+  <data name="Seu usuário não está vinculado a um cadastro de médico. Você pode consultar o prontuário, mas não registrar evoluções ou prescrições. Peça ao administrador para vincular em Cadastros › Médicos." xml:space="preserve"><value>Your user is not linked to a doctor record. You can view the medical record, but not record progress notes or prescriptions. Ask the administrator to link it under Registries › Doctors.</value></data>
+  <data name="Seus perfis de acesso ainda não liberam nenhuma tela do sistema." xml:space="preserve"><value>Your access profiles do not grant any system screen yet.</value></data>
+  <data name="Seus perfis de acesso não liberam esta tela ou ação." xml:space="preserve"><value>Your access profiles do not grant this screen or action.</value></data>
+  <data name="Sexo *" xml:space="preserve"><value>Sex *</value></data>
+  <data name="Sexo:" xml:space="preserve"><value>Sex:</value></data>
+  <data name="Sim" xml:space="preserve"><value>Yes</value></data>
+  <data name="Simples" xml:space="preserve"><value>Standard</value></data>
+  <data name="Sinais vitais" xml:space="preserve"><value>Vital signs</value></data>
+  <data name="Situação" xml:space="preserve"><value>Status</value></data>
+  <data name="Situação do cliente" xml:space="preserve"><value>Client status</value></data>
+  <data name="Situação do cliente inválida." xml:space="preserve"><value>Invalid client status.</value></data>
+  <data name="Somente o médico autor pode alterar ou assinar a evolução." xml:space="preserve"><value>Only the authoring doctor can change or sign the progress note.</value></data>
+  <data name="Somente quem enviou o anexo pode removê-lo." xml:space="preserve"><value>Only the person who uploaded the attachment can remove it.</value></data>
+  <data name="SpO₂ (%)" xml:space="preserve"><value>SpO₂ (%)</value></data>
+  <data name="Status" xml:space="preserve"><value>Status</value></data>
+  <data name="Status atualizado." xml:space="preserve"><value>Status updated.</value></data>
+  <data name="Sua sessão expirou. Entre novamente." xml:space="preserve"><value>Your session has expired. Please sign in again.</value></data>
+  <data name="Sucesso" xml:space="preserve"><value>Success</value></data>
+  <data name="Só ativos" xml:space="preserve"><value>Active only</value></data>
+  <data name="Só cobrança em aberto pode ser prorrogada." xml:space="preserve"><value>Only an open charge can be extended.</value></data>
+  <data name="Só {0}" xml:space="preserve"><value>Only {0}</value></data>
+  <data name="Só é possível retificar uma evolução assinada do mesmo paciente." xml:space="preserve"><value>You can only amend a signed progress note of the same patient.</value></data>
+  <data name="Taxa de faltas" xml:space="preserve"><value>No-show rate</value></data>
+  <data name="Tel." xml:space="preserve"><value>Phone</value></data>
+  <data name="Teleconsulta" xml:space="preserve"><value>Telehealth</value></data>
+  <data name="Telefone" xml:space="preserve"><value>Phone</value></data>
+  <data name="Temperatura (°C)" xml:space="preserve"><value>Temperature (°C)</value></data>
+  <data name="Temperatura inválida." xml:space="preserve"><value>Invalid temperature.</value></data>
+  <data name="Termo / consentimento" xml:space="preserve"><value>Consent form</value></data>
+  <data name="Teste até" xml:space="preserve"><value>Trial until</value></data>
+  <data name="Teste vencido" xml:space="preserve"><value>Trial expired</value></data>
+  <data name="Texto" xml:space="preserve"><value>Text</value></data>
+  <data name="Tipo" xml:space="preserve"><value>Type</value></data>
+  <data name="Tipo de anexo inválido." xml:space="preserve"><value>Invalid attachment type.</value></data>
+  <data name="Tipo de receita" xml:space="preserve"><value>Prescription type</value></data>
+  <data name="Tipo sanguíneo" xml:space="preserve"><value>Blood type</value></data>
+  <data name="Titular" xml:space="preserve"><value>Policyholder</value></data>
+  <data name="Todas" xml:space="preserve"><value>All</value></data>
+  <data name="Todos" xml:space="preserve"><value>All</value></data>
+  <data name="Todos os clientes" xml:space="preserve"><value>All clients</value></data>
+  <data name="Todos os clientes (padrão)" xml:space="preserve"><value>All clients (standard)</value></data>
+  <data name="Todos os clientes · {0}" xml:space="preserve"><value>All clients · {0}</value></data>
+  <data name="Todos os médicos" xml:space="preserve"><value>All doctors</value></data>
+  <data name="Todos os médicos (consultório fechado)" xml:space="preserve"><value>All doctors (office closed)</value></data>
+  <data name="Todos os perfis" xml:space="preserve"><value>All profiles</value></data>
+  <data name="Tolerância (dias)" xml:space="preserve"><value>Grace period (days)</value></data>
+  <data name="Tolerância de 0 a 60 dias." xml:space="preserve"><value>Grace period from 0 to 60 days.</value></data>
+  <data name="Total" xml:space="preserve"><value>Total</value></data>
+  <data name="Total ({0} cliente(s))" xml:space="preserve"><value>Total ({0} client(s))</value></data>
+  <data name="Total do período" xml:space="preserve"><value>Period total</value></data>
+  <data name="Total recebido:" xml:space="preserve"><value>Total received:</value></data>
+  <data name="Total {0}" xml:space="preserve"><value>Total {0}</value></data>
+  <data name="Transação desconhecida: " xml:space="preserve"><value>Unknown transaction: </value></data>
+  <data name="Transações" xml:space="preserve"><value>Transactions</value></data>
+  <data name="Transações ainda não cadastradas no banco. Reinicie o site para sincronizar." xml:space="preserve"><value>Transactions not yet registered in the database. Restart the site to synchronize.</value></data>
+  <data name="Transações liberadas" xml:space="preserve"><value>Granted transactions</value></data>
+  <data name="Transferência" xml:space="preserve"><value>Bank transfer</value></data>
+  <data name="UF" xml:space="preserve"><value>UF</value></data>
+  <data name="UF *" xml:space="preserve"><value>UF *</value></data>
+  <data name="UF com 2 letras." xml:space="preserve"><value>UF must have 2 letters.</value></data>
+  <data name="Use a operação de remarcação." xml:space="preserve"><value>Use the reschedule operation.</value></data>
+  <data name="Uso contínuo" xml:space="preserve"><value>Continuous use</value></data>
+  <data name="Uso {0}." xml:space="preserve"><value>Usage {0}.</value></data>
+  <data name="Usuário" xml:space="preserve"><value>User</value></data>
+  <data name="Usuário bloqueado temporariamente por excesso de tentativas. Tente novamente em alguns minutos." xml:space="preserve"><value>User temporarily locked due to too many attempts. Try again in a few minutes.</value></data>
+  <data name="Usuário criado." xml:space="preserve"><value>User created.</value></data>
+  <data name="Usuário de acesso" xml:space="preserve"><value>Login user</value></data>
+  <data name="Usuário de acesso (perfil Médico)" xml:space="preserve"><value>Login user (Doctor profile)</value></data>
+  <data name="Usuário inativado." xml:space="preserve"><value>User deactivated.</value></data>
+  <data name="Usuário não encontrado neste cliente." xml:space="preserve"><value>User not found for this client.</value></data>
+  <data name="Usuário não encontrado." xml:space="preserve"><value>User not found.</value></data>
+  <data name="Usuário não está vinculado a um cadastro de médico." xml:space="preserve"><value>User is not linked to a doctor record.</value></data>
+  <data name="Usuário reativado." xml:space="preserve"><value>User reactivated.</value></data>
+  <data name="Usuário salvo." xml:space="preserve"><value>User saved.</value></data>
+  <data name="Usuários" xml:space="preserve"><value>Users</value></data>
+  <data name="Usuários ({0})" xml:space="preserve"><value>Users ({0})</value></data>
+  <data name="Usuários ativos" xml:space="preserve"><value>Active users</value></data>
+  <data name="Usuários da clínica" xml:space="preserve"><value>Clinic users</value></data>
+  <data name="Usuários de todos os clientes" xml:space="preserve"><value>Users across all clients</value></data>
+  <data name="Vale para" xml:space="preserve"><value>Applies to</value></data>
+  <data name="Validade" xml:space="preserve"><value>Validity</value></data>
+  <data name="Validade (dias)" xml:space="preserve"><value>Validity (days)</value></data>
+  <data name="Validade entre 1 e 365 dias." xml:space="preserve"><value>Validity must be between 1 and 365 days.</value></data>
+  <data name="Validade: {0} dias" xml:space="preserve"><value>Valid for: {0} days</value></data>
+  <data name="Valor" xml:space="preserve"><value>Amount</value></data>
+  <data name="Valor '{0}' inválido." xml:space="preserve"><value>Invalid value '{0}'.</value></data>
+  <data name="Valor (R$)" xml:space="preserve"><value>Amount (R$)</value></data>
+  <data name="Valor (R$) *" xml:space="preserve"><value>Amount (R$) *</value></data>
+  <data name="Valor atendido" xml:space="preserve"><value>Amount billed</value></data>
+  <data name="Valor da mensalidade (R$)" xml:space="preserve"><value>Monthly fee amount (R$)</value></data>
+  <data name="Valor inválido." xml:space="preserve"><value>Invalid amount.</value></data>
+  <data name="Valor pago *" xml:space="preserve"><value>Amount paid *</value></data>
+  <data name="Vencido em" xml:space="preserve"><value>Due on</value></data>
+  <data name="Vencimento" xml:space="preserve"><value>Due date</value></data>
+  <data name="Vencimento *" xml:space="preserve"><value>Due date *</value></data>
+  <data name="Vencimento alterado para {0:d}." xml:space="preserve"><value>Due date changed to {0:d}.</value></data>
+  <data name="Vencimento de" xml:space="preserve"><value>Due from</value></data>
+  <data name="Ver agenda" xml:space="preserve"><value>View schedule</value></data>
+  <data name="Ver prontuário" xml:space="preserve"><value>View medical record</value></data>
+  <data name="Ver, enviar e remover imagens e arquivos do prontuário" xml:space="preserve"><value>View, upload and remove images and files in the medical record</value></data>
+  <data name="Verifique os campos do resumo clínico (textos muito longos)." xml:space="preserve"><value>Check the clinical summary fields (texts too long).</value></data>
+  <data name="Versão definitiva" xml:space="preserve"><value>Permanent version</value></data>
+  <data name="Versão definitiva liberada (acesso sem data para terminar)" xml:space="preserve"><value>Permanent version released (access with no end date)</value></data>
+  <data name="Versão definitiva liberada: o acesso desta clínica não tem mais data para terminar." xml:space="preserve"><value>Permanent version released: this clinic's access no longer has an end date.</value></data>
+  <data name="Via" xml:space="preserve"><value>Route</value></data>
+  <data name="Vigência" xml:space="preserve"><value>Effective period</value></data>
+  <data name="Vigência a partir de" xml:space="preserve"><value>Effective from</value></data>
+  <data name="Vinculado" xml:space="preserve"><value>Linked</value></data>
+  <data name="Vincule para que o médico veja a própria agenda e registre o prontuário. Crie o usuário em Administração › Usuários." xml:space="preserve"><value>Link so the doctor can see their own schedule and record in the medical record. Create the user under Administration › Users.</value></data>
+  <data name="Você não pode desativar o próprio acesso." xml:space="preserve"><value>You cannot deactivate your own access.</value></data>
+  <data name="Você não pode desativar o próprio usuário." xml:space="preserve"><value>You cannot deactivate your own user.</value></data>
+  <data name="Voltar" xml:space="preserve"><value>Back</value></data>
+  <data name="Voltar ao início" xml:space="preserve"><value>Back to home</value></data>
+  <data name="Voltar ao prontuário" xml:space="preserve"><value>Back to medical record</value></data>
+  <data name="a" xml:space="preserve"><value>to</value></data>
+  <data name="comprimido" xml:space="preserve"><value>tablet</value></data>
+  <data name="dado de saúde" xml:space="preserve"><value>health data</value></data>
+  <data name="de {0}" xml:space="preserve"><value>of {0}</value></data>
+  <data name="deixou de ser cliente; também não entra e sai da lista de clientes atuais." xml:space="preserve"><value>no longer a client; also cannot sign in and is removed from the current clients list.</value></data>
+  <data name="ex.: 225125" xml:space="preserve"><value>e.g.: 225125</value></data>
+  <data name="exclusivo" xml:space="preserve"><value>exclusive</value></data>
+  <data name="há {0} dia(s)" xml:space="preserve"><value>{0} day(s) ago</value></data>
+  <data name="ilimitado" xml:space="preserve"><value>unlimited</value></data>
+  <data name="oral" xml:space="preserve"><value>oral</value></data>
+  <data name="padrão do médico" xml:space="preserve"><value>doctor's default</value></data>
+  <data name="suspensão temporária (ex.: pagamento em atraso); ninguém da clínica entra até ser reativado." xml:space="preserve"><value>temporary suspension (e.g.: late payment); no one from the clinic can sign in until reactivated.</value></data>
+  <data name="tela de login das clínicas" xml:space="preserve"><value>clinic login page</value></data>
+  <data name="usa o sistema normalmente." xml:space="preserve"><value>uses the system normally.</value></data>
+  <data name="vence em {0}." xml:space="preserve"><value>due on {0}.</value></data>
+  <data name="vence hoje." xml:space="preserve"><value>due today.</value></data>
+  <data name="venceu em {0}." xml:space="preserve"><value>was due on {0}.</value></data>
+  <data name="{0} (CRM {1}/{2})" xml:space="preserve"><value>{0} (CRM {1}/{2})</value></data>
+  <data name="{0} - {1} (inativo)" xml:space="preserve"><value>{0} - {1} (inactive)</value></data>
+  <data name="{0} MB" xml:space="preserve"><value>{0} MB</value></data>
+  <data name="{0} agendamento(s)" xml:space="preserve"><value>{0} appointment(s)</value></data>
+  <data name="{0} anos" xml:space="preserve"><value>{0} years old</value></data>
+  <data name="{0} anos · nascido(a) em {1}" xml:space="preserve"><value>{0} years old · born on {1}</value></data>
+  <data name="{0} arquivos anexados ao prontuário." xml:space="preserve"><value>{0} files attached to the medical record.</value></data>
+  <data name="{0} cliente(s)" xml:space="preserve"><value>{0} client(s)</value></data>
+  <data name="{0} cobrança(s)" xml:space="preserve"><value>{0} charge(s)</value></data>
+  <data name="{0} cobrança(s) · {1} cliente(s)" xml:space="preserve"><value>{0} charge(s) · {1} client(s)</value></data>
+  <data name="{0} convênio(s)" xml:space="preserve"><value>{0} health plan(s)</value></data>
+  <data name="{0} de {1}" xml:space="preserve"><value>{0} of {1}</value></data>
+  <data name="{0} desde {1}{2}. Os usuários desta clínica não conseguem entrar no sistema." xml:space="preserve"><value>{0} since {1}{2}. Users of this clinic cannot sign in to the system.</value></data>
+  <data name="{0} dia(s) restante(s)" xml:space="preserve"><value>{0} day(s) remaining</value></data>
+  <data name="{0} dias" xml:space="preserve"><value>{0} days</value></data>
+  <data name="{0} mensalidade(s) de {1:MM/yyyy} gerada(s)." xml:space="preserve"><value>{0} monthly fee(s) for {1:MM/yyyy} generated.</value></data>
+  <data name="{0} min" xml:space="preserve"><value>{0} min</value></data>
+  <data name="{0} médico(s)" xml:space="preserve"><value>{0} doctor(s)</value></data>
+  <data name="{0} médico(s), {1} ativo(s)" xml:space="preserve"><value>{0} doctor(s), {1} active</value></data>
+  <data name="{0} paciente(s)" xml:space="preserve"><value>{0} patient(s)</value></data>
+  <data name="{0} perfil(is)" xml:space="preserve"><value>{0} profile(s)</value></data>
+  <data name="{0} usuário(s)" xml:space="preserve"><value>{0} user(s)</value></data>
+  <data name="{0} · Administração do sistema" xml:space="preserve"><value>{0} · System administration</value></data>
+  <data name="· CPF {0}" xml:space="preserve"><value>· CPF {0}</value></data>
+  <data name="· validade {0} dias" xml:space="preserve"><value>· valid for {0} days</value></data>
+  <data name="· {0} de {1} ativos permitidos no plano" xml:space="preserve"><value>· {0} of {1} active allowed on the plan</value></data>
+  <data name="· {0} · vencimento {1} ·" xml:space="preserve"><value>· {0} · due {1} ·</value></data>
+  <data name="É a mensalidade do mês do vencimento (não deixa gerar o mesmo mês de novo)" xml:space="preserve"><value>This is the monthly fee for the due month (prevents generating the same month again)</value></data>
+  <data name="Último acesso" xml:space="preserve"><value>Last access</value></data>
+</root>

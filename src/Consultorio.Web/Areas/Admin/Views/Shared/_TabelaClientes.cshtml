@@ -1,0 +1,43 @@
+@model IReadOnlyList<ClienteResumoDto>
+@{
+    static string Uso(int usados, short? max) => max is short m ? $"{usados} / {m}" : $"{usados} / {Exibicao.Tr("ilimitado")}";
+    static string Classe(int usados, short? max) => max is short m ? (usados > m ? "status-faltou" : usados >= Math.Ceiling(m * 0.9) ? "status-aguardando" : "") : "";
+}
+<div class="tabela-rolagem">
+    <table class="tabela">
+        <thead>
+            <tr><th>@T["Cliente"]</th><th>@T["Cidade"]</th><th>@T["Acesso"]</th><th class="num">@T["Usuários"]</th><th class="num">@T["Médicos"]</th><th class="num">@T["Pacientes"]</th>
+                <th class="num">@T["Agend. no mês"]</th><th>@T["Último acesso"]</th><th></th></tr>
+        </thead>
+        <tbody>
+            @foreach (var c in Model)
+            {
+                <tr class="@(c.Ativo ? "" : "inativo")">
+                    <td><a asp-area="Admin" asp-controller="Clientes" asp-action="Detalhes" asp-route-id="@c.Id"><strong>@c.Nome</strong></a>
+                        <partial name="_SituacaoCliente" model="(c.Situacao, c.MotivoSituacao)" /></td>
+                    <td>@(c.Cidade is null ? "" : $"{c.Cidade}/{c.Uf}")</td>
+                    <td>
+                        @if (c.AcessoDefinitivo) { <span class="badge status-atendido">@T["Definitivo"]</span> }
+                        else
+                        {
+                            <span class="badge @(c.AcessoVencido ? "status-faltou" : c.AcessoVencendo ? "status-aguardando" : "")"
+                                  title="@(c.AcessoVencido ? T["Período de acesso encerrado: a clínica não consegue entrar"] : T["{0} dia(s) restante(s)", c.DiasDeAcesso])">
+                                @(c.AcessoVencido ? T["Vencido em"] : T["Teste até"]) @c.AcessoAte?.ToString("d")
+                            </span>
+                        }
+                    </td>
+                    <td class="num"><span class="badge @Classe(c.UsuariosAtivos, c.MaxUsuarios)">@Uso(c.UsuariosAtivos, c.MaxUsuarios)</span></td>
+                    <td class="num"><span class="badge @Classe(c.MedicosAtivos, c.MaxMedicos)">@Uso(c.MedicosAtivos, c.MaxMedicos)</span></td>
+                    <td class="num">@c.Pacientes</td>
+                    <td class="num">@c.AgendamentosMes</td>
+                    <td>@(c.UltimoAcessoEm is DateTime u ? Exibicao.DataHora(u) : T["Nunca"].Value)</td>
+                    <td class="col-acoes"><a class="btn btn-p btn-leve" asp-area="Admin" asp-controller="Clientes" asp-action="Form" asp-route-id="@c.Id">@T["Editar"]</a></td>
+                </tr>
+            }
+            @if (Model.Count == 0)
+            {
+                <tr><td colspan="9" class="muted">@T["Nenhum cliente encontrado."]</td></tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,16 @@
+@model AdministradorFormVM
+@{ ViewData["Title"] = Model.Id is null ? T["Novo administrador"].Value : Model.Nome; }
+<form method="post" class="cartao formulario estreito">
+    <partial name="_ResumoErros" />
+    <input type="hidden" name="Id" value="@Model.Id" />
+    <label class="campo"><span>@T["Nome *"]</span><input name="Nome" value="@Model.Nome" maxlength="150" required /></label>
+    <label class="campo"><span>@T["E-mail (login) *"]</span><input name="Email" type="email" value="@Model.Email" maxlength="254" required autocomplete="off" /></label>
+    <label class="campo"><span>@(Model.Id is null ? T["Senha inicial *"] : T["Nova senha"])</span>
+        <input name="Senha" type="password" minlength="8" autocomplete="new-password" @(Model.Id is null ? "required" : "") />
+        <small>@(Model.Id is null ? T["Mínimo de 8 caracteres, com letras e números."] : T["Deixe em branco para manter a senha atual."])</small></label>
+    <label class="check"><input type="checkbox" name="Ativo" value="true" checked="@Model.Ativo" /><input type="hidden" name="Ativo" value="false" /> @T["Ativo"]</label>
+    <div class="acoes">
+        <button class="btn btn-primario" type="submit">@T["Salvar"]</button>
+        <a class="btn btn-leve" asp-action="Index">@T["Voltar"]</a>
+    </div>
+</form>

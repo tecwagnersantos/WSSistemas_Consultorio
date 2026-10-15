@@ -1,0 +1,50 @@
+@model PerfilFormVM
+@{
+    ViewData["Title"] = Model.Id is null ? T["Novo perfil de acesso"].Value : Exibicao.NomePerfil(Model.Nome);
+    var grupos = Transacoes.Todas.GroupBy(t => t.Grupo);
+}
+<form method="post" class="cartao formulario">
+    <partial name="_ResumoErros" />
+    <input type="hidden" name="Id" value="@Model.Id" />
+    <div class="linha">
+        <label class="campo"><span>@T["Nome *"]</span><input name="Nome" value="@Model.Nome" maxlength="50" required /></label>
+        <label class="campo largo"><span>@T["Descrição"]</span><input name="Descricao" value="@Model.Descricao" maxlength="200" placeholder="@T["Ex.: enfermagem da triagem"]" /></label>
+        <label class="campo"><span>@T["Vale para"]</span>
+            <select name="ClinicaId">
+                <option value="">@T["Todos os clientes (padrão)"]</option>
+                @foreach (var c in Model.Clientes)
+                {
+                    <option value="@c.Id" selected="@(c.Id == Model.ClinicaId)">@T["Só {0}", c.Nome]</option>
+                }
+            </select></label>
+    </div>
+
+    <fieldset>
+        <legend>@T["Transações liberadas"]</legend>
+        <div class="grade-transacoes">
+            @foreach (var g in grupos)
+            {
+                <div class="grupo-transacoes">
+                    <h3>@T[g.Key]</h3>
+                    @foreach (var t in g)
+                    {
+                        <label class="check opcao-descrita">
+                            <input type="checkbox" name="Transacoes" value="@t.Codigo" checked="@Model.Transacoes.Contains(t.Codigo)" />
+                            <span><strong>@T[t.Nome]</strong>@if (t.Sensivel) { <span class="badge status-faltou">@T["dado de saúde"]</span> }<small>@T[t.Descricao]</small></span>
+                        </label>
+                    }
+                    @if (g.Any(t => t.Sensivel))
+                    {
+                        <small class="muted">@T["Prontuário é dado sensível (LGPD): libere só para perfis de profissionais de saúde. Todo acesso fica na auditoria."]</small>
+                    }
+                </div>
+            }
+        </div>
+    </fieldset>
+    <label class="check"><input type="checkbox" name="Ativo" value="true" checked="@Model.Ativo" /><input type="hidden" name="Ativo" value="false" /> @T["Ativo (desmarque para tirar este acesso de todos os usuários que têm o perfil)"]</label>
+    <p class="muted">@T["As mudanças valem para os usuários com este perfil já na próxima página que abrirem, sem precisar sair e entrar de novo."]</p>
+    <div class="acoes">
+        <button class="btn btn-primario" type="submit">@T["Salvar"]</button>
+        <a class="btn btn-leve" asp-action="Index">@T["Voltar"]</a>
+    </div>
+</form>

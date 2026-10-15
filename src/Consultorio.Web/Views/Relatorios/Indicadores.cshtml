@@ -1,0 +1,80 @@
+@model IndicadoresVM
+@{
+    ViewData["Title"] = T["Indicadores mensais"].Value;
+    var meses = Model.Itens.GroupBy(i => i.Mes).OrderBy(g => g.Key).ToList();
+}
+<form method="get" class="barra-filtros nao-imprimir">
+    <div class="filtros-linha">
+        <label class="campo-inline">@T["De"] <input type="month" name="de" value="@Model.De.ToString("yyyy-MM")" /></label>
+        <label class="campo-inline">@T["Até"] <input type="month" name="ate" value="@Model.Ate.ToString("yyyy-MM")" /></label>
+        <partial name="_FiltroMedico" model="(Model.PodeEscolherMedico, Model.Medicos, Model.MedicoId)" />
+        <button class="btn btn-secundario" type="submit">@T["Filtrar"]</button>
+    </div>
+    <div class="grupo-botoes">
+        <button class="btn btn-leve" type="submit" name="formato" value="csv">@T["Exportar CSV"]</button>
+        <button class="btn btn-leve" type="button" onclick="window.print()">@T["Imprimir"]</button>
+    </div>
+</form>
+
+<section class="cartao">
+    @if (Model.Itens.Count == 0)
+    {
+        <p class="vazio-texto">@T["Nenhum dado no período."]</p>
+    }
+    else
+    {
+        <div class="tabela-rolagem">
+        <table class="tabela">
+            <thead>
+                <tr><th>@T["Mês"]</th><th>@T["Médico"]</th><th class="num">@T["Agendamentos"]</th><th class="num">@T["Atendidos"]</th><th class="num">@T["Faltas"]</th>
+                    <th class="num">@T["Taxa de faltas"]</th><th class="num">@T["Cancelados"]</th><th class="num">@T["Particulares"]</th><th class="num">@T["Valor atendido"]</th></tr>
+            </thead>
+            <tbody>
+                @foreach (var g in meses)
+                {
+                    foreach (var i in g)
+                    {
+                        var baseFaltas = i.Atendidos + i.Faltas;
+                        <tr>
+                            <td>@Exibicao.MesAno(i.Mes)</td>
+                            <td>@i.Medico</td>
+                            <td class="num">@i.TotalAgendamentos</td>
+                            <td class="num">@i.Atendidos</td>
+                            <td class="num">@i.Faltas</td>
+                            <td class="num">@(baseFaltas == 0 ? "—" : (i.Faltas * 100.0 / baseFaltas).ToString("0.0", Exibicao.Cultura) + "%")</td>
+                            <td class="num">@i.Cancelados</td>
+                            <td class="num">@i.Particulares</td>
+                            <td class="num">@Exibicao.Moeda(i.ValorAtendido)</td>
+                        </tr>
+                    }
+                    if (g.Count() > 1)
+                    {
+                        <tr class="subtotal">
+                            <td colspan="2">@T["Total {0}", Exibicao.MesAno(g.Key)]</td>
+                            <td class="num">@g.Sum(i => i.TotalAgendamentos)</td>
+                            <td class="num">@g.Sum(i => i.Atendidos)</td>
+                            <td class="num">@g.Sum(i => i.Faltas)</td>
+                            <td></td>
+                            <td class="num">@g.Sum(i => i.Cancelados)</td>
+                            <td class="num">@g.Sum(i => i.Particulares)</td>
+                            <td class="num">@Exibicao.Moeda(g.Sum(i => i.ValorAtendido))</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2">@T["Total do período"]</td>
+                    <td class="num">@Model.Itens.Sum(i => i.TotalAgendamentos)</td>
+                    <td class="num">@Model.Itens.Sum(i => i.Atendidos)</td>
+                    <td class="num">@Model.Itens.Sum(i => i.Faltas)</td>
+                    <td></td>
+                    <td class="num">@Model.Itens.Sum(i => i.Cancelados)</td>
+                    <td class="num">@Model.Itens.Sum(i => i.Particulares)</td>
+                    <td class="num">@Exibicao.Moeda(Model.Itens.Sum(i => i.ValorAtendido))</td>
+                </tr>
+            </tfoot>
+        </table>
+        </div>
+    }
+</section>

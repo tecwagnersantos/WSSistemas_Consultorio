@@ -1,0 +1,45 @@
+@model AgendamentosRelVM
+@{ ViewData["Title"] = T["Agendamentos por cliente"].Value; }
+<form method="get" class="barra-filtros nao-imprimir">
+    <div class="filtros-linha">
+        <label class="campo-inline">@T["De"] <input type="date" name="de" value="@Exibicao.Iso(Model.De)" /></label>
+        <label class="campo-inline">@T["Até"] <input type="date" name="ate" value="@Exibicao.Iso(Model.Ate)" /></label>
+        <partial name="_FiltroCliente" model="(Model.Clientes, Model.ClinicaId)" />
+        <button class="btn btn-secundario" type="submit">@T["Filtrar"]</button>
+    </div>
+    <partial name="_Botoes" />
+</form>
+<section class="cartao">
+    @if (Model.Itens.Count == 0)
+    {
+        <p class="vazio-texto">@T["Nenhum agendamento no período."]</p>
+    }
+    else
+    {
+        var atend = Model.Itens.Sum(a => a.Atendidos); var faltas = Model.Itens.Sum(a => a.Faltas);
+        <div class="tabela-rolagem">
+        <table class="tabela">
+            <thead><tr><th>@T["Cliente"]</th><th class="num">@T["Total"]</th><th class="num">@T["Em aberto"]</th><th class="num">@T["Atendidos"]</th>
+                <th class="num">@T["Faltas"]</th><th class="num">@T["Taxa de faltas"]</th><th class="num">@T["Cancelados"]</th><th class="num">@T["Remarcados"]</th></tr></thead>
+            <tbody>
+                @foreach (var a in Model.Itens)
+                {
+                    <tr>
+                        <td><a asp-controller="Clientes" asp-action="Detalhes" asp-route-id="@a.ClinicaId">@a.Cliente</a></td>
+                        <td class="num">@a.Total</td><td class="num">@a.EmAberto</td><td class="num">@a.Atendidos</td>
+                        <td class="num">@a.Faltas</td><td class="num">@(a.Atendidos + a.Faltas == 0 ? "—" : a.TaxaFaltas.ToString("0.0", Exibicao.Cultura) + "%")</td>
+                        <td class="num">@a.Cancelados</td><td class="num">@a.Remarcados</td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr><td>@T["Total ({0} cliente(s))", Model.Itens.Count]</td>
+                    <td class="num">@Model.Itens.Sum(a => a.Total)</td><td class="num">@Model.Itens.Sum(a => a.EmAberto)</td>
+                    <td class="num">@atend</td><td class="num">@faltas</td>
+                    <td class="num">@(atend + faltas == 0 ? "—" : (faltas * 100.0 / (atend + faltas)).ToString("0.0", Exibicao.Cultura) + "%")</td>
+                    <td class="num">@Model.Itens.Sum(a => a.Cancelados)</td><td class="num">@Model.Itens.Sum(a => a.Remarcados)</td></tr>
+            </tfoot>
+        </table>
+        </div>
+    }
+</section>

@@ -1,0 +1,16 @@
+@* Seletor de idioma: grava no cookie e, se houver alguém logado, no cadastro do usuário *@
+@{
+    var atual = System.Globalization.CultureInfo.CurrentUICulture.Name;
+    var area = ViewContext.RouteData.Values["area"] as string ?? "";
+    var voltar = Context.Request.PathBase + Context.Request.Path + Context.Request.QueryString;
+}
+<form method="post" asp-area="@area" asp-controller="Idioma" asp-action="Definir" class="seletor-idioma">
+    <input type="hidden" name="voltar" value="@voltar" />
+    <select name="idioma" data-enviar-ao-mudar aria-label="@T["Idioma"]" title="@T["Idioma"]">
+        @foreach (var (codigo, nome) in Idiomas.Todos)
+        {
+            <option value="@codigo" selected="@(codigo == atual)" lang="@codigo">@nome</option>
+        }
+    </select>
+    <noscript><button class="btn btn-p btn-leve" type="submit">OK</button></noscript>
+</form>

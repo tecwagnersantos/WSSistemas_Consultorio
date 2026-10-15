@@ -1,0 +1,7 @@
+# .NET / Visual Studio
+bin/
+obj/
+*.user
+.vs/
+logs/
+appsettings.Production.json

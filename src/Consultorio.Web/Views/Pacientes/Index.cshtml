@@ -1,0 +1,66 @@
+@model PaginaResultado<PacienteResumoDto>
+@{
+    ViewData["Title"] = T["Pacientes"].Value;
+    var termo = ViewBag.Termo as string;
+    var totalPaginas = (int)Math.Ceiling(Model.Total / (double)Model.TamanhoPagina);
+}
+<div class="barra-filtros">
+    <form method="get" class="filtros-linha busca">
+        <input type="search" name="termo" value="@termo" placeholder="@T["Nome, CPF ou celular"]" autofocus />
+        <button class="btn btn-secundario" type="submit">@T["Buscar"]</button>
+    </form>
+    @if (User.Pode(Transacoes.PacientesEditar)) { <a class="btn btn-primario" asp-action="Novo">@T["+ Novo paciente"]</a> }
+</div>
+
+<section class="cartao">
+    @if (Model.Itens.Count == 0)
+    {
+        <p class="vazio-texto">@(string.IsNullOrEmpty(termo) ? T["Nenhum paciente cadastrado."] : T["Nenhum paciente encontrado."])</p>
+    }
+    else
+    {
+        <div class="tabela-rolagem">
+        <table class="tabela">
+            <thead><tr><th>@T["Nome"]</th><th>@T["CPF"]</th><th>@T["Nascimento"]</th><th>@T["Celular"]</th><th></th><th class="col-acoes"></th></tr></thead>
+            <tbody>
+                @foreach (var p in Model.Itens)
+                {
+                    <tr class="@(p.Ativo ? "" : "inativo")">
+                        <td>
+                            <a asp-action="Editar" asp-route-id="@p.Id"><strong>@(p.NomeSocial ?? p.Nome)</strong></a>
+                            @if (p.NomeSocial != null) { <small class="bloco muted">@T["Registro: {0}", p.Nome]</small> }
+                        </td>
+                        <td>@Exibicao.Cpf(p.Cpf)</td>
+                        <td>@Exibicao.Data(p.DataNascimento) <small class="muted">@T["({0} anos)", Exibicao.Idade(p.DataNascimento)]</small></td>
+                        <td>@p.Celular</td>
+                        <td>@if (!p.Ativo) { <span class="badge status-cancelado">@T["Inativo"]</span> }</td>
+                        <td class="col-acoes">
+                            <div class="acoes-linha">
+                                @if (User.Pode(Transacoes.ProntuarioVer))
+                                {
+                                    <a class="btn btn-p btn-secundario" asp-controller="Prontuario" asp-action="Index" asp-route-pacienteId="@p.Id">@T["Prontuário"]</a>
+                                }
+                                @if (p.Ativo && User.Pode(Transacoes.AgendaAgendar))
+                                {
+                                    <a class="btn btn-p btn-leve" asp-controller="Agenda" asp-action="Novo" asp-route-pacienteId="@p.Id" asp-route-pacienteNome="@(p.NomeSocial ?? p.Nome)">@T["Agendar"]</a>
+                                }
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        </div>
+        <div class="paginacao">
+            <span class="muted">@T["{0} paciente(s)", Model.Total]</span>
+            @if (totalPaginas > 1)
+            {
+                <div class="grupo-botoes">
+                    @if (Model.Pagina > 1) { <a class="btn btn-leve" asp-route-termo="@termo" asp-route-pagina="@(Model.Pagina - 1)">&#8249; @T["Anterior"]</a> }
+                    <span class="pagina-atual">@T["Página {0} de {1}", Model.Pagina, totalPaginas]</span>
+                    @if (Model.Pagina < totalPaginas) { <a class="btn btn-leve" asp-route-termo="@termo" asp-route-pagina="@(Model.Pagina + 1)">@T["Próxima"] &#8250;</a> }
+                </div>
+            }
+        </div>
+    }
+</section>

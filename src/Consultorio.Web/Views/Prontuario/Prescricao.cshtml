@@ -1,0 +1,65 @@
+@model PrescricaoFormVM
+@{ ViewData["Title"] = T["Nova prescrição"].Value; }
+<form method="post" class="cartao formulario" data-lista-form>
+    <div class="cabecalho-acoes">
+        <strong>@Model.PacienteNome</strong>
+        <a class="btn btn-leve" asp-action="Index" asp-route-pacienteId="@Model.PacienteId">@T["Voltar ao prontuário"]</a>
+    </div>
+    <partial name="_ResumoErros" />
+    <input type="hidden" name="EvolucaoId" value="@Model.EvolucaoId" />
+    <div class="linha">
+        <label class="campo"><span>@T["Tipo de receita"]</span>
+            <select name="Tipo">
+                <option value="S" selected="@(Model.Tipo == "S")">@T["Simples"]</option>
+                <option value="C" selected="@(Model.Tipo == "C")">@T["Controle especial"]</option>
+                <option value="A" selected="@(Model.Tipo == "A")">@T["Antimicrobiano"]</option>
+            </select></label>
+        <label class="campo"><span>@T["Validade (dias)"]</span><input type="number" name="ValidadeDias" min="1" max="365" value="@Exibicao.Num(Model.ValidadeDias)" /></label>
+    </div>
+
+    <fieldset data-lista="Itens">
+        <legend>@T["Medicamentos"]</legend>
+        <div class="lista-itens">
+            @for (var i = 0; i < Model.Itens.Count; i++)
+            {
+                var it = Model.Itens[i];
+                <div class="item-lista item-medicamento">
+                    <div class="linha">
+                        <label class="campo largo"><span>@T["Medicamento *"]</span><input name="Itens[@i].Medicamento" value="@it.Medicamento" maxlength="200" required /></label>
+                        <label class="campo"><span>@T["Concentração"]</span><input name="Itens[@i].Concentracao" value="@it.Concentracao" maxlength="50" placeholder="@T["500 mg"]" /></label>
+                        <label class="campo"><span>@T["Forma"]</span><input name="Itens[@i].FormaFarmaceutica" value="@it.FormaFarmaceutica" maxlength="50" placeholder="@T["comprimido"]" /></label>
+                        <label class="campo curto"><span>@T["Via"]</span><input name="Itens[@i].ViaAdministracao" value="@it.ViaAdministracao" maxlength="30" placeholder="@T["oral"]" /></label>
+                    </div>
+                    <div class="linha">
+                        <label class="campo largo"><span>@T["Posologia *"]</span><input name="Itens[@i].Posologia" value="@it.Posologia" maxlength="300" required placeholder="@T["1 comprimido de 8/8h por 7 dias"]" /></label>
+                        <label class="campo"><span>@T["Quantidade"]</span><input name="Itens[@i].Quantidade" value="@it.Quantidade" maxlength="50" placeholder="@T["1 caixa"]" /></label>
+                        <label class="check"><input type="checkbox" name="Itens[@i].UsoContinuo" value="true" checked="@it.UsoContinuo" /><input type="hidden" name="Itens[@i].UsoContinuo" value="false" /> @T["Uso contínuo"]</label>
+                        <button type="button" class="btn-icone" data-remover-item title="@T["Remover"]">&times;</button>
+                    </div>
+                </div>
+            }
+        </div>
+        <button type="button" class="btn btn-leve" data-adicionar-item>@T["+ Adicionar medicamento"]</button>
+        <template>
+            <div class="item-lista item-medicamento">
+                <div class="linha">
+                    <label class="campo largo"><span>@T["Medicamento *"]</span><input name="Itens[__i__].Medicamento" maxlength="200" required /></label>
+                    <label class="campo"><span>@T["Concentração"]</span><input name="Itens[__i__].Concentracao" maxlength="50" placeholder="@T["500 mg"]" /></label>
+                    <label class="campo"><span>@T["Forma"]</span><input name="Itens[__i__].FormaFarmaceutica" maxlength="50" placeholder="@T["comprimido"]" /></label>
+                    <label class="campo curto"><span>@T["Via"]</span><input name="Itens[__i__].ViaAdministracao" maxlength="30" placeholder="@T["oral"]" /></label>
+                </div>
+                <div class="linha">
+                    <label class="campo largo"><span>@T["Posologia *"]</span><input name="Itens[__i__].Posologia" maxlength="300" required placeholder="@T["1 comprimido de 8/8h por 7 dias"]" /></label>
+                    <label class="campo"><span>@T["Quantidade"]</span><input name="Itens[__i__].Quantidade" maxlength="50" placeholder="@T["1 caixa"]" /></label>
+                    <label class="check"><input type="checkbox" name="Itens[__i__].UsoContinuo" value="true" /><input type="hidden" name="Itens[__i__].UsoContinuo" value="false" /> @T["Uso contínuo"]</label>
+                    <button type="button" class="btn-icone" data-remover-item title="@T["Remover"]">&times;</button>
+                </div>
+            </div>
+        </template>
+    </fieldset>
+
+    <label class="campo"><span>@T["Observações"]</span><textarea name="Observacoes" rows="2" maxlength="500">@Model.Observacoes</textarea></label>
+    <div class="acoes">
+        <button type="submit" class="btn btn-primario">@T["Emitir e imprimir"]</button>
+    </div>
+</form>

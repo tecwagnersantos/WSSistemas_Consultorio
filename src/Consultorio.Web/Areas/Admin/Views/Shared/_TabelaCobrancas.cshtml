@@ -1,0 +1,70 @@
+@model (IReadOnlyList<CobrancaDto> Itens, bool MostrarCliente, string Voltar)
+@using Consultorio.Domain.Entities
+@{
+    static string Classe(string s) => s switch
+    {
+        StatusCobranca.Paga => "status-atendido", StatusCobranca.Atrasada => "status-faltou",
+        StatusCobranca.Cancelada => "status-cancelado", _ => "status-aguardando"
+    };
+    var hoje = DateOnly.FromDateTime(DateTime.Today);
+}
+<div class="tabela-rolagem">
+    <table class="tabela">
+        <thead>
+            <tr>@if (Model.MostrarCliente) { <th>@T["Cliente"]</th> }<th>@T["Descrição"]</th><th>@T["Vencimento"]</th><th class="num">@T["Valor"]</th><th>@T["Situação"]</th><th>@T["Pagamento"]</th><th></th></tr>
+        </thead>
+        <tbody>
+            @foreach (var c in Model.Itens)
+            {
+                <tr class="@(c.Cancelada ? "inativo" : "")">
+                    @if (Model.MostrarCliente)
+                    {
+                        <td><a asp-area="Admin" asp-controller="Clientes" asp-action="Detalhes" asp-route-id="@c.ClinicaId">@c.Cliente</a></td>
+                    }
+                    <td>@c.Descricao@if (!string.IsNullOrEmpty(c.Observacoes)) { <br /><small class="muted">@c.Observacoes</small> }</td>
+                    <td>@c.Vencimento.ToString("d")</td>
+                    <td class="num">@Exibicao.Moeda(c.Valor)</td>
+                    <td><span class="badge @Classe(c.Status)">@T[StatusCobranca.Nome(c.Status)]@(c.DiasAtraso > 0 ? " " + T["há {0} dia(s)", c.DiasAtraso] : "")</span></td>
+                    <td>@if (c.PagoEm is DateOnly pg) { <text>@pg.ToString("d") · @Exibicao.Moeda(c.ValorPago) · @T[FormasPagamento.Nome(c.FormaPagamento)]</text> }</td>
+                    <td class="col-acoes">
+                        @if (!c.Cancelada && c.PagoEm is null)
+                        {
+                            <a class="btn btn-p btn-primario" asp-area="Admin" asp-controller="Pagamentos" asp-action="Pagar" asp-route-id="@c.Id" asp-route-voltar="@Model.Voltar">@T["Registrar pagamento"]</a>
+                            <details class="em-linha">
+                                <summary class="btn btn-p btn-leve">@T["Prorrogar"]</summary>
+                                <form method="post" asp-area="Admin" asp-controller="Pagamentos" asp-action="Prorrogar" asp-route-id="@c.Id">
+                                    <input type="hidden" name="voltar" value="@Model.Voltar" />
+                                    <input type="date" name="vencimento" min="@Exibicao.Iso(hoje)" required aria-label="@T["Novo vencimento"]" />
+                                    <button class="btn btn-p btn-primario" type="submit">@T["Salvar"]</button>
+                                </form>
+                            </details>
+                            <details class="em-linha">
+                                <summary class="btn btn-p btn-leve">@T["Cancelar"]</summary>
+                                <form method="post" asp-area="Admin" asp-controller="Pagamentos" asp-action="Cancelar" asp-route-id="@c.Id">
+                                    <input type="hidden" name="voltar" value="@Model.Voltar" />
+                                    <input name="motivo" maxlength="200" required placeholder="@T["Motivo do cancelamento"]" aria-label="@T["Motivo"]" />
+                                    <button class="btn btn-p btn-perigo" type="submit">@T["Cancelar cobrança"]</button>
+                                </form>
+                            </details>
+                        }
+                        else if (c.PagoEm is not null)
+                        {
+                            <details class="em-linha">
+                                <summary class="btn btn-p btn-leve">@T["Estornar"]</summary>
+                                <form method="post" asp-area="Admin" asp-controller="Pagamentos" asp-action="Estornar" asp-route-id="@c.Id">
+                                    <input type="hidden" name="voltar" value="@Model.Voltar" />
+                                    <input name="motivo" maxlength="200" required placeholder="@T["Motivo do estorno"]" aria-label="@T["Motivo"]" />
+                                    <button class="btn btn-p btn-perigo" type="submit">@T["Estornar pagamento"]</button>
+                                </form>
+                            </details>
+                        }
+                    </td>
+                </tr>
+            }
+            @if (Model.Itens.Count == 0)
+            {
+                <tr><td colspan="7" class="muted">@T["Nenhuma cobrança encontrada."]</td></tr>
+            }
+        </tbody>
+    </table>
+</div>

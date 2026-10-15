@@ -1,0 +1,67 @@
+@model DashboardVM
+@{
+    ViewData["Title"] = T["Dashboard"].Value;
+    var d = Model.Dados;
+    var maxConvenio = d.PorConvenioMes.Count == 0 ? 1 : d.PorConvenioMes.Max(c => c.Quantidade);
+    var serie = d.AtendimentosUltimos30Dias.Select(s => new { data = s.Data.ToString("yyyy-MM-dd"), s.Atendidos, s.Faltas, s.Cancelados });
+}
+<div class="barra-filtros">
+    <span class="muted">@T["Hoje, {0}", Exibicao.DataLonga(DateTime.Today)]</span>
+    @if (Model.PodeEscolherMedico)
+    {
+        <form method="get" class="filtros-linha">
+            <select name="medicoId" data-enviar-ao-mudar>
+                <option value="">@T["Todos os médicos"]</option>
+                @foreach (var m in Model.Medicos)
+                {
+                    <option value="@m.Id" selected="@(m.Id == Model.MedicoId)">@m.Nome</option>
+                }
+            </select>
+        </form>
+    }
+</div>
+
+<section class="kpis">
+    <div class="kpi"><span>@T["Agendados hoje"]</span><strong>@d.AgendadosHoje</strong></div>
+    <div class="kpi"><span>@T["Atendidos hoje"]</span><strong>@d.AtendidosHoje</strong></div>
+    <div class="kpi destaque"><span>@T["Na sala de espera"]</span><strong>@d.AguardandoAgora</strong></div>
+    <div class="kpi"><span>@T["Atendidos no mês"]</span><strong>@d.AtendidosMes</strong></div>
+    <div class="kpi"><span>@T["Faturamento do mês"]</span><strong>@Exibicao.Moeda(d.ValorAtendidoMes)</strong></div>
+    <div class="kpi @(d.TaxaFaltasMes > 15 ? "alerta-kpi" : "")"><span>@T["Faltas no mês"]</span><strong>@d.FaltasMes <small>(@d.TaxaFaltasMes.ToString("0.#", Exibicao.Cultura)%)</small></strong></div>
+    <div class="kpi"><span>@T["Espera média no mês"]</span><strong>@(d.EsperaMediaMinMes is double e ? $"{e:0} min" : "—")</strong></div>
+</section>
+
+<div class="grade-2">
+    <section class="cartao">
+        <h2>@T["Atendimentos nos últimos 30 dias"]</h2>
+        <div id="grafico-30dias" class="grafico" data-serie="@System.Text.Json.JsonSerializer.Serialize(serie)"></div>
+        <div class="legenda">
+            <span><i class="cor-atendidos"></i>@T["Atendidos"]</span>
+            <span><i class="cor-faltas"></i>@T["Faltas"]</span>
+            <span><i class="cor-cancelados"></i>@T["Cancelados"]</span>
+        </div>
+    </section>
+    <section class="cartao">
+        <h2>@T["Atendidos no mês por convênio"]</h2>
+        @if (d.PorConvenioMes.Count == 0)
+        {
+            <p class="muted">@T["Nenhum atendimento concluído neste mês."]</p>
+        }
+        else
+        {
+            <ul class="barras-h">
+                @foreach (var c in d.PorConvenioMes)
+                {
+                    <li>
+                        <div class="barras-h-rotulo"><span>@c.Nome</span><span>@c.Quantidade · @Exibicao.Moeda(c.Valor)</span></div>
+                        <div class="barras-h-trilho"><div style="width:@((c.Quantidade * 100 / maxConvenio).ToString())%"></div></div>
+                    </li>
+                }
+            </ul>
+        }
+    </section>
+</div>
+
+@section Scripts {
+    <script src="~/js/dashboard.js" asp-append-version="true"></script>
+}

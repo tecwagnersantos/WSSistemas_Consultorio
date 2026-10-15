@@ -1,0 +1,64 @@
+@model MedicoFormVM
+@{ ViewData["Title"] = Model.Id is null ? T["Novo médico"].Value : Model.Nome; }
+<form method="post" class="cartao formulario" data-somente-digitos="Cpf">
+    <partial name="_ResumoErros" />
+    <input type="hidden" name="Id" value="@Model.Id" />
+    <fieldset>
+        <legend>@T["Dados do médico"]</legend>
+        <div class="linha">
+            <label class="campo largo"><span>@T["Nome *"]</span><input name="Nome" value="@Model.Nome" maxlength="150" required /></label>
+            <label class="campo"><span>@T["CRM *"]</span><input name="Crm" value="@Model.Crm" maxlength="15" required /></label>
+            <label class="campo curto"><span>@T["UF *"]</span><input name="UfCrm" value="@Model.UfCrm" maxlength="2" class="maiusculas" required /></label>
+        </div>
+        <div class="linha">
+            <label class="campo"><span>@T["CPF"]</span><input name="Cpf" value="@Exibicao.Cpf(Model.Cpf)" data-mascara="cpf" inputmode="numeric" /></label>
+            <label class="campo"><span>@T["E-mail"]</span><input name="Email" type="email" value="@Model.Email" maxlength="254" /></label>
+            <label class="campo"><span>@T["Telefone"]</span><input name="Telefone" value="@Model.Telefone" data-mascara="telefone" maxlength="20" /></label>
+            <label class="campo"><span>@T["Duração padrão da consulta (min)"]</span><input name="DuracaoConsultaPadraoMin" type="number" min="5" max="240" step="5" value="@Model.DuracaoConsultaPadraoMin" required /></label>
+        </div>
+        <div class="linha">
+            <label class="campo largo"><span>@T["Usuário de acesso (perfil Médico)"]</span>
+                <select name="UsuarioId">
+                    <option value="">@T["Sem acesso ao sistema"]</option>
+                    @foreach (var u in Model.UsuariosMedicos)
+                    {
+                        <option value="@u.Id" selected="@(u.Id == Model.UsuarioId)">@u.Nome (@u.Email)</option>
+                    }
+                </select>
+                <small>@T["Vincule para que o médico veja a própria agenda e registre o prontuário. Crie o usuário em Administração › Usuários."]</small>
+            </label>
+            <label class="check"><input type="checkbox" name="Ativo" value="true" checked="@Model.Ativo" /><input type="hidden" name="Ativo" value="false" /> @T["Ativo"]</label>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>@T["Especialidades"]</legend>
+        @if (Model.Especialidades.Count == 0)
+        {
+            <p class="muted">@T["Nenhuma especialidade cadastrada."] <a asp-action="Especialidades">@T["Cadastrar especialidades"]</a></p>
+        }
+        <table class="tabela compacta">
+            <thead><tr><th>@T["Atende"]</th><th>@T["Especialidade"]</th><th>@T["RQE"]</th><th>@T["Principal"]</th></tr></thead>
+            <tbody>
+                @for (var i = 0; i < Model.Especialidades.Count; i++)
+                {
+                    var e = Model.Especialidades[i];
+                    <tr>
+                        <td>
+                            <input type="hidden" name="Especialidades[@i].EspecialidadeId" value="@e.EspecialidadeId" />
+                            <input type="hidden" name="Especialidades[@i].Nome" value="@e.Nome" />
+                            <input type="checkbox" name="Especialidades[@i].Selecionada" value="true" checked="@e.Selecionada" /><input type="hidden" name="Especialidades[@i].Selecionada" value="false" />
+                        </td>
+                        <td>@e.Nome</td>
+                        <td><input name="Especialidades[@i].Rqe" value="@e.Rqe" maxlength="15" class="pequeno" /></td>
+                        <td><input type="radio" name="PrincipalId" value="@e.EspecialidadeId" checked="@(e.EspecialidadeId == Model.PrincipalId)" /></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </fieldset>
+    <div class="acoes">
+        <button class="btn btn-primario" type="submit">@T["Salvar"]</button>
+        @if (Model.Id != null) { <a class="btn btn-secundario" asp-action="Horarios" asp-route-id="@Model.Id">@T["Grade de horários"]</a> }
+        <a class="btn btn-leve" asp-action="Medicos">@T["Voltar"]</a>
+    </div>
+</form>

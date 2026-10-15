@@ -1,0 +1,47 @@
+@model ConvenioFormVM
+@{ ViewData["Title"] = Model.Id is null ? T["Novo convênio"].Value : Model.Nome; }
+<form method="post" class="cartao formulario" data-somente-digitos="Cnpj">
+    <partial name="_ResumoErros" />
+    <input type="hidden" name="Id" value="@Model.Id" />
+    <div class="linha">
+        <label class="campo largo"><span>@T["Nome *"]</span><input name="Nome" value="@Model.Nome" maxlength="100" required /></label>
+        <label class="campo"><span>@T["Registro ANS"]</span><input name="RegistroAns" value="@Model.RegistroAns" maxlength="10" /></label>
+        <label class="campo"><span>@T["CNPJ"]</span><input name="Cnpj" value="@Model.Cnpj" data-mascara="cnpj" inputmode="numeric" /></label>
+    </div>
+    <div class="linha">
+        <label class="campo"><span>@T["Telefone"]</span><input name="Telefone" value="@Model.Telefone" data-mascara="telefone" maxlength="20" /></label>
+        <label class="campo"><span>@T["Prazo de retorno (dias)"]</span><input type="number" name="PrazoRetornoDias" min="0" max="365" value="@Model.PrazoRetornoDias" /></label>
+        <label class="check"><input type="checkbox" name="Ativo" value="true" checked="@Model.Ativo" /><input type="hidden" name="Ativo" value="false" /> @T["Ativo"]</label>
+    </div>
+    <fieldset data-lista="Planos">
+        <legend>@T["Planos"]</legend>
+        <div class="lista-itens">
+            @for (var i = 0; i < Model.Planos.Count; i++)
+            {
+                var p = Model.Planos[i];
+                <div class="item-lista linha">
+                    <input type="hidden" name="Planos[@i].Id" value="@p.Id" />
+                    <label class="campo largo"><span>@T["Plano"]</span><input name="Planos[@i].Nome" value="@p.Nome" maxlength="100" /></label>
+                    <label class="campo"><span>@T["Código"]</span><input name="Planos[@i].Codigo" value="@p.Codigo" maxlength="20" /></label>
+                    <label class="check"><input type="checkbox" name="Planos[@i].Ativo" value="true" checked="@p.Ativo" /><input type="hidden" name="Planos[@i].Ativo" value="false" /> @T["Ativo"]</label>
+                    <button type="button" class="btn-icone" data-remover-item title="@T["Remover"]">&times;</button>
+                </div>
+            }
+        </div>
+        <button type="button" class="btn btn-leve" data-adicionar-item>@T["+ Adicionar plano"]</button>
+        <template>
+            <div class="item-lista linha">
+                <input type="hidden" name="Planos[__i__].Id" value="0" />
+                <label class="campo largo"><span>@T["Plano"]</span><input name="Planos[__i__].Nome" maxlength="100" /></label>
+                <label class="campo"><span>@T["Código"]</span><input name="Planos[__i__].Codigo" maxlength="20" /></label>
+                <label class="check"><input type="checkbox" name="Planos[__i__].Ativo" value="true" checked /><input type="hidden" name="Planos[__i__].Ativo" value="false" /> @T["Ativo"]</label>
+                <button type="button" class="btn-icone" data-remover-item title="@T["Remover"]">&times;</button>
+            </div>
+        </template>
+        <p class="muted">@T["Planos removidos de um convênio já em uso são apenas inativados."]</p>
+    </fieldset>
+    <div class="acoes">
+        <button class="btn btn-primario" type="submit">@T["Salvar"]</button>
+        <a class="btn btn-leve" asp-action="Convenios">@T["Voltar"]</a>
+    </div>
+</form>

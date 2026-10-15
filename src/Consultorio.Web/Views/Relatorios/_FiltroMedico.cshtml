@@ -1,0 +1,13 @@
+@model (bool Pode, List<MedicoDto> Medicos, int? MedicoId)
+@if (Model.Pode)
+{
+    <label class="campo-inline">@T["Médico"]
+        <select name="medicoId">
+            <option value="">@T["Todos"]</option>
+            @foreach (var m in Model.Medicos)
+            {
+                <option value="@m.Id" selected="@(m.Id == Model.MedicoId)">@m.Nome</option>
+            }
+        </select>
+    </label>
+}
