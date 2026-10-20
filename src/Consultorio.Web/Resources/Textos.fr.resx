@@ -855,4 +855,61 @@
   <data name="· {0} · vencimento {1} ·" xml:space="preserve"><value>· {0} · échéance {1} ·</value></data>
   <data name="É a mensalidade do mês do vencimento (não deixa gerar o mesmo mês de novo)" xml:space="preserve"><value>C'est l'abonnement du mois de l'échéance (empêche de générer à nouveau le même mois)</value></data>
   <data name="Último acesso" xml:space="preserve"><value>Dernier accès</value></data>
+  <data name="Atestado médico" xml:space="preserve"><value>Certificat médical</value></data>
+  <data name="Declaração de comparecimento" xml:space="preserve"><value>Attestation de présence</value></data>
+  <data name="Solicitação de exames" xml:space="preserve"><value>Demande d&apos;examens</value></data>
+  <data name="Encaminhamento" xml:space="preserve"><value>Lettre d&apos;orientation</value></data>
+  <data name="Nome do paciente" xml:space="preserve"><value>Nom du patient</value></data>
+  <data name="CPF do paciente" xml:space="preserve"><value>CPF du patient</value></data>
+  <data name="Data de nascimento" xml:space="preserve"><value>Date de naissance</value></data>
+  <data name="Idade" xml:space="preserve"><value>Âge</value></data>
+  <data name="Data da emissão" xml:space="preserve"><value>Date d&apos;émission</value></data>
+  <data name="Data por extenso" xml:space="preserve"><value>Date en toutes lettres</value></data>
+  <data name="Hora de chegada (agendamento)" xml:space="preserve"><value>Heure d&apos;arrivée (rendez-vous)</value></data>
+  <data name="Hora da emissão" xml:space="preserve"><value>Heure d&apos;émission</value></data>
+  <data name="Dias de afastamento" xml:space="preserve"><value>Jours d&apos;arrêt</value></data>
+  <data name="Dias de afastamento por extenso" xml:space="preserve"><value>Jours d&apos;arrêt en toutes lettres</value></data>
+  <data name="CID" xml:space="preserve"><value>CIM</value></data>
+  <data name="Nome do médico" xml:space="preserve"><value>Nom du médecin</value></data>
+  <data name="CRM/UF do médico" xml:space="preserve"><value>CRM/UF du médecin</value></data>
+  <data name="Nome da clínica" xml:space="preserve"><value>Nom de la clinique</value></data>
+  <data name="Cidade da clínica" xml:space="preserve"><value>Ville de la clinique</value></data>
+  <data name="Padrão do sistema" xml:space="preserve"><value>Par défaut du système</value></data>
+  <data name="Modelo" xml:space="preserve"><value>Modèle</value></data>
+  <data name="Gerenciar modelos" xml:space="preserve"><value>Gérer les modèles</value></data>
+  <data name="ex.: J06.9" xml:space="preserve"><value>ex. : J06.9</value></data>
+  <data name="O paciente autorizou o CID no atestado" xml:space="preserve"><value>Le patient a autorisé la CIM sur le certificat</value></data>
+  <data name="Texto *" xml:space="preserve"><value>Texte *</value></data>
+  <data name="Os campos entre chaves são preenchidos na emissão:" xml:space="preserve"><value>Les champs entre accolades sont remplis à l&apos;émission :</value></data>
+  <data name="Sem autorização do paciente, a linha com {cid} sai do atestado." xml:space="preserve"><value>Sans l&apos;autorisation du patient, la ligne avec {cid} est retirée du certificat.</value></data>
+  <data name="Depois de emitido, o documento não pode ser alterado." xml:space="preserve"><value>Une fois émis, le document ne peut plus être modifié.</value></data>
+  <data name="Informe o CID ou desmarque a autorização do paciente." xml:space="preserve"><value>Saisissez la CIM ou décochez l&apos;autorisation du patient.</value></data>
+  <data name="{0} emitido(a)." xml:space="preserve"><value>{0} émis(e).</value></data>
+  <data name="Modelos de documentos" xml:space="preserve"><value>Modèles de documents</value></data>
+  <data name="Novo modelo" xml:space="preserve"><value>Nouveau modèle</value></data>
+  <data name="Documento *" xml:space="preserve"><value>Document *</value></data>
+  <data name="ex.: Atestado com CID" xml:space="preserve"><value>ex. : Certificat avec CIM</value></data>
+  <data name="Campos que podem ser usados no texto" xml:space="preserve"><value>Champs utilisables dans le texte</value></data>
+  <data name="Sem modelo próprio, o médico usa o texto padrão do sistema. Os modelos valem para todos os médicos da clínica." xml:space="preserve"><value>Sans modèle propre, le médecin utilise le texte par défaut du système. Les modèles s&apos;appliquent à tous les médecins de la clinique.</value></data>
+  <data name="Nenhum modelo cadastrado." xml:space="preserve"><value>Aucun modèle enregistré.</value></data>
+  <data name="Textos padrão do sistema" xml:space="preserve"><value>Textes par défaut du système</value></data>
+  <data name="Usar como base" xml:space="preserve"><value>Utiliser comme base</value></data>
+  <data name="Modelo salvo." xml:space="preserve"><value>Modèle enregistré.</value></data>
+  <data name="+ Atestado" xml:space="preserve"><value>+ Certificat</value></data>
+  <data name="+ Documento" xml:space="preserve"><value>+ Document</value></data>
+  <data name="Documentos ({0})" xml:space="preserve"><value>Documents ({0})</value></data>
+  <data name="Nenhum documento emitido." xml:space="preserve"><value>Aucun document émis.</value></data>
+  <data name="{0} dia(s)" xml:space="preserve"><value>{0} jour(s)</value></data>
+  <data name="Ver texto" xml:space="preserve"><value>Voir le texte</value></data>
+  <data name="Informe o texto do documento." xml:space="preserve"><value>Saisissez le texte du document.</value></data>
+  <data name="Dias de afastamento entre 1 e 365." xml:space="preserve"><value>Jours d&apos;arrêt entre 1 et 365.</value></data>
+  <data name="CID inválido (ex.: J06.9)." xml:space="preserve"><value>CIM invalide (ex. : J06.9).</value></data>
+  <data name="Informe o nome do modelo." xml:space="preserve"><value>Saisissez le nom du modèle.</value></data>
+  <data name="Informe o texto do modelo." xml:space="preserve"><value>Saisissez le texte du modèle.</value></data>
+  <data name="Tipo de documento inválido." xml:space="preserve"><value>Type de document invalide.</value></data>
+  <data name="Informe os dias de afastamento." xml:space="preserve"><value>Saisissez les jours d&apos;arrêt.</value></data>
+  <data name="Modelo não encontrado." xml:space="preserve"><value>Modèle introuvable.</value></data>
+  <data name="Documento não encontrado." xml:space="preserve"><value>Document introuvable.</value></data>
+  <data name="Informe o nome e o texto do modelo." xml:space="preserve"><value>Saisissez le nom et le texte du modèle.</value></data>
+  <data name="Já existe um modelo com esse nome para este tipo de documento." xml:space="preserve"><value>Un modèle portant ce nom existe déjà pour ce type de document.</value></data>
 </root>

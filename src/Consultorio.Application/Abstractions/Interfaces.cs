@@ -24,6 +24,8 @@ public interface IAppDbContext
     DbSet<Evolucao> Evolucoes { get; }
     DbSet<Prescricao> Prescricoes { get; }
     DbSet<Anexo> Anexos { get; }
+    DbSet<DocumentoClinico> Documentos { get; }
+    DbSet<ModeloDocumento> ModelosDocumento { get; }
     DbSet<Cobranca> Cobrancas { get; }
 
     Task<int> SaveChangesAsync(CancellationToken ct = default);

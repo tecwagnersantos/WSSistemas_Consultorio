@@ -1,0 +1,68 @@
+@model List<ModeloDocumentoDto>
+@using Consultorio.Application.Prontuario
+@using Consultorio.Domain.Entities
+@{ ViewData["Title"] = T["Modelos de documentos"].Value; }
+<div class="grade-2 grade-form-lista">
+    <form method="post" asp-action="Salvar" class="cartao formulario" id="form-modelo">
+        <h2 data-titulo-form>@T["Novo modelo"]</h2>
+        <input type="hidden" name="Id" />
+        <label class="campo"><span>@T["Documento *"]</span>
+            <select name="Tipo">
+                @foreach (var t in TiposDocumento.Todos) { <option value="@t">@T[TiposDocumento.Nome(t)]</option> }
+            </select></label>
+        <label class="campo"><span>@T["Nome *"]</span><input name="Nome" maxlength="100" required placeholder="@T["ex.: Atestado com CID"]" /></label>
+        <label class="campo"><span>@T["Texto *"]</span><textarea name="Texto" rows="12" maxlength="8000" required class="texto-documento"></textarea></label>
+        <label class="check"><input type="checkbox" name="Ativo" value="true" checked /><input type="hidden" name="Ativo" value="false" /> @T["Ativo"]</label>
+        <div class="acoes">
+            <button class="btn btn-primario" type="submit">@T["Salvar"]</button>
+            <button class="btn btn-leve" type="reset" data-limpar-form>@T["Limpar"]</button>
+        </div>
+        <details>
+            <summary>@T["Campos que podem ser usados no texto"]</summary>
+            <table class="tabela">
+                <tbody>
+                    @foreach (var (campo, descricao) in TiposDocumento.Campos)
+                    {
+                        <tr><td><code>@campo</code></td><td>@T[descricao]</td></tr>
+                    }
+                </tbody>
+            </table>
+        </details>
+    </form>
+    <section class="cartao">
+        <p class="muted">@T["Sem modelo próprio, o médico usa o texto padrão do sistema. Os modelos valem para todos os médicos da clínica."]</p>
+        @if (Model.Count == 0)
+        {
+            <p class="vazio-texto">@T["Nenhum modelo cadastrado."]</p>
+        }
+        else
+        {
+            <table class="tabela">
+                <thead><tr><th>@T["Documento"]</th><th>@T["Nome"]</th><th>@T["Situação"]</th><th></th></tr></thead>
+                <tbody>
+                    @foreach (var m in Model)
+                    {
+                        <tr class="@(m.Ativo ? "" : "inativo")">
+                            <td>@T[TiposDocumento.Nome(m.Tipo)]</td><td>@m.Nome</td>
+                            <td>@(m.Ativo ? T["Ativo"] : T["Inativo"])</td>
+                            <td class="col-acoes">
+                                <button type="button" class="btn btn-p btn-leve" data-editar-em="#form-modelo"
+                                        data-valores='@System.Text.Json.JsonSerializer.Serialize(new { m.Id, m.Tipo, m.Nome, m.Texto, m.Ativo })'>@T["Editar"]</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        <h3>@T["Textos padrão do sistema"]</h3>
+        @foreach (var t in TiposDocumento.Todos)
+        {
+            <details>
+                <summary>@T[TiposDocumento.Nome(t)]</summary>
+                <pre class="texto-documento">@TiposDocumento.TextoPadrao(t)</pre>
+                <button type="button" class="btn btn-p btn-leve" data-editar-em="#form-modelo"
+                        data-valores='@System.Text.Json.JsonSerializer.Serialize(new { Id = (int?)null, Tipo = t, Nome = "", Texto = TiposDocumento.TextoPadrao(t), Ativo = true })'>@T["Usar como base"]</button>
+            </details>
+        }
+    </section>
+</div>

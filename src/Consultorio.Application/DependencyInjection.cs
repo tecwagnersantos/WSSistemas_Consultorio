@@ -27,6 +27,7 @@ public static class DependencyInjection
         services.AddScoped<AgendaService>();
         services.AddScoped<ProntuarioService>();
         services.AddScoped<AnexoService>();
+        services.AddScoped<DocumentoService>();
         return services;
     }
 }

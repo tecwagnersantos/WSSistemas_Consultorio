@@ -140,3 +140,85 @@ public static class TiposAnexo
         Exame => "Exame", Imagem => "Imagem", Laudo => "Laudo", Termo => "Termo / consentimento", Documento => "Documento", _ => "Outro"
     };
 }
+
+/// <summary>
+/// Documento emitido ao paciente (atestado, declaração de comparecimento, solicitação de exames, encaminhamento).
+/// O texto é gravado já preenchido, como foi impresso; documento emitido não é alterado nem apagado.
+/// </summary>
+public class DocumentoClinico : IPertenceClinica
+{
+    public int Id { get; set; }
+    public int ClinicaId { get; set; }
+    public int PacienteId { get; set; }
+    public int MedicoId { get; set; }
+    public int? EvolucaoId { get; set; }
+    public string Tipo { get; set; } = TiposDocumento.Atestado;
+    public string Titulo { get; set; } = "";
+    public string Texto { get; set; } = "";
+    public short? DiasAfastamento { get; set; }
+    public string? Cid { get; set; }
+    public DateTime EmitidoEm { get; set; } = DateTime.Now;
+
+    public Medico Medico { get; set; } = null!;
+}
+
+/// <summary>Modelo de texto da clínica para um tipo de documento. Aceita os campos de <see cref="TiposDocumento.Campos"/>.</summary>
+public class ModeloDocumento : IPertenceClinica
+{
+    public int Id { get; set; }
+    public int ClinicaId { get; set; }
+    public string Tipo { get; set; } = TiposDocumento.Atestado;
+    public string Nome { get; set; } = "";
+    public string Texto { get; set; } = "";
+    public bool Ativo { get; set; } = true;
+    public DateTime CriadoEm { get; set; } = DateTime.Now;
+    public DateTime? AtualizadoEm { get; set; }
+}
+
+public static class TiposDocumento
+{
+    public const string Atestado = "ATESTADO";
+    public const string Comparecimento = "COMPARECIMENTO";
+    public const string Exames = "EXAMES";
+    public const string Encaminhamento = "ENCAMINHAMENTO";
+    public static readonly string[] Todos = [Atestado, Comparecimento, Exames, Encaminhamento];
+
+    public static bool Valido(string? tipo) => tipo is not null && Todos.Contains(tipo);
+
+    public static string Nome(string tipo) => tipo switch
+    {
+        Atestado => "Atestado médico", Comparecimento => "Declaração de comparecimento",
+        Exames => "Solicitação de exames", Encaminhamento => "Encaminhamento", _ => tipo
+    };
+
+    /// <summary>Título impresso no documento.</summary>
+    public static string Titulo(string tipo) => tipo switch
+    {
+        Atestado => "ATESTADO MÉDICO", Comparecimento => "DECLARAÇÃO DE COMPARECIMENTO",
+        Exames => "SOLICITAÇÃO DE EXAMES", Encaminhamento => "ENCAMINHAMENTO", _ => tipo
+    };
+
+    /// <summary>Campos que os modelos podem usar; são trocados pelos dados do paciente, do médico e do atendimento.</summary>
+    public static readonly (string Campo, string Descricao)[] Campos =
+    [
+        ("{paciente}", "Nome do paciente"), ("{cpf}", "CPF do paciente"), ("{nascimento}", "Data de nascimento"),
+        ("{idade}", "Idade"), ("{data}", "Data da emissão"), ("{data_extenso}", "Data por extenso"),
+        ("{hora_inicio}", "Hora de chegada (agendamento)"), ("{hora_fim}", "Hora da emissão"),
+        ("{dias}", "Dias de afastamento"), ("{dias_extenso}", "Dias de afastamento por extenso"), ("{cid}", "CID"),
+        ("{medico}", "Nome do médico"), ("{crm}", "CRM/UF do médico"), ("{clinica}", "Nome da clínica"), ("{cidade}", "Cidade da clínica")
+    ];
+
+    /// <summary>Texto padrão de cada tipo, usado quando a clínica não tem modelo próprio.</summary>
+    public static string TextoPadrao(string tipo) => tipo switch
+    {
+        Atestado => "Atesto, para os devidos fins, que o(a) Sr(a). {paciente}, portador(a) do CPF {cpf}, esteve sob meus cuidados " +
+                    "médicos nesta data e necessita de {dias} ({dias_extenso}) dia(s) de afastamento de suas atividades a partir de {data}." +
+                    "\n\nCID: {cid}",
+        Comparecimento => "Declaro, para os devidos fins, que o(a) Sr(a). {paciente}, portador(a) do CPF {cpf}, compareceu a esta " +
+                          "clínica para consulta médica no dia {data}, das {hora_inicio} às {hora_fim}.",
+        Exames => "Solicito para o(a) paciente {paciente} os seguintes exames:\n\n- \n- \n\nIndicação clínica: ",
+        Encaminhamento => "Encaminho o(a) paciente {paciente}, {idade} anos, para avaliação e conduta com especialista em .\n\n" +
+                          "Motivo: \n\nResumo clínico: \n\nAgradeço a atenção.",
+        _ => ""
+    };
+}

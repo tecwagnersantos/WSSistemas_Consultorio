@@ -1,0 +1,68 @@
+@model DocumentoFormVM
+@using Consultorio.Domain.Entities
+@{
+    ViewData["Title"] = T[TiposDocumento.Nome(Model.Tipo)].Value;
+    var atestado = Model.Tipo == TiposDocumento.Atestado;
+}
+<div class="cartao formulario">
+    <div class="cabecalho-acoes">
+        <strong>@Model.PacienteNome</strong>
+        <a class="btn btn-leve" asp-action="Index" asp-route-pacienteId="@Model.PacienteId">@T["Voltar ao prontuário"]</a>
+    </div>
+    @* Trocar tipo ou modelo recarrega o texto (o que foi digitado se perde) *@
+    <form method="get" asp-action="NovoDocumento" asp-route-pacienteId="@Model.PacienteId" class="linha">
+        <input type="hidden" name="evolucaoId" value="@Model.EvolucaoId" />
+        <input type="hidden" name="agendamentoId" value="@Model.AgendamentoId" />
+        <label class="campo"><span>@T["Documento"]</span>
+            <select name="tipo" data-enviar-ao-mudar>
+                @foreach (var t in TiposDocumento.Todos) { <option value="@t" selected="@(t == Model.Tipo)">@T[TiposDocumento.Nome(t)]</option> }
+            </select></label>
+        <label class="campo largo"><span>@T["Modelo"]</span>
+            <select name="modeloId" data-enviar-ao-mudar>
+                @foreach (var m in Model.Modelos)
+                {
+                    <option value="@m.Id" selected="@(m.Id == Model.ModeloId)">@(m.Id is null ? T[m.Nome].Value : m.Nome)</option>
+                }
+            </select></label>
+        <a class="btn btn-leve" asp-controller="ModelosDocumento" asp-action="Index">@T["Gerenciar modelos"]</a>
+    </form>
+</div>
+
+<form method="post" asp-action="NovoDocumento" asp-route-pacienteId="@Model.PacienteId" class="cartao formulario" data-avisar-saida>
+    <partial name="_ResumoErros" />
+    <input type="hidden" name="Tipo" value="@Model.Tipo" />
+    <input type="hidden" name="ModeloId" value="@Model.ModeloId" />
+    <input type="hidden" name="AgendamentoId" value="@Model.AgendamentoId" />
+    @if (atestado)
+    {
+        <div class="linha">
+            <label class="campo curto"><span>@T["Dias de afastamento"]</span>
+                <input type="number" name="DiasAfastamento" min="1" max="365" value="@Exibicao.Num(Model.DiasAfastamento)" /></label>
+            <label class="campo curto"><span>@T["CID"]</span>
+                <input name="Cid" value="@Model.Cid" maxlength="10" placeholder="@T["ex.: J06.9"]" /></label>
+            <label class="check"><input type="checkbox" name="CidAutorizado" value="true" checked="@Model.CidAutorizado" /><input type="hidden" name="CidAutorizado" value="false" />
+                @T["O paciente autorizou o CID no atestado"]</label>
+        </div>
+    }
+    <div class="linha">
+        <label class="campo"><span>@T["Ligar à evolução"]</span>
+            <select name="EvolucaoId">
+                <option value="">@T["Nenhuma"]</option>
+                @foreach (var e in Model.Evolucoes) { <option value="@e.Id" selected="@(e.Id == Model.EvolucaoId)">@Exibicao.DataHora(e.DataHora) · @e.Medico</option> }
+            </select></label>
+    </div>
+    <label class="campo"><span>@T["Texto *"]</span>
+        <textarea name="Texto" rows="14" maxlength="8000" required class="texto-documento">@Model.Texto</textarea></label>
+    <p class="muted">
+        @T["Os campos entre chaves são preenchidos na emissão:"]
+        @foreach (var c in TiposDocumento.Campos.Where(c => c.Campo is "{dias}" or "{dias_extenso}" or "{cid}" or "{hora_fim}"))
+        {
+            <code title="@T[c.Descricao]">@c.Campo</code>
+        }
+        @if (atestado) { <text>@T["Sem autorização do paciente, a linha com {cid} sai do atestado."]</text> }
+    </p>
+    <div class="acoes">
+        <button type="submit" class="btn btn-primario">@T["Emitir e imprimir"]</button>
+        <span class="muted">@T["Depois de emitido, o documento não pode ser alterado."]</span>
+    </div>
+</form>

@@ -1,6 +1,7 @@
 using Consultorio.Application.Pacientes;
 using Consultorio.Application.Prontuario;
 using Consultorio.Domain.Common;
+using Consultorio.Domain.Entities;
 using Consultorio.Web.Models;
 using Consultorio.Web.Infra;
 using Microsoft.AspNetCore.Authorization;
@@ -12,7 +13,7 @@ namespace Consultorio.Web.Controllers;
 /// <summary>Prontuário eletrônico: só com as transações de prontuário (perfil Médico, por padrão). Toda leitura e gravação é auditada (LGPD).</summary>
 [Authorize(Policy = Transacoes.ProntuarioVer)]
 [Route("Prontuario/{pacienteId:int}/[action]")]
-public class ProntuarioController(ProntuarioService prontuario, AnexoService anexos, PacienteService pacientes) : BaseController
+public class ProntuarioController(ProntuarioService prontuario, AnexoService anexos, DocumentoService documentos, PacienteService pacientes) : BaseController
 {
     /// <summary>Teto de um envio (vários arquivos). O limite por arquivo é Anexos:TamanhoMaximoMB; no IIS veja também o web.config.</summary>
     private const long LimiteEnvio = 100L * 1024 * 1024;
@@ -26,6 +27,7 @@ public class ProntuarioController(ProntuarioService prontuario, AnexoService ane
             Resumo = await prontuario.ObterResumoAsync(pacienteId, ct),
             Evolucoes = await prontuario.ListarEvolucoesAsync(pacienteId, ct),
             Prescricoes = await prontuario.ListarPrescricoesAsync(pacienteId, ct),
+            Documentos = await documentos.ListarAsync(pacienteId, ct),
             Anexos = User.Pode(Transacoes.ProntuarioAnexos) ? await anexos.ListarAsync(pacienteId, ct) : [],
             MedicoLogadoId = UsuarioAtual.MedicoId,
             UsuarioLogadoId = UsuarioAtual.UsuarioId,
@@ -168,6 +170,42 @@ public class ProntuarioController(ProntuarioService prontuario, AnexoService ane
     public async Task<IActionResult> Receita(int pacienteId, int id, CancellationToken ct) =>
         View(await prontuario.ObterPrescricaoImpressaoAsync(pacienteId, id, ct));
 
+    /// <summary>Atestado, declaração, solicitação de exames ou encaminhamento: o texto parte do modelo escolhido.</summary>
+    [HttpGet, Authorize(Policy = Transacoes.ProntuarioEditar)]
+    public async Task<IActionResult> NovoDocumento(int pacienteId, string? tipo, int? modeloId, int? evolucaoId, int? agendamentoId, CancellationToken ct)
+    {
+        var vm = new DocumentoFormVM
+        {
+            PacienteId = pacienteId, Tipo = TiposDocumento.Valido(tipo) ? tipo! : TiposDocumento.Atestado,
+            ModeloId = modeloId, EvolucaoId = evolucaoId, AgendamentoId = agendamentoId
+        };
+        vm.Texto = await documentos.PrepararTextoAsync(pacienteId, vm.Tipo, modeloId, agendamentoId, ct);
+        await CompletarAsync(vm, ct);
+        return View("Documento", vm);
+    }
+
+    [HttpPost, Authorize(Policy = Transacoes.ProntuarioEditar)]
+    public async Task<IActionResult> NovoDocumento(int pacienteId, DocumentoFormVM vm, CancellationToken ct)
+    {
+        vm.PacienteId = pacienteId;
+        if (vm.CidAutorizado && string.IsNullOrWhiteSpace(vm.Cid))
+            ModelState.AddModelError(nameof(vm.Cid), T["Informe o CID ou desmarque a autorização do paciente."]);
+
+        int id = 0;
+        if (ModelState.IsValid && await TentarAsync(async () => id = await documentos.EmitirAsync(pacienteId, vm.ParaRequest(), ct)))
+        {
+            Sucesso("{0} emitido(a).", T[TiposDocumento.Nome(vm.Tipo)].Value);
+            return RedirectToAction(nameof(Documento), new { pacienteId, id });
+        }
+        await CompletarAsync(vm, ct);
+        return View("Documento", vm);
+    }
+
+    /// <summary>Documento pronto para impressão (layout próprio, sem menu).</summary>
+    [HttpGet("{id:int}")]
+    public async Task<IActionResult> Documento(int pacienteId, int id, CancellationToken ct) =>
+        View("DocumentoImpressao", await documentos.ObterImpressaoAsync(pacienteId, id, ct));
+
     [HttpPost, Authorize(Policy = Transacoes.ProntuarioAnexos)]
     [RequestSizeLimit(LimiteEnvio), RequestFormLimits(MultipartBodyLengthLimit = LimiteEnvio)]
     public async Task<IActionResult> Anexos(int pacienteId, AnexoFormVM vm, CancellationToken ct)
@@ -212,6 +250,13 @@ public class ProntuarioController(ProntuarioService prontuario, AnexoService ane
         vm.PacienteNome = await NomePacienteAsync(vm.PacienteId, ct);
         if (vm.EvolucaoRetificadaId is int r && vm.Retificada is null)
             vm.Retificada = await prontuario.ObterEvolucaoAsync(vm.PacienteId, r, ct);
+    }
+
+    private async Task CompletarAsync(DocumentoFormVM vm, CancellationToken ct)
+    {
+        vm.PacienteNome = await NomePacienteAsync(vm.PacienteId, ct);
+        vm.Modelos = await documentos.ListarModelosAsync(vm.Tipo, somenteAtivos: true, incluirPadrao: true, ct);
+        vm.Evolucoes = await prontuario.ListarEvolucoesAsync(vm.PacienteId, ct);
     }
 
     private async Task<string> NomePacienteAsync(int pacienteId, CancellationToken ct)

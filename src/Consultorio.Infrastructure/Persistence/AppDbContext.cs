@@ -38,6 +38,8 @@ public class AppDbContext(DbContextOptions<AppDbContext> options, IUsuarioAtual 
     public DbSet<Evolucao> Evolucoes => Set<Evolucao>();
     public DbSet<Prescricao> Prescricoes => Set<Prescricao>();
     public DbSet<Anexo> Anexos => Set<Anexo>();
+    public DbSet<DocumentoClinico> Documentos => Set<DocumentoClinico>();
+    public DbSet<ModeloDocumento> ModelosDocumento => Set<ModeloDocumento>();
     public DbSet<Cobranca> Cobrancas => Set<Cobranca>();
 
     protected override void OnModelCreating(ModelBuilder b)
@@ -199,6 +201,20 @@ public class AppDbContext(DbContextOptions<AppDbContext> options, IUsuarioAtual 
             e.Property(x => x.ContentType).IsUnicode(false).HasMaxLength(100);
             e.Property(x => x.CaminhoArmazenamento).HasMaxLength(500);
             e.Property(x => x.HashSha256).HasMaxLength(32);
+        });
+        b.Entity<DocumentoClinico>(e =>
+        {
+            e.ToTable("Documento", "prontuario");
+            e.Property(x => x.Tipo).IsUnicode(false).HasMaxLength(20);
+            e.Property(x => x.Titulo).HasMaxLength(100);
+            e.Property(x => x.Cid).IsUnicode(false).HasMaxLength(10);
+            e.HasOne(x => x.Medico).WithMany().HasForeignKey(x => x.MedicoId);
+        });
+        b.Entity<ModeloDocumento>(e =>
+        {
+            e.ToTable("ModeloDocumento", "prontuario");
+            e.Property(x => x.Tipo).IsUnicode(false).HasMaxLength(20);
+            e.Property(x => x.Nome).HasMaxLength(100);
         });
 
         // DATETIME2(0) na maioria das colunas: o SQL Server arredonda os segundos fracionários

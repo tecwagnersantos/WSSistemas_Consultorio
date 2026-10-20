@@ -1,0 +1,34 @@
+@model DocumentoImpressaoDto
+@{
+    ViewData["Title"] = T[TiposDocumento.Nome(Model.Tipo)].Value;
+    ViewData["ClasseBody"] = "pagina-impressao";
+    Layout = "_LayoutSimples";
+}
+@using Consultorio.Domain.Entities
+<div class="barra-impressao nao-imprimir">
+    <button class="btn btn-primario" onclick="window.print()">@T["Imprimir"]</button>
+    <a class="btn btn-leve" asp-action="Index" asp-route-pacienteId="@ViewContext.RouteData.Values["pacienteId"]">@T["Voltar ao prontuário"]</a>
+</div>
+<article class="receita documento">
+    <header>
+        <h1>@Model.Clinica</h1>
+        <p>@string.Join(" · ", new[] { Model.EnderecoClinica, Model.CidadeClinica, string.IsNullOrEmpty(Model.TelefoneClinica) ? null : T["Tel."] + " " + Model.TelefoneClinica }.Where(x => !string.IsNullOrEmpty(x)))</p>
+        <h2>@Model.Titulo</h2>
+    </header>
+    <section class="receita-paciente">
+        <p><strong>@T["Paciente:"]</strong> @Model.Paciente</p>
+        <p>
+            <strong>@T["Nascimento:"]</strong> @Exibicao.Data(Model.DataNascimento) (@T["{0} anos", Exibicao.Idade(Model.DataNascimento)])
+            @if (Model.CpfPaciente != null) { <text> · <strong>@T["CPF:"]</strong> @Exibicao.Cpf(Model.CpfPaciente)</text> }
+        </p>
+    </section>
+    <div class="documento-texto">@Model.Texto</div>
+    <footer>
+        <p>@(Model.CidadeClinica is null ? "" : Model.CidadeClinica.Split('/')[0] + ", ")@Exibicao.DataLonga(Model.EmitidoEm)</p>
+        <div class="assinatura">
+            <span></span>
+            <strong>@Model.Medico</strong>
+            <small>@T["CRM {0}/{1}", Model.Crm, Model.UfCrm]</small>
+        </div>
+    </footer>
+</article>

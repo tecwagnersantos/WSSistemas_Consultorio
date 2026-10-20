@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "consultorio-web",
+      "runtimeExecutable": "dotnet",
+      "runtimeArgs": ["run", "--project", "src/Consultorio.Web", "--launch-profile", "https"],
+      "port": 5001
+    }
+  ]
+}

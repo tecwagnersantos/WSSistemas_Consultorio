@@ -1,5 +1,5 @@
 /* =====================================================================
-   Sistema de Consultório Médico - Modelo de dados (v0.9 - multi-clínica)
+   Sistema de Consultório Médico - Modelo de dados (v1.0 - multi-clínica)
    SQL Server 2019+ | Script para banco NOVO - não executado em SQL Server real ainda
    Premissas (decisões de arquitetura): banco único compartilhado por vários clientes
    (clínicas), com ClinicaId em todas as tabelas de dados; perfis de acesso configuráveis
@@ -570,6 +570,41 @@ CREATE TABLE prontuario.Anexo (
     CONSTRAINT CK_Anexo_Tamanho CHECK (TamanhoBytes > 0)
 );
 CREATE INDEX IX_Anexo_Paciente ON prontuario.Anexo (ClinicaId, PacienteId, EnviadoEm DESC);
+
+-- Documentos emitidos ao paciente; o texto fica gravado já preenchido, como foi impresso (não é alterado nem apagado)
+CREATE TABLE prontuario.Documento (
+    Id                INT IDENTITY(1,1) NOT NULL CONSTRAINT PK_Documento PRIMARY KEY,
+    ClinicaId         INT            NOT NULL,
+    PacienteId        INT            NOT NULL,
+    MedicoId          INT            NOT NULL,
+    EvolucaoId        INT            NULL,
+    Tipo              VARCHAR(20)    NOT NULL,     -- ATESTADO, COMPARECIMENTO, EXAMES, ENCAMINHAMENTO
+    Titulo            NVARCHAR(100)  NOT NULL,
+    Texto             NVARCHAR(MAX)  NOT NULL,
+    DiasAfastamento   SMALLINT       NULL,
+    Cid               VARCHAR(10)    NULL,         -- só com autorização do paciente (Res. CFM 1.658/2002)
+    EmitidoEm         DATETIME2(0)   NOT NULL CONSTRAINT DF_Documento_EmitidoEm DEFAULT (SYSDATETIME()),
+    CONSTRAINT FK_Documento_Paciente FOREIGN KEY (ClinicaId, PacienteId) REFERENCES cadastro.Paciente (ClinicaId, Id),
+    CONSTRAINT FK_Documento_Medico   FOREIGN KEY (ClinicaId, MedicoId)   REFERENCES cadastro.Medico (ClinicaId, Id),
+    CONSTRAINT FK_Documento_Evolucao FOREIGN KEY (ClinicaId, EvolucaoId) REFERENCES prontuario.Evolucao (ClinicaId, Id),
+    CONSTRAINT CK_Documento_Tipo CHECK (Tipo IN ('ATESTADO','COMPARECIMENTO','EXAMES','ENCAMINHAMENTO')),
+    CONSTRAINT CK_Documento_Dias CHECK (DiasAfastamento IS NULL OR DiasAfastamento BETWEEN 1 AND 365)
+);
+CREATE INDEX IX_Documento_Paciente ON prontuario.Documento (ClinicaId, PacienteId, EmitidoEm DESC);
+
+-- Modelos de texto de cada clínica para os documentos (campos como {paciente} e {dias} são preenchidos na emissão)
+CREATE TABLE prontuario.ModeloDocumento (
+    Id           INT IDENTITY(1,1) NOT NULL CONSTRAINT PK_ModeloDocumento PRIMARY KEY,
+    ClinicaId    INT            NOT NULL CONSTRAINT FK_ModeloDocumento_Clinica REFERENCES seguranca.Clinica(Id),
+    Tipo         VARCHAR(20)    NOT NULL,
+    Nome         NVARCHAR(100)  NOT NULL,
+    Texto        NVARCHAR(MAX)  NOT NULL,
+    Ativo        BIT            NOT NULL CONSTRAINT DF_ModeloDocumento_Ativo DEFAULT (1),
+    CriadoEm     DATETIME2(0)   NOT NULL CONSTRAINT DF_ModeloDocumento_CriadoEm DEFAULT (SYSDATETIME()),
+    AtualizadoEm DATETIME2(0)   NULL,
+    CONSTRAINT CK_ModeloDocumento_Tipo CHECK (Tipo IN ('ATESTADO','COMPARECIMENTO','EXAMES','ENCAMINHAMENTO'))
+);
+CREATE INDEX IX_ModeloDocumento_Clinica ON prontuario.ModeloDocumento (ClinicaId, Tipo, Nome);
 
 -- Cobranças dos clientes (mensalidades e avulsas) e o pagamento de cada uma. Mantidas só pela área /Admin.
 -- Cobrança sem pagamento depois de Vencimento + Clinica.DiasTolerancia bloqueia o cliente (se Clinica.BloqueioPorAtraso = 1).

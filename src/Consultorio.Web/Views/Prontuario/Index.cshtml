@@ -35,6 +35,8 @@
         {
             <a class="btn btn-primario" asp-action="NovaEvolucao" asp-route-pacienteId="@p.Id" asp-route-agendamentoId="@Model.AgendamentoId">@T["+ Nova evolução"]</a>
             <a class="btn btn-secundario" asp-action="NovaPrescricao" asp-route-pacienteId="@p.Id">@T["+ Prescrição"]</a>
+            <a class="btn btn-secundario" asp-action="NovoDocumento" asp-route-pacienteId="@p.Id" asp-route-tipo="@TiposDocumento.Atestado" asp-route-agendamentoId="@Model.AgendamentoId">@T["+ Atestado"]</a>
+            <a class="btn btn-secundario" href="#documentos">@T["+ Documento"]</a>
         }
         @if (podeAnexos) { <a class="btn btn-secundario" href="#anexos">@T["+ Anexo"]</a> }
     </div>
@@ -50,6 +52,7 @@
         <button type="button" data-aba="evolucoes">@T["Evoluções ({0})", Model.Evolucoes.Count]</button>
         <button type="button" data-aba="resumo">@T["Resumo clínico"]</button>
         <button type="button" data-aba="prescricoes">@T["Prescrições ({0})", Model.Prescricoes.Count]</button>
+        <button type="button" data-aba="documentos">@T["Documentos ({0})", Model.Documentos.Count]</button>
         @if (podeAnexos) { <button type="button" data-aba="anexos">@T["Anexos ({0})", Model.Anexos.Count]</button> }
     </div>
 
@@ -168,6 +171,37 @@
                     }
                 </ol>
                 @if (!string.IsNullOrWhiteSpace(rx.Observacoes)) { <p class="muted">@rx.Observacoes</p> }
+            </article>
+        }
+    </section>
+
+    <section class="aba" id="documentos">
+        @if (podeEditar && Model.MedicoLogadoId != null)
+        {
+            <div class="cartao acoes-linha">
+                @foreach (var t in TiposDocumento.Todos)
+                {
+                    <a class="btn btn-p btn-secundario" asp-action="NovoDocumento" asp-route-pacienteId="@p.Id" asp-route-tipo="@t" asp-route-agendamentoId="@Model.AgendamentoId">+ @T[TiposDocumento.Nome(t)]</a>
+                }
+            </div>
+        }
+        @if (Model.Documentos.Count == 0)
+        {
+            <div class="cartao vazio"><p>@T["Nenhum documento emitido."]</p></div>
+        }
+        @foreach (var d in Model.Documentos)
+        {
+            <article class="cartao prescricao">
+                <header>
+                    <div><strong>@Exibicao.DataHora(d.EmitidoEm)</strong> · @T[TiposDocumento.Nome(d.Tipo)] · @d.Medico
+                        @if (d.DiasAfastamento != null) { <span class="badge">@T["{0} dia(s)", d.DiasAfastamento]</span> }
+                        @if (d.Cid != null) { <span class="badge">CID @d.Cid</span> }</div>
+                    <a class="btn btn-p btn-leve" asp-action="Documento" asp-route-pacienteId="@p.Id" asp-route-id="@d.Id" target="_blank">@T["Imprimir"]</a>
+                </header>
+                <details>
+                    <summary class="muted">@T["Ver texto"]</summary>
+                    <div class="documento-texto">@d.Texto</div>
+                </details>
             </article>
         }
     </section>

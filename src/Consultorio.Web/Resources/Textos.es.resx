@@ -855,4 +855,61 @@
   <data name="· {0} · vencimento {1} ·" xml:space="preserve"><value>· {0} · vencimiento {1} ·</value></data>
   <data name="É a mensalidade do mês do vencimento (não deixa gerar o mesmo mês de novo)" xml:space="preserve"><value>Es la cuota del mes del vencimiento (impide generar el mismo mes de nuevo)</value></data>
   <data name="Último acesso" xml:space="preserve"><value>Último acceso</value></data>
+  <data name="Atestado médico" xml:space="preserve"><value>Certificado médico</value></data>
+  <data name="Declaração de comparecimento" xml:space="preserve"><value>Declaración de asistencia</value></data>
+  <data name="Solicitação de exames" xml:space="preserve"><value>Solicitud de exámenes</value></data>
+  <data name="Encaminhamento" xml:space="preserve"><value>Derivación</value></data>
+  <data name="Nome do paciente" xml:space="preserve"><value>Nombre del paciente</value></data>
+  <data name="CPF do paciente" xml:space="preserve"><value>CPF del paciente</value></data>
+  <data name="Data de nascimento" xml:space="preserve"><value>Fecha de nacimiento</value></data>
+  <data name="Idade" xml:space="preserve"><value>Edad</value></data>
+  <data name="Data da emissão" xml:space="preserve"><value>Fecha de emisión</value></data>
+  <data name="Data por extenso" xml:space="preserve"><value>Fecha por extenso</value></data>
+  <data name="Hora de chegada (agendamento)" xml:space="preserve"><value>Hora de llegada (cita)</value></data>
+  <data name="Hora da emissão" xml:space="preserve"><value>Hora de emisión</value></data>
+  <data name="Dias de afastamento" xml:space="preserve"><value>Días de baja</value></data>
+  <data name="Dias de afastamento por extenso" xml:space="preserve"><value>Días de baja por extenso</value></data>
+  <data name="CID" xml:space="preserve"><value>CIE</value></data>
+  <data name="Nome do médico" xml:space="preserve"><value>Nombre del médico</value></data>
+  <data name="CRM/UF do médico" xml:space="preserve"><value>CRM/UF del médico</value></data>
+  <data name="Nome da clínica" xml:space="preserve"><value>Nombre de la clínica</value></data>
+  <data name="Cidade da clínica" xml:space="preserve"><value>Ciudad de la clínica</value></data>
+  <data name="Padrão do sistema" xml:space="preserve"><value>Estándar del sistema</value></data>
+  <data name="Modelo" xml:space="preserve"><value>Plantilla</value></data>
+  <data name="Gerenciar modelos" xml:space="preserve"><value>Gestionar plantillas</value></data>
+  <data name="ex.: J06.9" xml:space="preserve"><value>ej.: J06.9</value></data>
+  <data name="O paciente autorizou o CID no atestado" xml:space="preserve"><value>El paciente autorizó el CIE en el certificado</value></data>
+  <data name="Texto *" xml:space="preserve"><value>Texto *</value></data>
+  <data name="Os campos entre chaves são preenchidos na emissão:" xml:space="preserve"><value>Los campos entre llaves se completan al emitir:</value></data>
+  <data name="Sem autorização do paciente, a linha com {cid} sai do atestado." xml:space="preserve"><value>Sin autorización del paciente, la línea con {cid} se quita del certificado.</value></data>
+  <data name="Depois de emitido, o documento não pode ser alterado." xml:space="preserve"><value>Una vez emitido, el documento no puede modificarse.</value></data>
+  <data name="Informe o CID ou desmarque a autorização do paciente." xml:space="preserve"><value>Informe el CIE o desmarque la autorización del paciente.</value></data>
+  <data name="{0} emitido(a)." xml:space="preserve"><value>{0} emitido(a).</value></data>
+  <data name="Modelos de documentos" xml:space="preserve"><value>Plantillas de documentos</value></data>
+  <data name="Novo modelo" xml:space="preserve"><value>Nueva plantilla</value></data>
+  <data name="Documento *" xml:space="preserve"><value>Documento *</value></data>
+  <data name="ex.: Atestado com CID" xml:space="preserve"><value>ej.: Certificado con CIE</value></data>
+  <data name="Campos que podem ser usados no texto" xml:space="preserve"><value>Campos que pueden usarse en el texto</value></data>
+  <data name="Sem modelo próprio, o médico usa o texto padrão do sistema. Os modelos valem para todos os médicos da clínica." xml:space="preserve"><value>Sin plantilla propia, el médico usa el texto estándar del sistema. Las plantillas valen para todos los médicos de la clínica.</value></data>
+  <data name="Nenhum modelo cadastrado." xml:space="preserve"><value>Ninguna plantilla registrada.</value></data>
+  <data name="Textos padrão do sistema" xml:space="preserve"><value>Textos estándar del sistema</value></data>
+  <data name="Usar como base" xml:space="preserve"><value>Usar como base</value></data>
+  <data name="Modelo salvo." xml:space="preserve"><value>Plantilla guardada.</value></data>
+  <data name="+ Atestado" xml:space="preserve"><value>+ Certificado</value></data>
+  <data name="+ Documento" xml:space="preserve"><value>+ Documento</value></data>
+  <data name="Documentos ({0})" xml:space="preserve"><value>Documentos ({0})</value></data>
+  <data name="Nenhum documento emitido." xml:space="preserve"><value>Ningún documento emitido.</value></data>
+  <data name="{0} dia(s)" xml:space="preserve"><value>{0} día(s)</value></data>
+  <data name="Ver texto" xml:space="preserve"><value>Ver texto</value></data>
+  <data name="Informe o texto do documento." xml:space="preserve"><value>Informe el texto del documento.</value></data>
+  <data name="Dias de afastamento entre 1 e 365." xml:space="preserve"><value>Días de baja entre 1 y 365.</value></data>
+  <data name="CID inválido (ex.: J06.9)." xml:space="preserve"><value>CIE inválido (ej.: J06.9).</value></data>
+  <data name="Informe o nome do modelo." xml:space="preserve"><value>Informe el nombre de la plantilla.</value></data>
+  <data name="Informe o texto do modelo." xml:space="preserve"><value>Informe el texto de la plantilla.</value></data>
+  <data name="Tipo de documento inválido." xml:space="preserve"><value>Tipo de documento inválido.</value></data>
+  <data name="Informe os dias de afastamento." xml:space="preserve"><value>Informe los días de baja.</value></data>
+  <data name="Modelo não encontrado." xml:space="preserve"><value>Plantilla no encontrada.</value></data>
+  <data name="Documento não encontrado." xml:space="preserve"><value>Documento no encontrado.</value></data>
+  <data name="Informe o nome e o texto do modelo." xml:space="preserve"><value>Informe el nombre y el texto de la plantilla.</value></data>
+  <data name="Já existe um modelo com esse nome para este tipo de documento." xml:space="preserve"><value>Ya existe una plantilla con ese nombre para este tipo de documento.</value></data>
 </root>

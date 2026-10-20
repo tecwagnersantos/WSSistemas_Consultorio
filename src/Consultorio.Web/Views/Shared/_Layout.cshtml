@@ -64,6 +64,10 @@
                         <a class="@Ativo("Cadastros", "Convenios") @Ativo("Cadastros", "Convenio")" asp-controller="Cadastros" asp-action="Convenios"><i class="ic ic-convenio"></i>@T["Convênios"]</a>
                     }
                 }
+                @if (User.Pode(Transacoes.ProntuarioEditar))
+                {
+                    <a class="@Ativo("ModelosDocumento")" asp-controller="ModelosDocumento" asp-action="Index"><i class="ic ic-documento"></i>@T["Modelos de documentos"]</a>
+                }
                 @if (User.Pode(Transacoes.RelatoriosVer))
                 {
                     <div class="grupo">@T["Relatórios"]</div>

@@ -12,6 +12,7 @@ public class ProntuarioVM
     public ResumoClinicoDto? Resumo { get; set; }
     public List<EvolucaoDto> Evolucoes { get; set; } = [];
     public List<PrescricaoDto> Prescricoes { get; set; } = [];
+    public List<DocumentoDto> Documentos { get; set; } = [];
     public List<AnexoDto> Anexos { get; set; } = [];
     public int? MedicoLogadoId { get; set; }
     public int? UsuarioLogadoId { get; set; }
@@ -109,4 +110,34 @@ public class AnexoFormVM
     public string? Descricao { get; set; }
     public int? EvolucaoId { get; set; }
     public List<IFormFile> Arquivos { get; set; } = [];
+}
+
+public class DocumentoFormVM
+{
+    public int PacienteId { get; set; }
+    public int? EvolucaoId { get; set; }
+    public int? AgendamentoId { get; set; }
+    public string Tipo { get; set; } = TiposDocumento.Atestado;
+    public int? ModeloId { get; set; }
+    [Required(ErrorMessage = "Informe o texto do documento."), MaxLength(8000)] public string? Texto { get; set; }
+    [Range(1, 365, ErrorMessage = "Dias de afastamento entre 1 e 365.")] public short? DiasAfastamento { get; set; }
+    [MaxLength(10), RegularExpression(@"^[A-Za-z]\d{2}(\.?\d{1,2})?$", ErrorMessage = "CID inválido (ex.: J06.9).")] public string? Cid { get; set; }
+    /// <summary>O paciente autorizou o CID no atestado (Res. CFM 1.658/2002).</summary>
+    public bool CidAutorizado { get; set; }
+
+    [BindNever] public string PacienteNome { get; set; } = "";
+    [BindNever] public List<ModeloDocumentoDto> Modelos { get; set; } = [];
+    [BindNever] public List<EvolucaoDto> Evolucoes { get; set; } = [];
+
+    public DocumentoEmitirRequest ParaRequest() => new(Tipo, Texto ?? "", Tipo == TiposDocumento.Atestado ? DiasAfastamento : null,
+        CidAutorizado ? Cid : null, EvolucaoId, AgendamentoId);
+}
+
+public class ModeloDocumentoFormVM
+{
+    public int? Id { get; set; }
+    public string Tipo { get; set; } = TiposDocumento.Atestado;
+    [Required(ErrorMessage = "Informe o nome do modelo."), MaxLength(100)] public string Nome { get; set; } = "";
+    [Required(ErrorMessage = "Informe o texto do modelo."), MaxLength(8000)] public string Texto { get; set; } = "";
+    public bool Ativo { get; set; } = true;
 }

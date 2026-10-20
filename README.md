@@ -25,7 +25,8 @@ Consultorio/
 │   ├── 02_dados_exemplo.sql           Opcional: "Clínica Exemplo" com médico, convênio, grade e pacientes
 │   ├── 03_atualiza_v0.7_situacao_cliente.sql  Só para banco já criado com o schema v0.6
 │   ├── 04_atualiza_v0.8_pagamentos.sql        Só para banco já criado com o schema v0.7
-│   └── 05_atualiza_v0.9_idiomas.sql           Só para banco já criado com o schema v0.8
+│   ├── 05_atualiza_v0.9_idiomas.sql           Só para banco já criado com o schema v0.8
+│   └── 06_atualiza_v1.0_documentos.sql        Só para banco já criado com o schema v0.9
 └── docs/
     └── decisoes-arquitetura.md
 ```
@@ -255,9 +256,9 @@ O site também funciona publicado em um diretório virtual (ex.: `https://servid
 ## Observações técnicas
 
 - O banco é criado pelos scripts SQL; o EF Core só mapeia as tabelas (não use `dotnet ef database update`).
-- O `01_schema.sql` (v0.9, multi-clínica) é para banco **novo**. Banco já criado com o v0.6: rode uma vez, em ordem, o
-  `03_atualiza_v0.7_situacao_cliente.sql` (clientes suspensos viram *Bloqueado*), o `04_atualiza_v0.8_pagamentos.sql` e o `05_atualiza_v0.9_idiomas.sql`.
-  Banco criado com o v0.7: rode o `04` e o `05`. Banco criado com o v0.8: rode só o `05`. Se você já criou o banco com a versão anterior (clínica única), peça o script de migração.
+- O `01_schema.sql` (v1.0, multi-clínica) é para banco **novo**. Banco já criado com o v0.6: rode uma vez, em ordem, o
+  `03_atualiza_v0.7_situacao_cliente.sql` (clientes suspensos viram *Bloqueado*), o `04_atualiza_v0.8_pagamentos.sql`, o `05_atualiza_v0.9_idiomas.sql` e o `06_atualiza_v1.0_documentos.sql` (atestados, declarações, exames, encaminhamentos).
+  Banco criado com o v0.7: rode o `04`, o `05` e o `06`. Banco criado com o v0.8: rode o `05` e o `06`. Banco criado com o v0.9: rode só o `06`. Se você já criou o banco com a versão anterior (clínica única), peça o script de migração.
 - Para ler dados de todas as clínicas use `IgnoreQueryFilters()` de propósito, e só em código da área admin (`Consultorio.Application/Admin`).
 - Formulários protegidos contra CSRF (antiforgery) em todos os POST; cookies `HttpOnly`.
 - As chamadas JavaScript (status da agenda, horários livres, busca de paciente) usam `fetch` para endpoints JSON nos próprios controllers.
