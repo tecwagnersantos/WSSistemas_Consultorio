@@ -14,6 +14,7 @@ public static class DependencyInjection
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
         services.AddScoped<AuthService>();
+        services.AddScoped<DemonstracaoService>();
         services.AddScoped<UsuarioService>();
         services.AddScoped<LimitesPlano>();
         // Área /Admin (administrador do sistema)

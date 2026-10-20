@@ -912,4 +912,31 @@
   <data name="Documento não encontrado." xml:space="preserve"><value>Documento não encontrado.</value></data>
   <data name="Informe o nome e o texto do modelo." xml:space="preserve"><value>Informe o nome e o texto do modelo.</value></data>
   <data name="Já existe um modelo com esse nome para este tipo de documento." xml:space="preserve"><value>Já existe um modelo com esse nome para este tipo de documento.</value></data>
+  <data name="Experimente grátis" xml:space="preserve"><value>Experimente grátis</value></data>
+  <data name="Cadastre sua clínica e use o sistema por {0} dias, sem compromisso." xml:space="preserve"><value>Cadastre sua clínica e use o sistema por {0} dias, sem compromisso.</value></data>
+  <data name="Clínica" xml:space="preserve"><value>Clínica</value></data>
+  <data name="Seu acesso" xml:space="preserve"><value>Seu acesso</value></data>
+  <data name="Seu nome *" xml:space="preserve"><value>Seu nome *</value></data>
+  <data name="E-mail (será o seu login) *" xml:space="preserve"><value>E-mail (será o seu login) *</value></data>
+  <data name="Senha *" xml:space="preserve"><value>Senha *</value></data>
+  <data name="Confirme a senha *" xml:space="preserve"><value>Confirme a senha *</value></data>
+  <data name="Sou médico (para usar o prontuário)" xml:space="preserve"><value>Sou médico (para usar o prontuário)</value></data>
+  <data name="UF do CRM" xml:space="preserve"><value>UF do CRM</value></data>
+  <data name="Entendo que, ao fim da demonstração, o acesso é bloqueado até a liberação da versão definitiva pela WS Sistemas." xml:space="preserve"><value>Entendo que, ao fim da demonstração, o acesso é bloqueado até a liberação da versão definitiva pela WS Sistemas.</value></data>
+  <data name="Criar minha demonstração" xml:space="preserve"><value>Criar minha demonstração</value></data>
+  <data name="Já tenho acesso: entrar" xml:space="preserve"><value>Já tenho acesso: entrar</value></data>
+  <data name="Ainda não é cliente?" xml:space="preserve"><value>Ainda não é cliente?</value></data>
+  <data name="Experimente grátis por {0} dias" xml:space="preserve"><value>Experimente grátis por {0} dias</value></data>
+  <data name="Informe o CRM e a UF do CRM, ou desmarque &quot;Sou médico&quot;." xml:space="preserve"><value>Informe o CRM e a UF do CRM, ou desmarque &quot;Sou médico&quot;.</value></data>
+  <data name="Bem-vindo(a)! Sua demonstração vale por {0} dias." xml:space="preserve"><value>Bem-vindo(a)! Sua demonstração vale por {0} dias.</value></data>
+  <data name="Informe o nome da clínica." xml:space="preserve"><value>Informe o nome da clínica.</value></data>
+  <data name="Informe o seu nome." xml:space="preserve"><value>Informe o seu nome.</value></data>
+  <data name="Confirme a senha." xml:space="preserve"><value>Confirme a senha.</value></data>
+  <data name="A confirmação não confere com a senha." xml:space="preserve"><value>A confirmação não confere com a senha.</value></data>
+  <data name="É preciso aceitar os termos da demonstração." xml:space="preserve"><value>É preciso aceitar os termos da demonstração.</value></data>
+  <data name="O cadastro de demonstração não está disponível." xml:space="preserve"><value>O cadastro de demonstração não está disponível.</value></data>
+  <data name="Informe o nome da clínica, o seu nome e o e-mail." xml:space="preserve"><value>Informe o nome da clínica, o seu nome e o e-mail.</value></data>
+  <data name="Informe o CRM (somente números) e a UF do CRM." xml:space="preserve"><value>Informe o CRM (somente números) e a UF do CRM.</value></data>
+  <data name="Perfis de acesso padrão não encontrados. Contate o suporte." xml:space="preserve"><value>Perfis de acesso padrão não encontrados. Contate o suporte.</value></data>
+  <data name="Demonstração (site)" xml:space="preserve"><value>Demonstração (site)</value></data>
 </root>

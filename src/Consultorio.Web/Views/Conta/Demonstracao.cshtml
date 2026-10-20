@@ -1,0 +1,47 @@
+@model DemonstracaoVM
+@{
+    ViewData["Title"] = T["Experimente grátis"].Value;
+    ViewData["ClasseBody"] = "pagina-login";
+    Layout = "_LayoutSimples";
+    var ufs = new[] { "AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO" };
+}
+<div class="login-caixa login-caixa-larga">
+    <div class="login-marca">
+        <img class="logo-empresa" src="~/img/logo-ws.png" alt="WS Sistemas" width="220" />
+        <h1>@T["Experimente grátis"]</h1>
+        <p>@T["Cadastre sua clínica e use o sistema por {0} dias, sem compromisso.", ViewBag.Dias]</p>
+    </div>
+    <form method="post" asp-action="Demonstracao" class="formulario">
+        <partial name="_ResumoErros" />
+        <fieldset>
+            <legend>@T["Clínica"]</legend>
+            <label class="campo"><span>@T["Nome da clínica *"]</span><input asp-for="NomeClinica" maxlength="150" required autofocus /></label>
+            <div class="linha">
+                <label class="campo"><span>@T["Cidade"]</span><input asp-for="Cidade" maxlength="100" /></label>
+                <label class="campo curto"><span>@T["UF"]</span>
+                    <select asp-for="Uf"><option value="">—</option>@foreach (var uf in ufs) { <option value="@uf">@uf</option> }</select></label>
+            </div>
+            <label class="campo"><span>@T["Telefone"]</span><input asp-for="Telefone" maxlength="20" data-mascara="telefone" /></label>
+        </fieldset>
+        <fieldset>
+            <legend>@T["Seu acesso"]</legend>
+            <label class="campo"><span>@T["Seu nome *"]</span><input asp-for="NomeResponsavel" maxlength="150" required /></label>
+            <label class="campo"><span>@T["E-mail (será o seu login) *"]</span><input asp-for="Email" type="email" autocomplete="username" required /></label>
+            <div class="linha">
+                <label class="campo"><span>@T["Senha *"]</span><input asp-for="Senha" type="password" autocomplete="new-password" minlength="8" required /></label>
+                <label class="campo"><span>@T["Confirme a senha *"]</span><input asp-for="Confirmacao" type="password" autocomplete="new-password" required /></label>
+            </div>
+            <small class="muted">@T["A senha deve ter ao menos 8 caracteres, com letras e números."]</small>
+            <label class="check"><input type="checkbox" name="SouMedico" value="true" checked="@Model.SouMedico" /><input type="hidden" name="SouMedico" value="false" /> @T["Sou médico (para usar o prontuário)"]</label>
+            <div class="linha">
+                <label class="campo"><span>@T["CRM"]</span><input asp-for="Crm" maxlength="10" inputmode="numeric" /></label>
+                <label class="campo curto"><span>@T["UF do CRM"]</span>
+                    <select asp-for="UfCrm"><option value="">—</option>@foreach (var uf in ufs) { <option value="@uf">@uf</option> }</select></label>
+            </div>
+        </fieldset>
+        <label class="check"><input type="checkbox" name="AceitoTermos" value="true" checked="@Model.AceitoTermos" required /><input type="hidden" name="AceitoTermos" value="false" />
+            @T["Entendo que, ao fim da demonstração, o acesso é bloqueado até a liberação da versão definitiva pela WS Sistemas."]</label>
+        <button type="submit" class="btn btn-primario btn-bloco">@T["Criar minha demonstração"]</button>
+    </form>
+    <p class="login-rodape"><a asp-action="Login">@T["Já tenho acesso: entrar"]</a></p>
+</div>

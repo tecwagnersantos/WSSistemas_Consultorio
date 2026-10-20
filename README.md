@@ -211,6 +211,7 @@ O sistema fala **português (pt-BR, padrão), inglês (en-US), espanhol (es-ES) 
 | `Anexos:Pasta` | Pasta onde ficam os arquivos anexados ao prontuário (padrão `App_Data/Anexos`, dentro da pasta do site). **Em produção use um caminho fora da pasta do site**, ex.: `D:\ConsultorioAnexos` (no JSON, com barra dupla: `"D:\\ConsultorioAnexos"`) |
 | `Anexos:TamanhoMaximoMB` | Tamanho máximo de cada arquivo anexado (padrão 20). Um envio pode ter até 10 arquivos e 100 MB no total (limite também no `web.config`) |
 | `Regional:SimboloMoeda` | Símbolo da moeda mostrado em todos os idiomas (padrão `R$`) |
+| `Demonstracao:Habilitado` / `Dias` / `MaxMedicos` / `MaxUsuarios` | Cadastro de demonstração na tela de login ("Experimente grátis"): cria a clínica em período de teste por `Dias` dias, com esses limites, e o usuário administrador (e médico, se informar o CRM). Vencido o prazo, o login é recusado até o suporte liberar a versão definitiva ou estender o prazo em `/Admin → Clientes`. `Habilitado = false` esconde o link |
 | `Bootstrap:AdminEmail` / `AdminSenha` | Cria o primeiro Administrador do sistema (área `/Admin`) se não houver nenhum. Deixe vazio em produção depois do primeiro acesso |
 
 ## Publicar no IIS (servidor próprio)

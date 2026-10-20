@@ -1,4 +1,5 @@
 using System.Globalization;
+using System.Text.RegularExpressions;
 using Consultorio.Application.Abstractions;
 using Consultorio.Application.Common;
 using Consultorio.Domain.Common;
@@ -176,6 +177,10 @@ public class DocumentoService(IAppDbContext db, IUsuarioAtual usuario, IAuditori
         // Sem CID (o paciente não autorizou), a linha que o mostraria sai do documento
         if (!manterCampos && cid is null)
             texto = string.Join('\n', texto.Replace("\r\n", "\n").Split('\n').Where(l => !l.Contains("{cid}")));
+
+        // Paciente sem CPF: tira o trecho ", portador(a) do CPF {cpf}" dos textos padrão em vez de deixá-lo em branco
+        if (d.Cpf is null)
+            texto = Regex.Replace(texto, @",?\s*portador\(a\) do CPF \{cpf\}", "", RegexOptions.IgnoreCase);
 
         var campos = new Dictionary<string, string?>
         {

@@ -912,4 +912,31 @@
   <data name="Documento não encontrado." xml:space="preserve"><value>Document not found.</value></data>
   <data name="Informe o nome e o texto do modelo." xml:space="preserve"><value>Enter the template name and text.</value></data>
   <data name="Já existe um modelo com esse nome para este tipo de documento." xml:space="preserve"><value>A template with this name already exists for this document type.</value></data>
+  <data name="Experimente grátis" xml:space="preserve"><value>Try it free</value></data>
+  <data name="Cadastre sua clínica e use o sistema por {0} dias, sem compromisso." xml:space="preserve"><value>Register your clinic and use the system for {0} days, with no commitment.</value></data>
+  <data name="Clínica" xml:space="preserve"><value>Clinic</value></data>
+  <data name="Seu acesso" xml:space="preserve"><value>Your access</value></data>
+  <data name="Seu nome *" xml:space="preserve"><value>Your name *</value></data>
+  <data name="E-mail (será o seu login) *" xml:space="preserve"><value>Email (your login) *</value></data>
+  <data name="Senha *" xml:space="preserve"><value>Password *</value></data>
+  <data name="Confirme a senha *" xml:space="preserve"><value>Confirm password *</value></data>
+  <data name="Sou médico (para usar o prontuário)" xml:space="preserve"><value>I am a doctor (to use medical records)</value></data>
+  <data name="UF do CRM" xml:space="preserve"><value>CRM state</value></data>
+  <data name="Entendo que, ao fim da demonstração, o acesso é bloqueado até a liberação da versão definitiva pela WS Sistemas." xml:space="preserve"><value>I understand that when the trial ends, access is blocked until WS Sistemas releases the full version.</value></data>
+  <data name="Criar minha demonstração" xml:space="preserve"><value>Create my trial</value></data>
+  <data name="Já tenho acesso: entrar" xml:space="preserve"><value>I already have access: sign in</value></data>
+  <data name="Ainda não é cliente?" xml:space="preserve"><value>Not a customer yet?</value></data>
+  <data name="Experimente grátis por {0} dias" xml:space="preserve"><value>Try it free for {0} days</value></data>
+  <data name="Informe o CRM e a UF do CRM, ou desmarque &quot;Sou médico&quot;." xml:space="preserve"><value>Enter the CRM and its state, or uncheck &quot;I am a doctor&quot;.</value></data>
+  <data name="Bem-vindo(a)! Sua demonstração vale por {0} dias." xml:space="preserve"><value>Welcome! Your trial is valid for {0} days.</value></data>
+  <data name="Informe o nome da clínica." xml:space="preserve"><value>Enter the clinic name.</value></data>
+  <data name="Informe o seu nome." xml:space="preserve"><value>Enter your name.</value></data>
+  <data name="Confirme a senha." xml:space="preserve"><value>Confirm the password.</value></data>
+  <data name="A confirmação não confere com a senha." xml:space="preserve"><value>The confirmation does not match the password.</value></data>
+  <data name="É preciso aceitar os termos da demonstração." xml:space="preserve"><value>You must accept the trial terms.</value></data>
+  <data name="O cadastro de demonstração não está disponível." xml:space="preserve"><value>Trial sign-up is not available.</value></data>
+  <data name="Informe o nome da clínica, o seu nome e o e-mail." xml:space="preserve"><value>Enter the clinic name, your name and email.</value></data>
+  <data name="Informe o CRM (somente números) e a UF do CRM." xml:space="preserve"><value>Enter the CRM (numbers only) and its state.</value></data>
+  <data name="Perfis de acesso padrão não encontrados. Contate o suporte." xml:space="preserve"><value>Default access profiles not found. Contact support.</value></data>
+  <data name="Demonstração (site)" xml:space="preserve"><value>Trial (website)</value></data>
 </root>

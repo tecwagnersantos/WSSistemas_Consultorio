@@ -7,7 +7,7 @@
 }
 <div class="login-caixa">
     <div class="login-marca">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3h4v7h7v4h-7v7h-4v-7H3v-4h7z" /></svg>
+        <img class="logo-empresa" src="~/img/logo-ws.png" alt="WS Sistemas" width="220" />
         <h1>@(Config["Consultorio:Nome"] ?? T["Consultório Médico"].Value)</h1>
         <p>@T["Agenda, prontuário e relatórios"]</p>
     </div>
@@ -24,5 +24,12 @@
         </label>
         <button type="submit" class="btn btn-primario btn-bloco">@T["Entrar"]</button>
     </form>
+    @if (Config.GetValue("Demonstracao:Habilitado", true))
+    {
+        <div class="login-demonstracao">
+            <span>@T["Ainda não é cliente?"]</span>
+            <a class="btn btn-secundario btn-bloco" asp-action="Demonstracao">@T["Experimente grátis por {0} dias", Config.GetValue("Demonstracao:Dias", 15)]</a>
+        </div>
+    }
     <p class="login-rodape">@T["Acesso restrito. As operações no prontuário são registradas (LGPD)."]</p>
 </div>

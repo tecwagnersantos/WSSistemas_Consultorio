@@ -912,4 +912,31 @@
   <data name="Documento não encontrado." xml:space="preserve"><value>Document introuvable.</value></data>
   <data name="Informe o nome e o texto do modelo." xml:space="preserve"><value>Saisissez le nom et le texte du modèle.</value></data>
   <data name="Já existe um modelo com esse nome para este tipo de documento." xml:space="preserve"><value>Un modèle portant ce nom existe déjà pour ce type de document.</value></data>
+  <data name="Experimente grátis" xml:space="preserve"><value>Essai gratuit</value></data>
+  <data name="Cadastre sua clínica e use o sistema por {0} dias, sem compromisso." xml:space="preserve"><value>Inscrivez votre clinique et utilisez le système pendant {0} jours, sans engagement.</value></data>
+  <data name="Clínica" xml:space="preserve"><value>Clinique</value></data>
+  <data name="Seu acesso" xml:space="preserve"><value>Votre accès</value></data>
+  <data name="Seu nome *" xml:space="preserve"><value>Votre nom *</value></data>
+  <data name="E-mail (será o seu login) *" xml:space="preserve"><value>E-mail (votre identifiant) *</value></data>
+  <data name="Senha *" xml:space="preserve"><value>Mot de passe *</value></data>
+  <data name="Confirme a senha *" xml:space="preserve"><value>Confirmez le mot de passe *</value></data>
+  <data name="Sou médico (para usar o prontuário)" xml:space="preserve"><value>Je suis médecin (pour utiliser le dossier médical)</value></data>
+  <data name="UF do CRM" xml:space="preserve"><value>UF du CRM</value></data>
+  <data name="Entendo que, ao fim da demonstração, o acesso é bloqueado até a liberação da versão definitiva pela WS Sistemas." xml:space="preserve"><value>Je comprends qu&apos;à la fin de l&apos;essai, l&apos;accès est bloqué jusqu&apos;à l&apos;activation de la version définitive par WS Sistemas.</value></data>
+  <data name="Criar minha demonstração" xml:space="preserve"><value>Créer mon essai</value></data>
+  <data name="Já tenho acesso: entrar" xml:space="preserve"><value>J&apos;ai déjà un accès : se connecter</value></data>
+  <data name="Ainda não é cliente?" xml:space="preserve"><value>Pas encore client ?</value></data>
+  <data name="Experimente grátis por {0} dias" xml:space="preserve"><value>Essai gratuit de {0} jours</value></data>
+  <data name="Informe o CRM e a UF do CRM, ou desmarque &quot;Sou médico&quot;." xml:space="preserve"><value>Saisissez le CRM et son UF, ou décochez « Je suis médecin ».</value></data>
+  <data name="Bem-vindo(a)! Sua demonstração vale por {0} dias." xml:space="preserve"><value>Bienvenue ! Votre essai est valable {0} jours.</value></data>
+  <data name="Informe o nome da clínica." xml:space="preserve"><value>Saisissez le nom de la clinique.</value></data>
+  <data name="Informe o seu nome." xml:space="preserve"><value>Saisissez votre nom.</value></data>
+  <data name="Confirme a senha." xml:space="preserve"><value>Confirmez le mot de passe.</value></data>
+  <data name="A confirmação não confere com a senha." xml:space="preserve"><value>La confirmation ne correspond pas au mot de passe.</value></data>
+  <data name="É preciso aceitar os termos da demonstração." xml:space="preserve"><value>Vous devez accepter les conditions de l&apos;essai.</value></data>
+  <data name="O cadastro de demonstração não está disponível." xml:space="preserve"><value>L&apos;inscription à l&apos;essai n&apos;est pas disponible.</value></data>
+  <data name="Informe o nome da clínica, o seu nome e o e-mail." xml:space="preserve"><value>Saisissez le nom de la clinique, votre nom et votre e-mail.</value></data>
+  <data name="Informe o CRM (somente números) e a UF do CRM." xml:space="preserve"><value>Saisissez le CRM (chiffres uniquement) et son UF.</value></data>
+  <data name="Perfis de acesso padrão não encontrados. Contate o suporte." xml:space="preserve"><value>Profils d&apos;accès par défaut introuvables. Contactez le support.</value></data>
+  <data name="Demonstração (site)" xml:space="preserve"><value>Essai (site)</value></data>
 </root>

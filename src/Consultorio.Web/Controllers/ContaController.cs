@@ -31,9 +31,54 @@ public class ContaController(AuthService auth) : BaseController
             return View(vm);
         }
 
+        await EntrarAsync(usuario!);
+        if (!string.IsNullOrEmpty(vm.ReturnUrl) && Url.IsLocalUrl(vm.ReturnUrl)) return Redirect(vm.ReturnUrl);
+        return RedirectToAction("Index", "Home");
+    }
+
+    /// <summary>Cadastro de demonstração: clínica em período de teste + usuário administrador (e médico, se informar o CRM).</summary>
+    [HttpGet, AllowAnonymous]
+    public IActionResult Demonstracao()
+    {
+        if (User.Identity?.IsAuthenticated == true) return RedirectToAction("Index", "Home");
+        if (!ConfigDemonstracao.Habilitado) return RedirectToAction(nameof(Login));
+        ViewBag.Dias = ConfigDemonstracao.Dias;
+        return View(new DemonstracaoVM());
+    }
+
+    [HttpPost, AllowAnonymous, EnableRateLimiting("login")]
+    public async Task<IActionResult> Demonstracao(DemonstracaoVM vm, [FromServices] DemonstracaoService demonstracao, CancellationToken ct)
+    {
+        var config = ConfigDemonstracao;
+        if (!config.Habilitado) return RedirectToAction(nameof(Login));
+        if (vm.SouMedico && (string.IsNullOrWhiteSpace(vm.Crm) || string.IsNullOrWhiteSpace(vm.UfCrm)))
+            ModelState.AddModelError(nameof(vm.Crm), T["Informe o CRM e a UF do CRM, ou desmarque \"Sou médico\"."]);
+
+        UsuarioLogadoDto? usuario = null;
+        if (ModelState.IsValid && await TentarAsync(async () =>
+            {
+                await demonstracao.CadastrarAsync(new DemonstracaoRequest(vm.NomeClinica, vm.Telefone, vm.Cidade, vm.Uf,
+                    vm.NomeResponsavel, vm.Email, vm.Senha, vm.SouMedico, vm.Crm, vm.UfCrm), config, ct);
+                usuario = await auth.LoginAsync(new LoginRequest(vm.Email, vm.Senha), ct);
+            }))
+        {
+            await EntrarAsync(usuario!);
+            Sucesso("Bem-vindo(a)! Sua demonstração vale por {0} dias.", config.Dias);
+            return RedirectToAction("Index", "Home");
+        }
+        vm.Senha = vm.Confirmacao = "";
+        ViewBag.Dias = config.Dias;
+        return View(vm);
+    }
+
+    private DemonstracaoConfig ConfigDemonstracao =>
+        HttpContext.RequestServices.GetRequiredService<IConfiguration>().GetSection("Demonstracao").Get<DemonstracaoConfig>() ?? new();
+
+    private async Task EntrarAsync(UsuarioLogadoDto usuario)
+    {
         var claims = new List<Claim>
         {
-            new(ClaimTypes.NameIdentifier, usuario!.Id.ToString()),
+            new(ClaimTypes.NameIdentifier, usuario.Id.ToString()),
             new(ClaimTypes.Name, usuario.Nome),
             new(ClaimTypes.Email, usuario.Email)
         };
@@ -50,9 +95,6 @@ public class ContaController(AuthService auth) : BaseController
         await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
         // Idioma gravado no usuário vale em qualquer computador
         if (Idiomas.Normalizar(usuario.Idioma) is { } idioma) IdiomaCookie.Definir(Response, idioma);
-
-        if (!string.IsNullOrEmpty(vm.ReturnUrl) && Url.IsLocalUrl(vm.ReturnUrl)) return Redirect(vm.ReturnUrl);
-        return RedirectToAction("Index", "Home");
     }
 
     [HttpPost]

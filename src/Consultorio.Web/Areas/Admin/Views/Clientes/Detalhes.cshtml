@@ -11,6 +11,7 @@
         @if (c.AcessoDefinitivo) { <span class="badge status-atendido">@T["Versão definitiva"]</span> }
         else if (c.AcessoVencido) { <span class="badge status-faltou">@T["Acesso vencido em {0}", c.AcessoAte?.ToString("d")]</span> }
         else { <span class="badge status-aguardando">@T["Em teste até {0}", c.AcessoAte?.ToString("d")]</span> }
+        @if (c.Observacoes?.StartsWith(Consultorio.Application.Auth.DemonstracaoService.MarcaObservacao) == true) { <span class="badge status-confirmado">@T["Demonstração (site)"]</span> }
         @T["Cliente desde {0}", Exibicao.Data(c.CriadoEm)]@(c.Cidade is null ? "" : $" · {c.Cidade}/{c.Uf}")@(c.Cnpj is null ? "" : $" · CNPJ {c.Cnpj}")
     </span>
     <div class="acoes">
